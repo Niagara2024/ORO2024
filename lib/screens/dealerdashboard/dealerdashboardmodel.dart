@@ -1,5 +1,5 @@
-import 'package:dealerdash/dealerdashboard/dealerdashboardview.dart';
 import 'package:flutter/material.dart';
+import 'package:oro_2024/screens/dealerdashboard/dealerdashboardview.dart';
 
 class DashboardModel {
   final String title;
