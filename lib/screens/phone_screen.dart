@@ -19,21 +19,12 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
   late Animation<double> _circleAnimation1;
   late Animation<double> _circleAnimation2;
   late Animation<double> _contentAnimation;
-  late String _initialCountryCode = 'IN'; // Default to 'IN'
+  late String _initialCountryCode = 'IN';
 
   @override
   void initState() {
     super.initState();
-
-    _getLocation().then((Position position) {
-      // Get the country code based on latitude and longitude
-      _getCountryCode(position.latitude, position.longitude)
-          .then((String countryCode) {
-        setState(() {
-          _initialCountryCode = countryCode;
-        });
-      });
-    });
+    _getLocationAndCountryCode();
 
     _animationController = AnimationController(
       vsync: this,
@@ -63,15 +54,31 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
 
     _animationController.forward();
   }
-  Future<void> requestLocationPermissions() async {
-    final PermissionStatus status = await Permission.location.request();
-    if (status.isGranted) {
 
-    } else if (status.isDenied) {
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
+  void _getLocationAndCountryCode() async {
+    try {
+      PermissionStatus status = await Permission.location.request();
+      if (status.isGranted) {
+        final Position position = await _getLocation();
+        final String countryCode = await _getCountryCode(position.latitude, position.longitude);
+        setState(() {
+          _initialCountryCode = countryCode;
+        });
+      } else if (status.isDenied) {
+        print("Location permission is denied by the user.");
+        // Handle denied permission scenario here
+      }
+    } catch (e) {
+      print("Error while getting location and country code: $e");
     }
   }
-// Function to retrieve user's current position
+
   Future<Position> _getLocation() async {
     try {
       final Position position = await Geolocator.getCurrentPosition(
@@ -80,38 +87,29 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
       return position;
     } catch (e) {
       print("Error while getting location: $e");
-      throw Exception("Error while getting location");
+      rethrow;
     }
   }
-// Function to get the country code based on latitude and longitude
+
   Future<String> _getCountryCode(double latitude, double longitude) async {
     try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-        latitude,
-        longitude,
-      );
+      final List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
       if (placemarks.isNotEmpty) {
-        String countryName = placemarks.first.country ?? 'IN';
+        final String countryName = placemarks.first.country ?? 'IN';
 
-        Country? countryData = countries.firstWhere(
-              (country) => country.name == countryName,
-          orElse: () => Country(name: 'India', flag: 'IN', code: '+91', dialCode: '', nameTranslations: {}, minLength: 10, maxLength: 10), // Provide default data
-        );
+        final Map<String, String> countryCodes = {
+          'India': '+91',
+        };
 
-        return countryData.code; // Use the alpha2Code as the country code
+        final String countryCode = countryCodes[countryName] ?? '+91';
+        return countryCode;
       }
 
-      return 'IN'; // Default to 'IN' if no placemarks are available
+      return '+91';
     } catch (e) {
       print("Error while getting country code: $e");
-      return 'IN'; // Default to 'IN' in case of an error
+      return '+91';
     }
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 
   @override
