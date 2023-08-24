@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DashboardCardView extends StatelessWidget {
   final String title;
@@ -15,6 +16,8 @@ class DashboardCardView extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.0), // Apply border radius here
       ),
       child: Container(
+        // height: 150.dg,
+        // width: 150.dg,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
               Radius.circular(20)), // Apply border radius here as well

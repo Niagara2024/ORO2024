@@ -9,6 +9,12 @@ class Dashbard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(
+          Icons.arrow_back,
+          size: 24,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.amber,
         title: const Text(
           'Dealer DashBoard',
           textAlign: TextAlign.center,
