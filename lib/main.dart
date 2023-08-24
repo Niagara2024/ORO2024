@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+<<<<<<< HEAD
 import 'package:oro_2024/screens/dealerdashboard/dealerdashboardcontroller.dart';
 import 'package:oro_2024/screens/home_screen.dart';
 import 'package:oro_2024/screens/test.dart';
+=======
+import 'package:oro_2024/screens/splash_screen.dart';
+import 'package:oro_2024/utils/theme.dart';
+>>>>>>> main
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+<<<<<<< HEAD
       title: 'ORO 2024',
       theme: ThemeData(
         primarySwatch: Colors.amber,
@@ -81,6 +87,12 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+=======
+      debugShowCheckedModeBanner: false,
+      title: 'ORO DRIP IRRIGATION',
+      theme: myTheme,
+      home: const SplashScreen(),
+>>>>>>> main
     );
   }
 }

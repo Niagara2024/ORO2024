@@ -1,31 +1,39 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:intl_phone_field/countries.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:oro_2024/screens/home_screen.dart';
-=======
-import 'package:oro_2024/screens/phone_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-import 'home_screen.dart';
->>>>>>> main
-
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class PhoneNumberScreen extends StatefulWidget {
+  const PhoneNumberScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<PhoneNumberScreen> createState() => _PhoneNumberScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
+class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTickerProviderStateMixin {
+
   late AnimationController _animationController;
   late Animation<double> _circleAnimation1;
   late Animation<double> _circleAnimation2;
-  late Animation<double> _circleAnimation3;
-  late Animation<double> _circleAnimation4;
   late Animation<double> _contentAnimation;
+  late String _initialCountryCode = 'IN'; // Default to 'IN'
 
   @override
   void initState() {
     super.initState();
+
+    _getLocation().then((Position position) {
+      // Get the country code based on latitude and longitude
+      _getCountryCode(position.latitude, position.longitude)
+          .then((String countryCode) {
+        setState(() {
+          _initialCountryCode = countryCode;
+        });
+      });
+    });
 
     _animationController = AnimationController(
       vsync: this,
@@ -46,20 +54,6 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
 
-    _circleAnimation3 = Tween<double>(begin: 0, end: -90).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: const Interval(0, 0.5),
-      ),
-    );
-
-    _circleAnimation4 = Tween<double>(begin: -113, end: 0).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: const Interval(0, 0.5),
-      ),
-    );
-
     _contentAnimation = Tween<double>(begin: -1, end: 1).animate(
       CurvedAnimation(
         parent: _animationController,
@@ -68,6 +62,50 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     _animationController.forward();
+  }
+  Future<void> requestLocationPermissions() async {
+    final PermissionStatus status = await Permission.location.request();
+    if (status.isGranted) {
+
+    } else if (status.isDenied) {
+
+    }
+  }
+// Function to retrieve user's current position
+  Future<Position> _getLocation() async {
+    try {
+      final Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      return position;
+    } catch (e) {
+      print("Error while getting location: $e");
+      throw Exception("Error while getting location");
+    }
+  }
+// Function to get the country code based on latitude and longitude
+  Future<String> _getCountryCode(double latitude, double longitude) async {
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        latitude,
+        longitude,
+      );
+      if (placemarks.isNotEmpty) {
+        String countryName = placemarks.first.country ?? 'IN';
+
+        Country? countryData = countries.firstWhere(
+              (country) => country.name == countryName,
+          orElse: () => Country(name: 'India', flag: 'IN', code: '+91', dialCode: '', nameTranslations: {}, minLength: 10, maxLength: 10), // Provide default data
+        );
+
+        return countryData.code; // Use the alpha2Code as the country code
+      }
+
+      return 'IN'; // Default to 'IN' if no placemarks are available
+    } catch (e) {
+      print("Error while getting country code: $e");
+      return 'IN'; // Default to 'IN' in case of an error
+    }
   }
 
   @override
@@ -146,99 +184,76 @@ class _SplashScreenState extends State<SplashScreen>
                   );
                 },
               ),
-              // AnimatedBuilder(
-              //   animation: _circleAnimation1,
-              //   builder: (context, child) {
-              //     return Positioned(
-              //       bottom: constraints.maxHeight * 0.01 + _circleAnimation3.value,
-              //       right: 0,
-              //       child: Container(
-              //         width: 200,
-              //         height: 200,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Theme.of(context).primaryColor.withOpacity(0.5),
-              //         ),
-              //       ),
-              //     );
-              //   },
-              // ),
-              // AnimatedBuilder(
-              //   animation: _circleAnimation2,
-              //   builder: (context, child) {
-              //     return Positioned(
-              //       bottom: constraints.maxHeight * 0.01 + _circleAnimation4.value,
-              //       right: -113,
-              //       child: Container(
-              //         width: 200,
-              //         height: 200,
-              //         decoration: const BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Color(0x800D5D9A),
-              //         ),
-              //       ),
-              //     );
-              //   },
-              // ),
               FadeTransition(
                 opacity: _contentAnimation,
                 child: Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Flexible(
-                        flex: imageFlex.toInt(),
-                        child: Padding(
-                          padding: EdgeInsets.all(constraints.maxWidth * 0.08),
+                  child: SizedBox(
+                    height: 500,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Image.asset(
-                              'assets/images/Illustration.png',
+                            'assets/images/authentication_illustration.png',
+                            height: 200,
+                            width: 200,
                           ),
                         ),
-                      ),
-                      Flexible(
-                        flex: textFlex.toInt(),
-                        child: Padding(
-                          padding: EdgeInsets.all(constraints.maxWidth * 0.08),
+                        Padding(
+                          padding: const EdgeInsets.all(12),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                "ORO DRIP IRRIGATION",
-                                style: Theme.of(context).textTheme.titleLarge,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "CONTINUE WITH PHONE",
+                                  style: Theme.of(context).textTheme.titleLarge,
+                                ),
                               ),
-                              const SizedBox(height: 16),
-                              Text(
-                                'Drip irrigation is a type of watering system used in agriculture, gardening, and landscaping to efficiently deliver water directly to the roots of plants.',
-                                style: Theme.of(context).textTheme.bodyLarge,
-                                textAlign: TextAlign.center,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'You’ll receive a 6 digits code to verify Next',
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
+                              const SizedBox(height: 10),
+                              IntlPhoneField(
+                                decoration: const InputDecoration(
+                                  labelText: 'Phone number',
+                                ),
+                                initialCountryCode: _initialCountryCode,
+                                onChanged: (phone){
+                                  print(phone.completeNumber);
+                                },
+                              )
                             ],
                           ),
                         ),
-                      ),
-                      Flexible(
-                        flex: buttonFlex.toInt(),
-                        child: ElevatedButton(
+                        ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(
+                            Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => const PhoneNumberScreen(),
+                                builder: (context) => const HomeScreen(),
                               ),
                             );
                           },
                           child: const Text(
-                            'GET STARTED',
+                            'CONTINUE',
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
             ],
           );
-        },
+        }
       ),
     );
   }
