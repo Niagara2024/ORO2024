@@ -18,12 +18,13 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
   late Animation<double> _circleAnimation1;
   late Animation<double> _circleAnimation2;
   late Animation<double> _contentAnimation;
-  String _initialCountryCode = 'IN';
+  late String _initialCountryCode = '';
 
   @override
   void initState() {
     super.initState();
     _getLocationAndSetCountryCode();
+
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -65,7 +66,6 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
         desiredAccuracy: LocationAccuracy.low,
       );
 
-      // Determine the country based on the user's position
       List<Placemark> placemarks = await placemarkFromCoordinates(
         position.latitude,
         position.longitude,
@@ -152,81 +152,108 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                   );
                 },
               ),
-              FadeTransition(
-                opacity: _contentAnimation,
-                child: Center(
-                  child: SizedBox(
-                    height: 700,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            'assets/images/authentication_illustration.png',
-                            height: 200,
-                            width: 200,
-                          ),
+              Center(
+                child: SizedBox(
+                  height: 600,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/images/authentication_illustration.png',
+                          height: 200,
+                          width: 200,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "CONTINUE WITH PHONE",
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "CONTINUE WITH PHONE",
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'You’ll receive a 6 digits code to verify Next',
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                  textAlign: TextAlign.center,
-                                ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'You’ll receive a 6 digits code to verify Next',
+                                style: Theme.of(context).textTheme.bodyLarge,
+                                textAlign: TextAlign.center,
                               ),
-                              const SizedBox(height: 10),
-                              CountryCodePicker(
-                                onChanged: (CountryCode country) {
-                                  setState(() {
-                                    _initialCountryCode = country.code!;
-                                  });
-                                },
-                                initialSelection: _initialCountryCode,
-                                showCountryOnly: false,
-                                showOnlyCountryWhenClosed: false,
-                                alignLeft: false,
+                            ),
+                            const SizedBox(height: 10),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  CountryCodePicker(
+                                    onChanged: (CountryCode? country) {
+                                      setState(() {
+                                        _initialCountryCode = country!.code!;
+                                      });
+                                    },
+                                    initialSelection: _initialCountryCode,
+                                    showCountryOnly: false,
+                                    showOnlyCountryWhenClosed: false,
+                                    alignLeft: false,
+                                    showFlag: true,
+                                    builder: (CountryCode? country) {
+                                      return Row(
+                                        children: [
+                                          Image.asset(
+                                            country!.flagUri!,
+                                            package: 'country_code_picker', // Make sure to include the package name
+                                            width: 20, // Adjust the width as needed
+                                            height: 20, // Adjust the height as needed
+                                          ),
+                                          SizedBox(width: 5),
+                                          Text(
+                                            '${country!.dialCode}',
+                                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                          ),
+                                          Icon(Icons.arrow_drop_down),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Expanded(
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        labelText: 'Phone number',
+                                        hintText: 'Enter your phone number',
+                                      ),
+                                      onChanged: (phone){
+                                        print(phone);
+                                      },
+                                      keyboardType: TextInputType.phone,
+                                    ),
+                                  ),
+                                ],
                               ),
-
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                  labelText: 'Phone number',
-                                  hintText: 'Enter your phone number',
-                                ),
-                                keyboardType: TextInputType.phone,
-                                initialValue: _initialCountryCode,
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const HomeScreen(),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            'CONTINUE',
-                          ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const HomeScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'CONTINUE',
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
