@@ -177,6 +177,12 @@ final ThemeData myTheme = ThemeData(
     shape: const StadiumBorder(),
   ),
 
+  inputDecorationTheme: const InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(50))
+    )
+  ),
+
   platform: TargetPlatform.android,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   applyElevationOverlayColor: true,
