@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oro_2024/screens/phone_screen.dart';
 
 import 'home_screen.dart';
 
@@ -73,9 +74,37 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: LayoutBuilder(
         builder: (context, constraints) {
+          final screenWidth = constraints.maxWidth;
+          double imageFlex, textFlex, buttonFlex, imageHeight, ImageWidth;
+
+          if (screenWidth < 600) {
+            // Mobile screen
+            imageFlex = 1.0;
+            textFlex = 1.0;
+            buttonFlex = 1.0;
+            imageHeight = constraints.maxHeight * 0.5;
+            ImageWidth = constraints.maxWidth * 0.5;
+            // print("$screenWidth < 600");
+          } else if (screenWidth < 1200) {
+            // Tablet screen
+            imageFlex = 0.9;
+            textFlex = 0.5;
+            buttonFlex = 0.9;
+            imageHeight = constraints.maxHeight * 0.3;
+            ImageWidth = constraints.maxWidth * 0.3;
+            // print("$screenWidth < 1200");
+          } else {
+            // Desktop screen
+            imageFlex = 0.5;
+            textFlex = 2.0;
+            buttonFlex = 0.5;
+            imageHeight = constraints.maxHeight * 0.4;
+            ImageWidth = constraints.maxWidth * 0.4;
+            // print("$screenWidth > 1200");
+          }
+
           return Stack(
             children: [
               AnimatedBuilder(
@@ -85,8 +114,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     top: constraints.maxHeight * 0.01 + _circleAnimation1.value,
                     left: 0,
                     child: Container(
-                      width: constraints.maxWidth * 0.4,
-                      height: constraints.maxWidth * 0.4,
+                      width: 200,
+                      height: 200,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Theme.of(context).primaryColor.withOpacity(0.5),
@@ -102,23 +131,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     top: constraints.maxHeight * 0.01 + _circleAnimation2.value,
                     left: -113,
                     child: Container(
-                      width: constraints.maxWidth * 0.4,
-                      height: constraints.maxWidth * 0.4,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).primaryColor.withOpacity(0.5),
-                      ),
-                    ),
-                  );
-                },
-              ),
-              AnimatedBuilder(
-                animation: _circleAnimation1,
-                builder: (context, child) {
-                  return Positioned(
-                    bottom: _circleAnimation3.value,
-                    right: 0,
-                    child: Container(
                       width: 200,
                       height: 200,
                       decoration: BoxDecoration(
@@ -129,23 +141,40 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   );
                 },
               ),
-              AnimatedBuilder(
-                animation: _circleAnimation2,
-                builder: (context, child) {
-                  return Positioned(
-                    bottom: _circleAnimation4.value,
-                    right: -113,
-                    child: Container(
-                      width: 200,
-                      height: 200,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color(0x800D5D9A),
-                      ),
-                    ),
-                  );
-                },
-              ),
+              // AnimatedBuilder(
+              //   animation: _circleAnimation1,
+              //   builder: (context, child) {
+              //     return Positioned(
+              //       bottom: constraints.maxHeight * 0.01 + _circleAnimation3.value,
+              //       right: 0,
+              //       child: Container(
+              //         width: 200,
+              //         height: 200,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Theme.of(context).primaryColor.withOpacity(0.5),
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // ),
+              // AnimatedBuilder(
+              //   animation: _circleAnimation2,
+              //   builder: (context, child) {
+              //     return Positioned(
+              //       bottom: constraints.maxHeight * 0.01 + _circleAnimation4.value,
+              //       right: -113,
+              //       child: Container(
+              //         width: 200,
+              //         height: 200,
+              //         decoration: const BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Color(0x800D5D9A),
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // ),
               FadeTransition(
                 opacity: _contentAnimation,
                 child: Center(
@@ -154,16 +183,16 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Flexible(
-                        flex: 1,
+                        flex: imageFlex.toInt(),
                         child: Padding(
                           padding: EdgeInsets.all(constraints.maxWidth * 0.08),
                           child: Image.asset(
-                            'assets/images/Illustration.png',
+                              'assets/images/Illustration.png',
                           ),
                         ),
                       ),
                       Flexible(
-                        flex: 1,
+                        flex: textFlex.toInt(),
                         child: Padding(
                           padding: EdgeInsets.all(constraints.maxWidth * 0.08),
                           child: Column(
@@ -184,12 +213,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                         ),
                       ),
                       Flexible(
-                        flex: 1,
+                        flex: buttonFlex.toInt(),
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => const HomeScreen(),
+                                builder: (context) => const PhoneNumberScreen(),
                               ),
                             );
                           },
