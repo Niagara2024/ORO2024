@@ -41,6 +41,9 @@ dependencies:
   geolocator: ^10.0.0
   geocoding: ^2.1.0
   permission_handler: ^10.4.3
+  devicelocale: ^0.6.0
+  country_codes: ^2.2.0
+  country_code_picker: ^3.0.0
 
 
 dev_dependencies:

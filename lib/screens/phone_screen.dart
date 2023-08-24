@@ -1,10 +1,9 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:oro_2024/screens/home_screen.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
@@ -19,13 +18,12 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
   late Animation<double> _circleAnimation1;
   late Animation<double> _circleAnimation2;
   late Animation<double> _contentAnimation;
-  late String _initialCountryCode = 'IN';
+  String _initialCountryCode = 'IN';
 
   @override
   void initState() {
     super.initState();
-    _getLocationAndCountryCode();
-
+    _getLocationAndSetCountryCode();
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -61,57 +59,29 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
     super.dispose();
   }
 
-  void _getLocationAndCountryCode() async {
+  Future<void> _getLocationAndSetCountryCode() async {
     try {
-      PermissionStatus status = await Permission.location.request();
-      if (status.isGranted) {
-        final Position position = await _getLocation();
-        final String countryCode = await _getCountryCode(position.latitude, position.longitude);
-        setState(() {
-          _initialCountryCode = countryCode;
-        });
-      } else if (status.isDenied) {
-        print("Location permission is denied by the user.");
-        // Handle denied permission scenario here
-      }
-    } catch (e) {
-      print("Error while getting location and country code: $e");
-    }
-  }
-
-  Future<Position> _getLocation() async {
-    try {
-      final Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.low,
       );
-      return position;
+
+      // Determine the country based on the user's position
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+
+      String? countryCode = placemarks.isNotEmpty ? placemarks.first.isoCountryCode : 'IN';
+
+      setState(() {
+        _initialCountryCode = countryCode!;
+        print(countryCode);
+        print(placemarks);
+      });
     } catch (e) {
-      print("Error while getting location: $e");
-      rethrow;
+      print('Error getting location: $e');
     }
   }
-
-  Future<String> _getCountryCode(double latitude, double longitude) async {
-    try {
-      final List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
-      if (placemarks.isNotEmpty) {
-        final String countryName = placemarks.first.country ?? 'IN';
-
-        final Map<String, String> countryCodes = {
-          'India': '+91',
-        };
-
-        final String countryCode = countryCodes[countryName] ?? '+91';
-        return countryCode;
-      }
-
-      return '+91';
-    } catch (e) {
-      print("Error while getting country code: $e");
-      return '+91';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -186,7 +156,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                 opacity: _contentAnimation,
                 child: Center(
                   child: SizedBox(
-                    height: 500,
+                    height: 700,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -220,15 +190,26 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              IntlPhoneField(
+                              CountryCodePicker(
+                                onChanged: (CountryCode country) {
+                                  setState(() {
+                                    _initialCountryCode = country.code!;
+                                  });
+                                },
+                                initialSelection: _initialCountryCode,
+                                showCountryOnly: false,
+                                showOnlyCountryWhenClosed: false,
+                                alignLeft: false,
+                              ),
+
+                              TextFormField(
                                 decoration: const InputDecoration(
                                   labelText: 'Phone number',
+                                  hintText: 'Enter your phone number',
                                 ),
-                                initialCountryCode: _initialCountryCode,
-                                onChanged: (phone){
-                                  print(phone.completeNumber);
-                                },
-                              )
+                                keyboardType: TextInputType.phone,
+                                initialValue: _initialCountryCode,
+                              ),
                             ],
                           ),
                         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:oro_2024/screens/splash_screen.dart';
 import 'package:oro_2024/utils/theme.dart';
 
