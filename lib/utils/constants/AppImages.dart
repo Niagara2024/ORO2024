@@ -14,5 +14,4 @@ class AppImages {
   static const String faultMsgIcon = "${imagesPath}fault_message.png";
   static const String irrigationIcon = "${imagesPath}irrigation_icon.png";
 
-
 }
