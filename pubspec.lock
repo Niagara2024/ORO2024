@@ -48,8 +48,7 @@ packages:
       sha256: ee67cb0715911d28db6bf4af1026078bd6f0128b07a5f66fb2ed94ec6783c09a
       url: "https://pub.dev"
     source: hosted
-<<<<<<< HEAD
-    version: "1.17.2"
+    version: "1.18.0"
   country_code_picker:
     dependency: "direct main"
     description:
@@ -66,9 +65,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
-=======
-    version: "1.18.0"
-<<<<<<< HEAD
   cross_file:
     dependency: transitive
     description:
@@ -77,9 +73,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.3+4"
-=======
->>>>>>> 170455d92656f58d41268e86275fa94f48f154c5
->>>>>>> 86810
   crypto:
     dependency: transitive
     description:
@@ -720,10 +713,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: f2add6fa510d3ae152903412227bda57d0d5a8da61d2c39c1fb022c9429a41c0
+      sha256: "9e82a402b7f3d518fb9c02d0e9ae45952df31b9bf34d77baf19da2de03fc2aaa"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.6"
+    version: "5.0.7"
   xdg_directories:
     dependency: transitive
     description:
