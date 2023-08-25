@@ -1,10 +1,9 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:oro_2024/screens/home_screen.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
@@ -19,12 +18,12 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
   late Animation<double> _circleAnimation1;
   late Animation<double> _circleAnimation2;
   late Animation<double> _contentAnimation;
-  late String _initialCountryCode = 'IN';
+  late String _initialCountryCode = '';
 
   @override
   void initState() {
     super.initState();
-    _getLocationAndCountryCode();
+    _getLocationAndSetCountryCode();
 
     _animationController = AnimationController(
       vsync: this,
@@ -61,57 +60,28 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
     super.dispose();
   }
 
-  void _getLocationAndCountryCode() async {
+  Future<void> _getLocationAndSetCountryCode() async {
     try {
-      PermissionStatus status = await Permission.location.request();
-      if (status.isGranted) {
-        final Position position = await _getLocation();
-        final String countryCode = await _getCountryCode(position.latitude, position.longitude);
-        setState(() {
-          _initialCountryCode = countryCode;
-        });
-      } else if (status.isDenied) {
-        print("Location permission is denied by the user.");
-        // Handle denied permission scenario here
-      }
-    } catch (e) {
-      print("Error while getting location and country code: $e");
-    }
-  }
-
-  Future<Position> _getLocation() async {
-    try {
-      final Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.low,
       );
-      return position;
+
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
+      );
+
+      String? countryCode = placemarks.isNotEmpty ? placemarks.first.isoCountryCode : 'IN';
+
+      setState(() {
+        _initialCountryCode = countryCode!;
+        print(countryCode);
+        print(placemarks);
+      });
     } catch (e) {
-      print("Error while getting location: $e");
-      rethrow;
+      print('Error getting location: $e');
     }
   }
-
-  Future<String> _getCountryCode(double latitude, double longitude) async {
-    try {
-      final List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
-      if (placemarks.isNotEmpty) {
-        final String countryName = placemarks.first.country ?? 'IN';
-
-        final Map<String, String> countryCodes = {
-          'India': '+91',
-        };
-
-        final String countryCode = countryCodes[countryName] ?? '+91';
-        return countryCode;
-      }
-
-      return '+91';
-    } catch (e) {
-      print("Error while getting country code: $e");
-      return '+91';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -182,70 +152,108 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                   );
                 },
               ),
-              FadeTransition(
-                opacity: _contentAnimation,
-                child: Center(
-                  child: SizedBox(
-                    height: 500,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            'assets/images/authentication_illustration.png',
-                            height: 200,
-                            width: 200,
-                          ),
+              Center(
+                child: SizedBox(
+                  height: 600,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/images/authentication_illustration.png',
+                          height: 200,
+                          width: 200,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "CONTINUE WITH PHONE",
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "CONTINUE WITH PHONE",
+                                style: Theme.of(context).textTheme.titleLarge,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'You’ll receive a 6 digits code to verify Next',
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                  textAlign: TextAlign.center,
-                                ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'You’ll receive a 6 digits code to verify Next',
+                                style: Theme.of(context).textTheme.bodyLarge,
+                                textAlign: TextAlign.center,
                               ),
-                              const SizedBox(height: 10),
-                              IntlPhoneField(
-                                decoration: const InputDecoration(
-                                  labelText: 'Phone number',
-                                ),
-                                initialCountryCode: _initialCountryCode,
-                                onChanged: (phone){
-                                  print(phone.completeNumber);
-                                },
-                              )
-                            ],
-                          ),
+                            ),
+                            const SizedBox(height: 10),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  CountryCodePicker(
+                                    onChanged: (CountryCode? country) {
+                                      setState(() {
+                                        _initialCountryCode = country!.code!;
+                                      });
+                                    },
+                                    initialSelection: _initialCountryCode,
+                                    showCountryOnly: false,
+                                    showOnlyCountryWhenClosed: false,
+                                    alignLeft: false,
+                                    showFlag: true,
+                                    builder: (CountryCode? country) {
+                                      return Row(
+                                        children: [
+                                          Image.asset(
+                                            country!.flagUri!,
+                                            package: 'country_code_picker', // Make sure to include the package name
+                                            width: 20, // Adjust the width as needed
+                                            height: 20, // Adjust the height as needed
+                                          ),
+                                          SizedBox(width: 5),
+                                          Text(
+                                            '${country!.dialCode}',
+                                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                          ),
+                                          Icon(Icons.arrow_drop_down),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Expanded(
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        labelText: 'Phone number',
+                                        hintText: 'Enter your phone number',
+                                      ),
+                                      onChanged: (phone){
+                                        print(phone);
+                                      },
+                                      keyboardType: TextInputType.phone,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const HomeScreen(),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            'CONTINUE',
-                          ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const HomeScreen(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'CONTINUE',
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),

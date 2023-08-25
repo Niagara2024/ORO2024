@@ -178,9 +178,15 @@ final ThemeData myTheme = ThemeData(
   ),
 
   inputDecorationTheme: const InputDecorationTheme(
+    labelStyle: TextStyle(color: Colors.black45),
+    filled: true,
     border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(50))
-    )
+    ),
+    activeIndicatorBorder: BorderSide(
+      color: Color(0xFF0D5D9A)
+    ),
+      contentPadding: EdgeInsets.all(15)
   ),
 
   platform: TargetPlatform.android,
