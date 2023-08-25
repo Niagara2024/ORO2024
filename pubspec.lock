@@ -56,7 +56,11 @@ packages:
       sha256: f092b211a4319e98e5ff58223576de6c2803db36221657b46c82574721240687
       url: "https://pub.dev"
     source: hosted
+<<<<<<< HEAD
     version: "1.17.2"
+=======
+    version: "1.18.0"
+>>>>>>> 4a6c0f9bba2e1cc9695459c4567311c9ece876a3
   country_code_picker:
     dependency: "direct main"
     description:
