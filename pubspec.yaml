@@ -41,17 +41,15 @@ dependencies:
   geolocator: ^10.0.0
   geocoding: ^2.1.0
   permission_handler: ^10.4.3
-<<<<<<< HEAD
   shared_preferences: ^2.1.0
   webview_flutter: ^3.0.0
   image_picker: ^0.8.7+5
   file_picker: ^5.3.1
   chat_bubbles: ^1.4.1
-=======
   devicelocale: ^0.6.0
   country_codes: ^2.2.0
   country_code_picker: ^3.0.0
->>>>>>> 86810
+
 
 
 dev_dependencies:
