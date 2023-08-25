@@ -2,7 +2,6 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:oro_2024/screens/home_screen.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
