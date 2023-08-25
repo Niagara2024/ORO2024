@@ -40,11 +40,8 @@ dependencies:
   geolocator: ^10.0.0
   geocoding: ^2.1.0
   permission_handler: ^10.4.3
-<<<<<<< HEAD
   country_code_picker: ^3.0.0
   firebase_auth: ^4.8.0
-=======
->>>>>>> 4a6c0f9bba2e1cc9695459c4567311c9ece876a3
   shared_preferences: ^2.1.0
   webview_flutter: ^3.0.0
   image_picker: ^0.8.7+5
@@ -52,12 +49,6 @@ dependencies:
   chat_bubbles: ^1.4.1
   devicelocale: ^0.6.0
   country_codes: ^2.2.0
-<<<<<<< HEAD
-=======
-  country_code_picker: ^3.0.0
-
-
->>>>>>> 4a6c0f9bba2e1cc9695459c4567311c9ece876a3
 
 dev_dependencies:
   flutter_test:
