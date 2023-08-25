@@ -183,7 +183,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 'You’ll receive a 6 digits code to verify Next',
-                                style: Theme.of(context).textTheme.bodyLarge,
+                                style: Theme.of(context).textTheme.bodyMedium,
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -215,7 +215,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                                           SizedBox(width: 5),
                                           Text(
                                             '${country!.dialCode}',
-                                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                            style: Theme.of(context).textTheme.bodyMedium,
                                           ),
                                           Icon(Icons.arrow_drop_down),
                                         ],
