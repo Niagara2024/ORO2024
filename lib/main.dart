@@ -4,7 +4,7 @@ import 'package:oro_2024/screens/splash_screen.dart';
 import 'package:oro_2024/utils/theme.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
   runApp(const MyApp());
 }
 
