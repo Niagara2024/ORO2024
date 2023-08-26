@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oro_2024/screens/AlarmList.dart';
 import 'package:oro_2024/screens/AppInfo.dart';
+import 'package:oro_2024/screens/Service_request.dart';
 
 import 'MyPrefrence.dart';
 class HomeScreen extends StatefulWidget {
@@ -128,8 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: Text('Service Request', style: Theme.of(context).textTheme.bodyLarge,),
                             subtitle: Text('App version, Privacy Policy, Terms of Service...', style: Theme.of(context).textTheme.bodySmall,),
                             onTap: () {
-                              //Navigator.of(context).pop();
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const MyPreference()));
+                              Navigator.of(context).pop();
+                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Service_request()));
                             },
                           ),
                         );

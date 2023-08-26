@@ -84,106 +84,84 @@ class _AppInfoState extends State<AppInfo> {
           ),
           Padding(
             padding: EdgeInsets.only(left: 20,right: 20),
-            child: Center(
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: '1. Remote Control: Easily manage your irrigation system from anywhere using your smartphone or table',
-                      style: TextStyle(fontWeight: FontWeight.normal),
-                    ),
-                  ],
-                ),
+            child: Text.rich(
+              TextSpan(
+                text: '1. Remote Control : ',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                    text: 'Easily manage your irrigation system from anywhere and any time using your smartphone or table.',
+                    style: TextStyle(fontWeight: FontWeight.normal),
+                  ),
+                ],
               ),
             ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 10),
           Padding(
             padding: EdgeInsets.only(left: 20,right: 20),
-            child: Center(
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: '2. Smart Scheduling: Set up customized watering schedules based on your plants needs, weather conditions, and local regulations.',
-                      style: TextStyle(fontWeight: FontWeight.normal),
-                    ),
-                  ],
-                ),
+            child: Text.rich(
+              TextSpan(
+                text: '2. Smart Scheduling : ',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                    text: 'Set up customized watering schedules based on your plants needs, weather conditions, and local regulations.',
+                    style: TextStyle(fontWeight: FontWeight.normal),
+                  ),
+                ],
               ),
             ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 10),
           Padding(
             padding: EdgeInsets.only(left: 20,right: 20),
-            child: Center(
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: '3. Weather Integration: Our app syncs with real-time weather data to adjust irrigation schedules and conserve water during rainy periods.',
-                      style: TextStyle(fontWeight: FontWeight.normal),
-                    ),
-                  ],
-                ),
+            child: Text.rich(
+              TextSpan(
+                text: '3. Weather Integration : ',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                    text: 'Our app syncs with real-time weather data to adjust irrigation schedules and conserve water during rainy periods.',
+                    style: TextStyle(fontWeight: FontWeight.normal),
+                  ),
+                ],
               ),
             ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 10),
           Padding(
             padding: EdgeInsets.only(left: 20,right: 20),
-            child: Center(
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: '4. Usage Analytics: Track your water consumption and receive insights to make informed decisions about your irrigation strategy.',
-                      style: TextStyle(fontWeight: FontWeight.normal),
-                    ),
-                  ],
-                ),
+            child: Text.rich(
+              TextSpan(
+                text: '4. Usage Analytics : ',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                    text: 'Track your water consumption and receive insights to make informed decisions about your irrigation strategy.',
+                    style: TextStyle(fontWeight: FontWeight.normal),
+                  ),
+                ],
               ),
             ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 10),
           Padding(
             padding: EdgeInsets.only(left: 20,right: 20),
-            child: Center(
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: '5. Notifications: Receive alerts and notifications about system status, maintenance reminders, and more.',
-                      style: TextStyle(fontWeight: FontWeight.normal),
-                    ),
-                  ],
-                ),
+            child: Text.rich(
+              TextSpan(
+                text: '5. Notifications : ',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                    text: 'Receive alerts and notifications about system status, maintenance reminders, and more.',
+                    style: TextStyle(fontWeight: FontWeight.normal),
+                  ),
+                ],
               ),
             ),
           ),
           SizedBox(height: 25),
-          Center(
-            child: Text(
-              'Privacy Policy',
-              style: TextStyle(
-                decoration: TextDecoration.underline,
-                fontSize: 20,
-                color: Colors.blueAccent
-              ),
-            ),
-          ),
-          SizedBox(height: 25),
-          Center(
-            child: Text(
-              'Terms and conditions',
-              style: TextStyle(
-                  decoration: TextDecoration.underline,
-                  fontSize: 20,
-                  color: Colors.blueAccent
-              ),
-            ),
-          ),
-          SizedBox(height: 20),
 
         ],
       ),
