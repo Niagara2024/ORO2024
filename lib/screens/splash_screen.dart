@@ -205,7 +205,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                               const SizedBox(height: 16),
                               Text(
                                 'Drip irrigation is a type of watering system used in agriculture, gardening, and landscaping to efficiently deliver water directly to the roots of plants.',
-                                style: Theme.of(context).textTheme.bodyLarge,
+                                style: Theme.of(context).textTheme.bodyMedium,
                                 textAlign: TextAlign.center,
                               ),
                             ],

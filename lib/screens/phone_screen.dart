@@ -1,5 +1,4 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -217,30 +216,91 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                                             const SizedBox(width: 5),
                                             Text(
                                               '${country!.dialCode}',
-                                              style: Theme.of(context).textTheme.bodyMedium,
+                                              style: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .bodyMedium,
                                             ),
                                             const Icon(Icons.arrow_drop_down),
                                           ],
                                         );
-                                      },
-                                    ),
-                                    const SizedBox(width: 10,),
-                                    Expanded(
-                                      child: TextFormField(
-                                        decoration: const InputDecoration(
-                                          labelText: 'Phone number',
-                                          hintText: 'Enter your phone number',
+                                      }
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'You’ll receive a 6 digits code to verify Next',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  CountryCodePicker(
+                                    onChanged: (CountryCode? country) {
+                                      setState(() {
+                                        _initialCountryCode = country!.code!;
+                                      });
+                                    },
+                                    initialSelection: _initialCountryCode,
+                                    showCountryOnly: false,
+                                    showOnlyCountryWhenClosed: false,
+                                    alignLeft: false,
+                                    showFlag: true,
+                                    builder: (CountryCode? country) {
+                                      return Row(
+                                        children: [
+                                          Image.asset(
+                                            country!.flagUri!,
+                                            package: 'country_code_picker', // Make sure to include the package name
+                                            width: 20, // Adjust the width as needed
+                                            height: 20, // Adjust the height as needed
+                                          ),
+                                          SizedBox(width: 5),
+                                          Text(
+                                            '${country!.dialCode}',
+                                            style: Theme.of(context).textTheme.bodyMedium,
+                                          ),
+                                          Icon(Icons.arrow_drop_down),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                  SizedBox(width: 10,),
+                                  Expanded(
+                                    child: Row(
+                                      children: [
+                                        TextFormField(
+                                          decoration: const InputDecoration(
+                                            labelText: 'Phone number',
+                                            hintText: 'Enter your phone number',
+                                          ),
+                                          onChanged: (phone){
+                                            print(phone);
+                                          },
                                         ),
-                                        onChanged: (phone){
-                                          setState(() {
-                                            _phoneNumber = phone;
-                                          });
-                                          print(phone);
-                                        },
-                                        keyboardType: TextInputType.phone,
-                                      ),
+                                        const SizedBox(width: 10,),
+                                        Expanded(
+                                          child: TextFormField(
+                                            decoration: const InputDecoration(
+                                              labelText: 'Phone number',
+                                              hintText: 'Enter your phone number',
+                                            ),
+                                            onChanged: (phone){
+                                              setState(() {
+                                                _phoneNumber = phone;
+                                              });
+                                              print(phone);
+                                            },
+                                            keyboardType: TextInputType.phone,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  )],
                                 ),
                               ),
                             ],
@@ -261,8 +321,10 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                       ],
                     ),
                   ),
+                    ]
                 ),
-              ],
+            )
+                )],
             );
           }
         ),

@@ -22,10 +22,17 @@ final ThemeData myTheme = ThemeData(
   fontFamily: GoogleFonts.poppins().fontFamily,
 
   //App bar theme
-  appBarTheme: const AppBarTheme(
+  appBarTheme: AppBarTheme(
+    iconTheme: IconThemeData(
+      color: Colors.white
+    ),
+    titleTextStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 23
+    ),
     elevation: 3,
     shadowColor: Colors.white,
-    color: Colors.white,
+    color: Color(0xFF0D5D9A),
     systemOverlayStyle: SystemUiOverlayStyle.light,
   ),
 
@@ -65,13 +72,15 @@ final ThemeData myTheme = ThemeData(
       color: Colors.black,
     ),
     headlineLarge: TextStyle(
-      color: Colors.black,
+      color: Colors.blue,
     ),
     headlineMedium: TextStyle(
       color: Colors.black,
     ),
+
+    //for drawer title
     headlineSmall: TextStyle(
-      color: Colors.black,
+      color: Colors.white,
     ),
     titleLarge: TextStyle(
       fontWeight: FontWeight.bold,
@@ -85,9 +94,11 @@ final ThemeData myTheme = ThemeData(
     ),
     bodyLarge: TextStyle(
       color: Colors.black,
+      fontWeight: FontWeight.bold
     ),
     bodyMedium: TextStyle(
       color: Colors.black,
+      fontSize: 16
     ),
     bodySmall: TextStyle(
       color: Colors.black,
