@@ -53,12 +53,6 @@ packages:
     dependency: transitive
     description:
       name: collection
-<<<<<<< HEAD
-      sha256: "4a07be6cb69c84d677a6c3096fcf960cc3285a8330b4603e0d463d15d9bd934c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.17.1"
-=======
       sha256: ee67cb0715911d28db6bf4af1026078bd6f0128b07a5f66fb2ed94ec6783c09a
       url: "https://pub.dev"
     source: hosted
@@ -95,7 +89,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
->>>>>>> main
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -237,7 +230,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
-<<<<<<< HEAD
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -246,31 +238,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.15"
-=======
-  flutter_screenutil:
-    dependency: "direct main"
-    description:
-      name: flutter_screenutil
-      sha256: "8cf100b8e4973dc570b6415a2090b0bfaa8756ad333db46939efc3e774ee100d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.9.0"
->>>>>>> venkatesan
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
-  get:
-    dependency: "direct main"
-    description:
-      name: get
-      sha256: "2ba20a47c8f1f233bed775ba2dd0d3ac97b4cf32fc17731b3dfc672b06b0e92a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.6.5"
-=======
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -380,7 +352,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-<<<<<<< HEAD
   image_picker:
     dependency: "direct main"
     description:
@@ -453,9 +424,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.18.1"
-=======
->>>>>>> main
->>>>>>> venkatesan
   intl_phone_field:
     dependency: "direct main"
     description:
@@ -464,10 +432,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> venkatesan
   js:
     dependency: transitive
     description:
@@ -476,11 +440,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
-<<<<<<< HEAD
-=======
-=======
->>>>>>> main
->>>>>>> venkatesan
   lints:
     dependency: transitive
     description:
@@ -493,17 +452,10 @@ packages:
     dependency: transitive
     description:
       name: matcher
-<<<<<<< HEAD
-      sha256: "6501fbd55da300384b768785b83e5ce66991266cec21af89ab9ae7f5ce1c4cbb"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.12.15"
-=======
       sha256: "1803e76e6653768d64ed8ff2e1e67bea3ad4b923eb5c56a295c3e634bad5960e"
       url: "https://pub.dev"
     source: hosted
     version: "0.12.16"
->>>>>>> main
   material_color_utilities:
     dependency: transitive
     description:
@@ -536,8 +488,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
-<<<<<<< HEAD
-=======
   path_provider:
     dependency: "direct main"
     description:
@@ -642,7 +592,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.5"
-<<<<<<< HEAD
   shared_preferences:
     dependency: "direct main"
     description:
@@ -699,9 +648,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
-=======
->>>>>>> main
->>>>>>> venkatesan
   sky_engine:
     dependency: transitive
     description: flutter
@@ -751,12 +697,6 @@ packages:
     dependency: transitive
     description:
       name: test_api
-<<<<<<< HEAD
-      sha256: eb6ac1540b26de412b3403a163d919ba86f6a973fe6cc50ae3541b80092fdcfb
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.5.1"
-=======
       sha256: "5c2f730018264d276c20e4f1503fd1308dfbbae39ec8ee63c5236311ac06954b"
       url: "https://pub.dev"
     source: hosted
@@ -777,7 +717,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.7"
->>>>>>> main
   vector_math:
     dependency: transitive
     description:
@@ -843,14 +782,5 @@ packages:
     source: hosted
     version: "1.0.2"
 sdks:
-<<<<<<< HEAD
-  dart: ">=3.0.0-0 <4.0.0"
-  flutter: ">=3.10.0"
-=======
   dart: ">=3.1.0-185.0.dev <4.0.0"
-<<<<<<< HEAD
   flutter: ">=3.7.0"
-=======
-  flutter: ">=3.3.0"
->>>>>>> main
->>>>>>> venkatesan
