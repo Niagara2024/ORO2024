@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:oro_2024/screens/AlarmList.dart';
+import 'package:oro_2024/screens/AppInfo.dart';
+
+import 'MyPrefrence.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -13,6 +17,12 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('ORO',),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(icon: const Icon(Icons.add_alert_sharp), onPressed: () async {
+            Navigator.of(context).pop();
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const AlarmList()));
+          }),
+        ],
       ),
       drawer: Drawer(
         shape: RoundedRectangleBorder(
@@ -62,8 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: Text('My Preference', style: Theme.of(context).textTheme.bodyLarge,),
                             subtitle: Text('Languages, Notification, Change mobile number and email...', style: Theme.of(context).textTheme.bodySmall,),
                             onTap: () {
-                              //Navigator.of(context).pop();
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const MyPreference()));
+                              Navigator.of(context).pop();
+                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const MyPreference()));
                             },
                           ),
                         );
@@ -104,8 +114,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: Text('App Info', style: Theme.of(context).textTheme.bodyLarge,),
                             subtitle: Text('App version, Privacy Policy, Terms of Service...', style: Theme.of(context).textTheme.bodySmall,),
                             onTap: () {
-                              //Navigator.of(context).pop();
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const MyPreference()));
+                              Navigator.of(context).pop();
+                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const AppInfo()));
                             },
                           ),
                         );
