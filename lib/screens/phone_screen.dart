@@ -152,81 +152,110 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                     );
                   },
                 ),
-                FadeTransition(
-                  opacity: _contentAnimation,
-                  child: Center(
-                    child: SizedBox(
-                      height: 700,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.asset(
-                              'assets/images/authentication_illustration.png',
-                              height: 200,
-                              width: 200,
-                            ),
+                Center(
+                  child: SizedBox(
+                    height: 700,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            'assets/images/authentication_illustration.png',
+                            height: 200,
+                            width: 200,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    "CONTINUE WITH PHONE",
-                                    style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "CONTINUE WITH PHONE",
+                                  style: Theme.of(context).textTheme.titleLarge,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'You’ll receive a 6 digits code to verify Next',
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  CountryCodePicker(
+                                      onChanged: (CountryCode? country) {
+                                        setState(() {
+                                          _initialCountryCode = country!.code!;
+                                        });
+                                      },
+                                      searchDecoration: const InputDecoration(
+                                          contentPadding: EdgeInsets.all(5)
+                                      ),
+                                      dialogSize: Size(200, 300) ,
+                                      initialSelection: _initialCountryCode,
+                                      showCountryOnly: false,
+                                      showOnlyCountryWhenClosed: true,
+                                      alignLeft: false,
+                                      showFlag: true,
+                                      builder: (CountryCode? country) {
+                                        return Row(
+                                          children: [
+                                            Image.asset(
+                                              country!.flagUri!,
+                                              package: 'country_code_picker',
+                                              width: 20,
+                                              height: 20,
+                                            ),
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              '${country!.dialCode}',
+                                              style: Theme
+                                                  .of(context)
+                                                  .textTheme
+                                                  .bodyMedium,
+                                            ),
+                                            const Icon(Icons.arrow_drop_down),
+                                          ],
+                                        );
+                                      }
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'You’ll receive a 6 digits code to verify Next',
-                                    style: Theme.of(context).textTheme.bodyLarge,
-                                    textAlign: TextAlign.center,
+                                  const SizedBox(height: 10),
+                                  Expanded(
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        labelText: 'Phone number',
+                                        hintText: 'Enter your phone number',
+                                      ),
+                                      keyboardType: TextInputType.phone,
+                                      // initialValue: _initialCountryCode,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 10),
-                                CountryCodePicker(
-                                  onChanged: (CountryCode country) {
-                                    setState(() {
-                                      _initialCountryCode = country.code!;
-                                    });
-                                  },
-                                  initialSelection: _initialCountryCode,
-                                  showCountryOnly: false,
-                                  showOnlyCountryWhenClosed: false,
-                                  alignLeft: false,
-                                ),
-
-                                TextFormField(
-                                  decoration: const InputDecoration(
-                                    labelText: 'Phone number',
-                                    hintText: 'Enter your phone number',
-                                  ),
-                                  keyboardType: TextInputType.phone,
-                                  initialValue: _initialCountryCode,
-                                ),
-                              ],
-                            ),
+                                ],
+                              ),
+                            ],
                           ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const HomeScreen(),
-                                ),
-                              );
-                            },
-                            child: const Text(
-                              'CONTINUE',
-                            ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const HomeScreen(),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'CONTINUE',
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
