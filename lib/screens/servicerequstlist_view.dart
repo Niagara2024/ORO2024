@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:oro_2024/utils/theme.dart';
 import 'package:provider/provider.dart';
 
 class ServiceRequestlistView extends StatelessWidget {
@@ -23,59 +25,19 @@ class ServiceRequestlistView extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  // Handle the action of the first button
-                },
-                child: Text(
-                  'Total\n64',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ), // Add some spacing between the buttons
-              ElevatedButton(
-                onPressed: () {
-                  // Handle the action of the second button
-                },
-                child: Text(
-                  'open\n22',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle the action of the first button
-                },
-                child: Text(
-                  'closed\n11',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ), // Add some spacing between the buttons
-              ElevatedButton(
-                onPressed: () {
-                  // Handle the action of the second button
-                },
-                child: Text(
-                  'In-progres\n34',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MultipleChoice(name: const [
+                  'Total \n 42',
+                  'open \n 22',
+                  'close \n 12',
+                  'Work in Progress \n 12'
+                ]),
+              ],
+            ),
           ),
           SizedBox(
             height: 10,
@@ -86,8 +48,13 @@ class ServiceRequestlistView extends StatelessWidget {
                 return ListView.builder(
                   itemCount: model.serviceRequest.length,
                   itemBuilder: (context, index) {
-                    return ServiceRequestCard(
-                        serviceRequestlist: model.serviceRequest[index]);
+                    return Padding(
+                      padding: EdgeInsetsDirectional.only(
+                          start: 10,
+                          end: 10), // Add leading and trailing padding
+                      child: ServiceRequestCard(
+                          serviceRequestlist: model.serviceRequest[index]),
+                    );
                   },
                 );
               },
@@ -238,4 +205,39 @@ class ServiceRequest {
 
   ServiceRequest(
       this.name, this.number, this.message, this.imeinum, this.requetstatus);
+}
+
+class MultipleChoice extends StatefulWidget {
+  List<String> name;
+  MultipleChoice({Key? key, required this.name});
+
+  @override
+  State<MultipleChoice> createState() => _MultipleChoiceState();
+}
+
+class _MultipleChoiceState extends State<MultipleChoice> {
+  Set<String> selection = {'0'};
+
+  @override
+  Widget build(BuildContext context) {
+    return SegmentedButton<String>(
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+          EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+        ),
+      ),
+      showSelectedIcon: false,
+      segments: <ButtonSegment<String>>[
+        for (var i in widget.name)
+          ButtonSegment<String>(value: '$i', label: Text(i)),
+      ],
+      selected: selection,
+      onSelectionChanged: (Set<String> newSelection) {
+        setState(() {
+          selection = newSelection;
+        });
+      },
+      multiSelectionEnabled: false,
+    );
+  }
 }
