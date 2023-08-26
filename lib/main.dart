@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oro_2024/screens/splash_screen.dart';
 import 'package:oro_2024/utils/theme.dart';
 
-void main() {
+void main() async{
   runApp(const MyApp());
 }
 
