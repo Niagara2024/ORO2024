@@ -20,6 +20,16 @@ class _AppInfoState extends State<AppInfo> {
         children: const [
           SizedBox(height: 20),
           Center(
+            child: CircleAvatar(
+              backgroundColor: Colors.blue,
+              radius: 50,
+              child: ClipOval(
+                //child: Image.asset('assets/images/defalt_user.jpeg'),
+              ),
+            ),
+          ),
+          SizedBox(height: 8),
+          Center(
             child: Text.rich(
               TextSpan(
                 text: 'Version : ',
@@ -162,7 +172,6 @@ class _AppInfoState extends State<AppInfo> {
             ),
           ),
           SizedBox(height: 25),
-
         ],
       ),
     );

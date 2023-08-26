@@ -3,6 +3,7 @@ import 'package:oro_2024/screens/AlarmList.dart';
 import 'package:oro_2024/screens/AppInfo.dart';
 import 'package:oro_2024/screens/Service_request.dart';
 
+import 'Dashboard.dart';
 import 'MyPrefrence.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,17 +17,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ORO',),
+        title: const Text('Home',),
         centerTitle: true,
         actions: <Widget>[
           IconButton(icon: const Icon(Icons.add_alert_sharp), onPressed: () async {
-            Navigator.of(context).pop();
             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const AlarmList()));
           }),
         ],
       ),
       drawer: Drawer(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero
         ),
         child: CustomScrollView(
@@ -213,9 +213,26 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
+
       ),
-      body: const Center(
-        child: Text('ORO DRIP IRRIGATION'),
+      body: Card(
+        margin: const EdgeInsets.all(20),
+        child: InkWell(
+          onTap: () {
+            print("tapped");
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Dashboard()));
+          },
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text('ORO GEM',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black87,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
