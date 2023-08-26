@@ -10,7 +10,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _circleAnimation1;
   late Animation<double> _circleAnimation2;
@@ -187,7 +188,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                         child: Padding(
                           padding: EdgeInsets.all(constraints.maxWidth * 0.08),
                           child: Image.asset(
-                              'assets/images/Illustration.png',
+                            'assets/images/Illustration.png',
                           ),
                         ),
                       ),
