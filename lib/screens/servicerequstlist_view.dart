@@ -25,19 +25,15 @@ class ServiceRequestlistView extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MultipleChoice(name: const [
-                  'Total \n 42',
-                  'open \n 22',
-                  'close \n 12',
-                  'Work in Progress \n 12'
-                ]),
-              ],
-            ),
+          Container(
+            padding: EdgeInsets.all(5),
+            width: double.infinity,
+            child: MultipleChoice(name: const [
+              'Total \n 42',
+              'open \n 22',
+              'close \n 12',
+              'Progress \n 12'
+            ]),
           ),
           SizedBox(
             height: 10,
@@ -222,8 +218,14 @@ class _MultipleChoiceState extends State<MultipleChoice> {
   Widget build(BuildContext context) {
     return SegmentedButton<String>(
       style: ButtonStyle(
+        shape: MaterialStateProperty.all<OutlinedBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero, // Set borderRadius to zero
+          ),
+        ),
+        alignment: Alignment.center,
         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-          EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+          EdgeInsets.symmetric(vertical: 5, horizontal: 5),
         ),
       ),
       showSelectedIcon: false,
