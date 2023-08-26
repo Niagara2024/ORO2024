@@ -2,6 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:oro_2024/screens/home_screen.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
@@ -16,14 +17,13 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
   late AnimationController _animationController;
   late Animation<double> _circleAnimation1;
   late Animation<double> _circleAnimation2;
-  late String _initialCountryCode = '';
-  String _phoneNumber = "";
+  late Animation<double> _contentAnimation;
+  String _initialCountryCode = 'IN';
 
   @override
   void initState() {
     super.initState();
     _getLocationAndSetCountryCode();
-
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -43,6 +43,13 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
       ),
     );
 
+    _contentAnimation = Tween<double>(begin: -1, end: 1).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(0.5, 1),
+      ),
+    );
+
     _animationController.forward();
   }
 
@@ -52,13 +59,13 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
     super.dispose();
   }
 
-  //TODO: Get user's location
   Future<void> _getLocationAndSetCountryCode() async {
     try {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.low,
       );
 
+      // Determine the country based on the user's position
       List<Placemark> placemarks = await placemarkFromCoordinates(
         position.latitude,
         position.longitude,
@@ -75,14 +82,10 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
       print('Error getting location: $e');
     }
   }
-
-  //TODO: Phone verification
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: LayoutBuilder(
+      body: LayoutBuilder(
           builder: (context, constraints) {
             final screenWidth = constraints.maxWidth;
             double imageFlex, textFlex, buttonFlex, imageHeight, ImageWidth;
@@ -151,7 +154,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                 ),
                 Center(
                   child: SizedBox(
-                    height: 600,
+                    height: 700,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,18 +188,16 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    CountryCodePicker(
+                              Row(
+                                children: [
+                                  CountryCodePicker(
                                       onChanged: (CountryCode? country) {
                                         setState(() {
                                           _initialCountryCode = country!.code!;
                                         });
                                       },
                                       searchDecoration: const InputDecoration(
-                                        contentPadding: EdgeInsets.all(5)
+                                          contentPadding: EdgeInsets.all(5)
                                       ),
                                       dialogSize: Size(200, 300) ,
                                       initialSelection: _initialCountryCode,
@@ -225,84 +226,19 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                                           ],
                                         );
                                       }
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'You’ll receive a 6 digits code to verify Next',
-                                style: Theme.of(context).textTheme.bodyMedium,
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  CountryCodePicker(
-                                    onChanged: (CountryCode? country) {
-                                      setState(() {
-                                        _initialCountryCode = country!.code!;
-                                      });
-                                    },
-                                    initialSelection: _initialCountryCode,
-                                    showCountryOnly: false,
-                                    showOnlyCountryWhenClosed: false,
-                                    alignLeft: false,
-                                    showFlag: true,
-                                    builder: (CountryCode? country) {
-                                      return Row(
-                                        children: [
-                                          Image.asset(
-                                            country!.flagUri!,
-                                            package: 'country_code_picker', // Make sure to include the package name
-                                            width: 20, // Adjust the width as needed
-                                            height: 20, // Adjust the height as needed
-                                          ),
-                                          SizedBox(width: 5),
-                                          Text(
-                                            '${country!.dialCode}',
-                                            style: Theme.of(context).textTheme.bodyMedium,
-                                          ),
-                                          Icon(Icons.arrow_drop_down),
-                                        ],
-                                      );
-                                    },
                                   ),
-                                  SizedBox(width: 10,),
+                                  const SizedBox(height: 10),
                                   Expanded(
-                                    child: Row(
-                                      children: [
-                                        TextFormField(
-                                          decoration: const InputDecoration(
-                                            labelText: 'Phone number',
-                                            hintText: 'Enter your phone number',
-                                          ),
-                                          onChanged: (phone){
-                                            print(phone);
-                                          },
-                                        ),
-                                        const SizedBox(width: 10,),
-                                        Expanded(
-                                          child: TextFormField(
-                                            decoration: const InputDecoration(
-                                              labelText: 'Phone number',
-                                              hintText: 'Enter your phone number',
-                                            ),
-                                            onChanged: (phone){
-                                              setState(() {
-                                                _phoneNumber = phone;
-                                              });
-                                              print(phone);
-                                            },
-                                            keyboardType: TextInputType.phone,
-                                          ),
-                                        ),
-                                      ],
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        labelText: 'Phone number',
+                                        hintText: 'Enter your phone number',
+                                      ),
+                                      keyboardType: TextInputType.phone,
+                                      // initialValue: _initialCountryCode,
                                     ),
-
-                                  )],
-                                ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -322,16 +258,11 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                       ],
                     ),
                   ),
-                    ]
                 ),
-            )
-                )],
+              ],
             );
           }
-        ),
       ),
     );
   }
 }
-
-
