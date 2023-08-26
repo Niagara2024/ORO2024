@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+import 'package:oro_2024/screens/home_screen.dart';
+=======
 import 'package:oro_2024/screens/phone_screen.dart';
 
 import 'home_screen.dart';
+>>>>>>> main
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -10,7 +14,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _circleAnimation1;
   late Animation<double> _circleAnimation2;
