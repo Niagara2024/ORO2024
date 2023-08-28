@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:oro_2024/utils/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -130,7 +131,11 @@ class _ServiceRequestCardState extends State<ServiceRequestCard> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Select an option'),
+          // backgroundColor: Theme.of(context).primaryColor,
+          title: const Text(
+            'Select an option',
+            style: TextStyle(color: Colors.black),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -212,34 +217,43 @@ class MultipleChoice extends StatefulWidget {
 }
 
 class _MultipleChoiceState extends State<MultipleChoice> {
-  Set<String> selection = {'0'};
+  Set<String> selection = {'Total \n 42'};
 
   @override
   Widget build(BuildContext context) {
-    return SegmentedButton<String>(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all<OutlinedBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.zero, // Set borderRadius to zero
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+            color: Colors.black, width: 0), // No border for unselected segments
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: SegmentedButton<String>(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<OutlinedBorder>(
+            const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(2)),
+              side: BorderSide(
+                  color: Colors.black, width: 1), // Set borderRadius to zero
+            ),
+          ),
+          alignment: Alignment.center,
+          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+            EdgeInsets.symmetric(vertical: 5, horizontal: 5),
           ),
         ),
-        alignment: Alignment.center,
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-          EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-        ),
+        showSelectedIcon: false,
+        segments: <ButtonSegment<String>>[
+          for (var i in widget.name)
+            ButtonSegment<String>(value: '$i', label: Text(i)),
+        ],
+        selected: selection,
+        onSelectionChanged: (Set<String> newSelection) {
+          setState(() {
+            selection = newSelection;
+          });
+        },
+        multiSelectionEnabled: false,
       ),
-      showSelectedIcon: false,
-      segments: <ButtonSegment<String>>[
-        for (var i in widget.name)
-          ButtonSegment<String>(value: '$i', label: Text(i)),
-      ],
-      selected: selection,
-      onSelectionChanged: (Set<String> newSelection) {
-        setState(() {
-          selection = newSelection;
-        });
-      },
-      multiSelectionEnabled: false,
     );
   }
 }

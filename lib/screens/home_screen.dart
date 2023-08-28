@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oro_2024/screens/AlarmList.dart';
 import 'package:oro_2024/screens/AppInfo.dart';
+import 'package:oro_2024/screens/sellTo.dart';
 import 'package:oro_2024/screens/servicerequstlist_view.dart';
 
 import 'MyPrefrence.dart';
@@ -219,7 +220,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             onTap: () {
                               //Navigator.of(context).pop();
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const MyPreference()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      SellToCustomerPage()));
                             },
                           ),
                         );
