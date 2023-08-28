@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:oro_2024/screens/Settings.dart';
 
 enum PopupItem {s_pump, v_group, p_schedule, u_log, u_info, u_call}
 
@@ -21,9 +22,10 @@ class _DashboardState extends State<Dashboard> {
 
           }),
           IconButton(icon: const Icon(Icons.settings_outlined), onPressed: () async {
-
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Settings()));
           }),
           PopupMenuButton<PopupItem>(
+            color: Colors.white,
             icon: const Icon(Icons.more_vert),
             itemBuilder: (BuildContext context) => <PopupMenuEntry<PopupItem>>[
               const PopupMenuItem<PopupItem>(

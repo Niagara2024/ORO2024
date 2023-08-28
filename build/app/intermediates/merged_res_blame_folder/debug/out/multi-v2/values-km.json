@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.oro_2024.app-mergeDebugResources-25:/values-km/values-km.xml",
+            "outputFile": "com.example.oro_2024.app-mergeDebugResources-26:/values-km/values-km.xml",
             "map": [
                 {
                     "source": "C:\\Users\\niaga\\.gradle\\caches\\transforms-3\\24bd5ae211488322aa8c48f41a7bee4d\\transformed\\jetified-play-services-base-18.1.0\\res\\values-km\\values.xml",

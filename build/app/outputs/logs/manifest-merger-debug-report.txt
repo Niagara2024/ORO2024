@@ -9,10 +9,14 @@ MERGED from [:geolocator_android] C:\Users\niaga\ORO2024\build\geolocator_androi
 MERGED from [:geolocator_android] C:\Users\niaga\ORO2024\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
 MERGED from [:image_picker_android] C:\Users\niaga\ORO2024\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-19:19
 MERGED from [:image_picker_android] C:\Users\niaga\ORO2024\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-19:19
+MERGED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\niaga\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:28:5-73:19
 MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\niaga\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:28:5-73:19
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\niaga\.gradle\caches\transforms-3\eb987e8abddf2728baa9eff1d27123e6\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\niaga\.gradle\caches\transforms-3\eb987e8abddf2728baa9eff1d27123e6\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-fido:19.0.0] C:\Users\niaga\.gradle\caches\transforms-3\ec79dcc00646a4f15a19742c4853f42c\transformed\jetified-play-services-fido-19.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-fido:19.0.0] C:\Users\niaga\.gradle\caches\transforms-3\ec79dcc00646a4f15a19742c4853f42c\transformed\jetified-play-services-fido-19.0.0\AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\niaga\.gradle\caches\transforms-3\fe336a225b05392d9adff75aafc88bc6\transformed\jetified-firebase-appcheck-interop-17.0.0\AndroidManifest.xml:23:5-20
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\niaga\.gradle\caches\transforms-3\fe336a225b05392d9adff75aafc88bc6\transformed\jetified-firebase-appcheck-interop-17.0.0\AndroidManifest.xml:23:5-20
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\niaga\.gradle\caches\transforms-3\24bd5ae211488322aa8c48f41a7bee4d\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
@@ -54,15 +58,19 @@ MERGED from [:file_picker] C:\Users\niaga\ORO2024\build\file_picker\intermediate
 MERGED from [:image_picker_android] C:\Users\niaga\ORO2024\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-21:12
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\niaga\ORO2024\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider_android] C:\Users\niaga\ORO2024\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:smart_auth] C:\Users\niaga\ORO2024\build\smart_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:webview_flutter_android] C:\Users\niaga\ORO2024\build\webview_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:shared_preferences_android] C:\Users\niaga\ORO2024\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:permission_handler_android] C:\Users\niaga\ORO2024\build\permission_handler_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:geocoding_android] C:\Users\niaga\ORO2024\build\geocoding_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:country_codes] C:\Users\niaga\ORO2024\build\country_codes\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:devicelocale] C:\Users\niaga\ORO2024\build\devicelocale\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\niaga\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:17:1-75:12
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\niaga\.gradle\caches\transforms-3\eb987e8abddf2728baa9eff1d27123e6\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\niaga\.gradle\caches\transforms-3\c49135b7ef2acfba898b0c950a87bede\transformed\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\niaga\.gradle\caches\transforms-3\76525a7103e3342922a964ea8a16432b\transformed\jetified-play-services-auth-api-phone-18.0.1\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\niaga\.gradle\caches\transforms-3\8651b3f6afdf425f526f6e7a6cd1196b\transformed\jetified-play-services-auth-base-18.0.4\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-fido:19.0.0] C:\Users\niaga\.gradle\caches\transforms-3\ec79dcc00646a4f15a19742c4853f42c\transformed\jetified-play-services-fido-19.0.0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\niaga\.gradle\caches\transforms-3\fe336a225b05392d9adff75aafc88bc6\transformed\jetified-firebase-appcheck-interop-17.0.0\AndroidManifest.xml:15:1-25:12
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\niaga\.gradle\caches\transforms-3\24bd5ae211488322aa8c48f41a7bee4d\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\niaga\.gradle\caches\transforms-3\8c333470c490fa0e04c254138d58b522\transformed\jetified-firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
@@ -75,16 +83,16 @@ MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\niag
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\niaga\.gradle\caches\transforms-3\9354257804af8250f2ffb7c22e2892d5\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.7.2] C:\Users\niaga\.gradle\caches\transforms-3\b637ecfbcbfe96af75749d9240362ca3\transformed\jetified-activity-1.7.2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.webkit:webkit:1.5.0] C:\Users\niaga\.gradle\caches\transforms-3\7a9e722f9cadd913a07709114ac94695\transformed\webkit-1.5.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\niaga\.gradle\caches\transforms-3\cf24d35e50a727536c7357721dc007c5\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.browser:browser:1.4.0] C:\Users\niaga\.gradle\caches\transforms-3\392643a040d0a7ef9b2ed4537c4719d5\transformed\browser-1.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\niaga\.gradle\caches\transforms-3\f156363817d5f71529d60b6716392550\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\niaga\.gradle\caches\transforms-3\cf24d35e50a727536c7357721dc007c5\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\niaga\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\niaga\.gradle\caches\transforms-3\f7cdfb73eaf400e8b2c346bb8e6d73ec\transformed\jetified-core-ktx-1.10.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\niaga\.gradle\caches\transforms-3\f4c2d181f9683c57f8970b9ce7785060\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.10.1] C:\Users\niaga\.gradle\caches\transforms-3\9c9ab1a476c120097a79d748cec7161f\transformed\core-1.10.1\AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\niaga\.gradle\caches\transforms-3\acc0a4ed60db051ae6d4cb2c458aa935\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\b365cbbdc580e3f264ee929243b93252\transformed\lifecycle-livedata-2.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\fb13d994a9c57675c3797fdb5edd3dc7\transformed\lifecycle-livedata-core-2.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\b365cbbdc580e3f264ee929243b93252\transformed\lifecycle-livedata-2.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\4817204ab7acc54a5f2c041737b3ebbd\transformed\lifecycle-viewmodel-2.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\ad9f1a2743e3eaf4aa449a5b2d8828b3\transformed\lifecycle-runtime-2.6.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\7c1fedf36a262d80afd033982dc78c54\transformed\jetified-lifecycle-viewmodel-savedstate-2.6.1\AndroidManifest.xml:17:1-22:12
@@ -141,6 +149,8 @@ MERGED from [:flutter_plugin_android_lifecycle] C:\Users\niaga\ORO2024\build\flu
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\niaga\ORO2024\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\niaga\ORO2024\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\niaga\ORO2024\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:smart_auth] C:\Users\niaga\ORO2024\build\smart_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:smart_auth] C:\Users\niaga\ORO2024\build\smart_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:webview_flutter_android] C:\Users\niaga\ORO2024\build\webview_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:webview_flutter_android] C:\Users\niaga\ORO2024\build\webview_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:shared_preferences_android] C:\Users\niaga\ORO2024\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
@@ -153,12 +163,18 @@ MERGED from [:country_codes] C:\Users\niaga\ORO2024\build\country_codes\intermed
 MERGED from [:country_codes] C:\Users\niaga\ORO2024\build\country_codes\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:devicelocale] C:\Users\niaga\ORO2024\build\devicelocale\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:devicelocale] C:\Users\niaga\ORO2024\build\devicelocale\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\niaga\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:21:5-23:64
 MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\niaga\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:21:5-23:64
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\niaga\.gradle\caches\transforms-3\eb987e8abddf2728baa9eff1d27123e6\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\niaga\.gradle\caches\transforms-3\eb987e8abddf2728baa9eff1d27123e6\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\niaga\.gradle\caches\transforms-3\c49135b7ef2acfba898b0c950a87bede\transformed\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\niaga\.gradle\caches\transforms-3\c49135b7ef2acfba898b0c950a87bede\transformed\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\niaga\.gradle\caches\transforms-3\76525a7103e3342922a964ea8a16432b\transformed\jetified-play-services-auth-api-phone-18.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:18.0.1] C:\Users\niaga\.gradle\caches\transforms-3\76525a7103e3342922a964ea8a16432b\transformed\jetified-play-services-auth-api-phone-18.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\niaga\.gradle\caches\transforms-3\8651b3f6afdf425f526f6e7a6cd1196b\transformed\jetified-play-services-auth-base-18.0.4\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:18.0.4] C:\Users\niaga\.gradle\caches\transforms-3\8651b3f6afdf425f526f6e7a6cd1196b\transformed\jetified-play-services-auth-base-18.0.4\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:19.0.0] C:\Users\niaga\.gradle\caches\transforms-3\ec79dcc00646a4f15a19742c4853f42c\transformed\jetified-play-services-fido-19.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-fido:19.0.0] C:\Users\niaga\.gradle\caches\transforms-3\ec79dcc00646a4f15a19742c4853f42c\transformed\jetified-play-services-fido-19.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\niaga\.gradle\caches\transforms-3\fe336a225b05392d9adff75aafc88bc6\transformed\jetified-firebase-appcheck-interop-17.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.0] C:\Users\niaga\.gradle\caches\transforms-3\fe336a225b05392d9adff75aafc88bc6\transformed\jetified-firebase-appcheck-interop-17.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\niaga\.gradle\caches\transforms-3\24bd5ae211488322aa8c48f41a7bee4d\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:18:5-43
@@ -183,12 +199,12 @@ MERGED from [androidx.activity:activity:1.7.2] C:\Users\niaga\.gradle\caches\tra
 MERGED from [androidx.activity:activity:1.7.2] C:\Users\niaga\.gradle\caches\transforms-3\b637ecfbcbfe96af75749d9240362ca3\transformed\jetified-activity-1.7.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.webkit:webkit:1.5.0] C:\Users\niaga\.gradle\caches\transforms-3\7a9e722f9cadd913a07709114ac94695\transformed\webkit-1.5.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.webkit:webkit:1.5.0] C:\Users\niaga\.gradle\caches\transforms-3\7a9e722f9cadd913a07709114ac94695\transformed\webkit-1.5.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\niaga\.gradle\caches\transforms-3\cf24d35e50a727536c7357721dc007c5\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\niaga\.gradle\caches\transforms-3\cf24d35e50a727536c7357721dc007c5\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.browser:browser:1.4.0] C:\Users\niaga\.gradle\caches\transforms-3\392643a040d0a7ef9b2ed4537c4719d5\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.4.0] C:\Users\niaga\.gradle\caches\transforms-3\392643a040d0a7ef9b2ed4537c4719d5\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\niaga\.gradle\caches\transforms-3\f156363817d5f71529d60b6716392550\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\niaga\.gradle\caches\transforms-3\f156363817d5f71529d60b6716392550\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\niaga\.gradle\caches\transforms-3\cf24d35e50a727536c7357721dc007c5\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\niaga\.gradle\caches\transforms-3\cf24d35e50a727536c7357721dc007c5\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\niaga\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\niaga\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\niaga\.gradle\caches\transforms-3\f7cdfb73eaf400e8b2c346bb8e6d73ec\transformed\jetified-core-ktx-1.10.1\AndroidManifest.xml:5:5-44
@@ -199,10 +215,10 @@ MERGED from [androidx.core:core:1.10.1] C:\Users\niaga\.gradle\caches\transforms
 MERGED from [androidx.core:core:1.10.1] C:\Users\niaga\.gradle\caches\transforms-3\9c9ab1a476c120097a79d748cec7161f\transformed\core-1.10.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\niaga\.gradle\caches\transforms-3\acc0a4ed60db051ae6d4cb2c458aa935\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\niaga\.gradle\caches\transforms-3\acc0a4ed60db051ae6d4cb2c458aa935\transformed\jetified-savedstate-1.2.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\b365cbbdc580e3f264ee929243b93252\transformed\lifecycle-livedata-2.6.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\b365cbbdc580e3f264ee929243b93252\transformed\lifecycle-livedata-2.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\fb13d994a9c57675c3797fdb5edd3dc7\transformed\lifecycle-livedata-core-2.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\fb13d994a9c57675c3797fdb5edd3dc7\transformed\lifecycle-livedata-core-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\b365cbbdc580e3f264ee929243b93252\transformed\lifecycle-livedata-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\b365cbbdc580e3f264ee929243b93252\transformed\lifecycle-livedata-2.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\4817204ab7acc54a5f2c041737b3ebbd\transformed\lifecycle-viewmodel-2.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\4817204ab7acc54a5f2c041737b3ebbd\transformed\lifecycle-viewmodel-2.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.1] C:\Users\niaga\.gradle\caches\transforms-3\ad9f1a2743e3eaf4aa449a5b2d8828b3\transformed\lifecycle-runtime-2.6.1\AndroidManifest.xml:5:5-44
@@ -317,6 +333,26 @@ ADDED from [:image_picker_android] C:\Users\niaga\ORO2024\build\image_picker_and
 		ADDED from [:image_picker_android] C:\Users\niaga\ORO2024\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-72
 	android:name
 		ADDED from [:image_picker_android] C:\Users\niaga\ORO2024\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:33:9-37:51
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:35:13-36
+	android:visibleToInstantApps
+		ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:37:13-48
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\niaga\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:34:13-89
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\niaga\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\niaga\.gradle\caches\transforms-3\da55378eaf462880ab5d8b274da370a8\transformed\jetified-recaptcha-18.1.2\AndroidManifest.xml:8:5-79

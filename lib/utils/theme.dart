@@ -21,18 +21,23 @@ final ThemeData myTheme = ThemeData(
   disabledColor: Colors.grey[400],
   fontFamily: GoogleFonts.poppins().fontFamily,
 
+  popupMenuTheme: const PopupMenuThemeData(
+    color: Colors.white
+  ),
+
   //App bar theme
   appBarTheme: AppBarTheme(
-    iconTheme: IconThemeData(
+    iconTheme: const IconThemeData(
       color: Colors.white
     ),
     titleTextStyle: TextStyle(
       color: Colors.white,
-      fontSize: 23
+      fontSize: 22,
+      fontFamily:GoogleFonts.poppins().fontFamily
     ),
     elevation: 3,
     shadowColor: Colors.white,
-    color: Color(0xFF0D5D9A),
+    color: const Color(0xFF0D5D9A),
     systemOverlayStyle: SystemUiOverlayStyle.light,
   ),
 
@@ -157,9 +162,11 @@ final ThemeData myTheme = ThemeData(
   ),
 
   //Tab bar theme
-  tabBarTheme: const TabBarTheme(
-    labelColor: Color(0xFF0D5D9A),
+  tabBarTheme: TabBarTheme(
+    labelColor: Colors.white,
     unselectedLabelColor: Colors.grey,
+    indicatorColor: Colors.amber,
+    labelStyle: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily, fontSize: 16)
   ),
 
   tooltipTheme: TooltipThemeData(
@@ -177,6 +184,15 @@ final ThemeData myTheme = ThemeData(
       borderRadius: BorderRadius.circular(8),
     ),
   ),
+
+  listTileTheme: ListTileThemeData(
+    titleTextStyle: TextStyle(
+      fontSize: 16,
+      color: Colors.black,
+      fontFamily: GoogleFonts.poppins().fontFamily
+    )
+  ),
+
 
   chipTheme: ChipThemeData(
     backgroundColor: Colors.grey[300],
