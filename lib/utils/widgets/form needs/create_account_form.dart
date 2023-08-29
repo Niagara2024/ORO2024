@@ -220,7 +220,7 @@ class _CreateAccountState extends State<CreateAccount> {
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                     gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
