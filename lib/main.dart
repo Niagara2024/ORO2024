@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:oro_2024/screens/Service_request.dart';
-import 'package:oro_2024/screens/splash_screen.dart';
+import 'package:oro_2024/screens/create_account.dart';
+import 'package:oro_2024/state_management/create_account_provide.dart';
+import 'package:oro_2024/state_management/customer_device_provider.dart';
 import 'package:oro_2024/utils/theme.dart';
 import 'package:provider/provider.dart';
 
-void main() async {
-  runApp(const MyApp());
+void main() {
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => CreateActProvider()),
+      ChangeNotifierProvider(create: (context) => CustomerDevicePvd()),
+    ],
+    child: MyApp(),
+  )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,13 +21,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => ServiceRequestViewModel(),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'ORO DRIP IRRIGATION',
-          theme: myTheme,
-          home: const SplashScreen(),
-        ));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'ORO DRIP IRRIGATION',
+      theme: myTheme,
+      // home: const SplashScreen(),
+      home: CreateAccountScreen(),
+    );
   }
 }

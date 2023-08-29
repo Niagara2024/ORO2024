@@ -243,7 +243,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                               onChanged: (PhoneNumber value) {
                                 _phoneNumber = value.completeNumber;
                                 print(_phoneNumber);
-                              },
+                              }, needTofocus: null, SuffixIcon: null, myController: null,
                             ),
                           const SizedBox(height: 50,),
                           ElevatedButton(
