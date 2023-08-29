@@ -29,7 +29,7 @@ class ServiceRequestlistView extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(5),
             width: double.infinity,
-            color: Theme.of(context).primaryColor,
+            // color: Color.fromARGB(255, 176, 210, 237),
             child: MultipleChoice(name: const [
               'Total \n 42',
               'open \n 22',
@@ -277,8 +277,10 @@ class _MultipleChoiceState extends State<MultipleChoice> {
       width: 2,
     );
     return SegmentedButton<String>(
-      // style: ButtonStyle(
-      //     backgroundColor: Colors.red, foregroundColor: Colors.amber),
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.white10),
+          overlayColor: MaterialStateProperty.all(Colors.blueAccent),
+          surfaceTintColor: MaterialStateProperty.all(Colors.blue)),
       showSelectedIcon: false,
       segments: <ButtonSegment<String>>[
         for (var i in widget.name)
