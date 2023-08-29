@@ -87,7 +87,11 @@ class SellToCustomerPage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  // QR Spacer(), Code Button here
+                  Text(
+                    'List of Controllers',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                    textAlign: TextAlign.start,
+                  ),
                   Expanded(
                     flex: 1,
                     child: ListView.builder(
@@ -99,7 +103,7 @@ class SellToCustomerPage extends StatelessWidget {
                         return Card(
                           child: ListTile(
                             style: ListTileStyle.drawer,
-                            leading: Checkbox(
+                            trailing: Checkbox(
                               value: isSelected,
                               onChanged: (value) {
                                 viewModel.toggleSelection(controller);
@@ -107,33 +111,37 @@ class SellToCustomerPage extends StatelessWidget {
                             ),
                             title: Text(controller.name),
                             subtitle: Text(controller.imeiNumber),
-                            // trailing: Text(controller.type),
+                            leading: CircleAvatar(
+                              child: Text(controller.name[0]),
+                            ),
                           ),
                         );
                       },
                     ),
                   ),
-                  Row(
-                    children: [
-                      Spacer(),
-                      Text(
-                        'Sell To:',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Spacer(),
-                      DropdownButton<String>(
-                        value: viewModel.selectedCustomerType,
-                        onChanged: (newValue) =>
-                            viewModel.updateCustomerType(newValue!),
-                        items: viewModel.customerTypes
-                            .map((type) => DropdownMenuItem<String>(
-                                  value: type.name,
-                                  child: Text(type.name),
-                                ))
-                            .toList(),
-                      ),
-                      Spacer(),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Sell To:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Spacer(),
+                        DropdownButton<String>(
+                          value: viewModel.selectedCustomerType,
+                          onChanged: (newValue) =>
+                              viewModel.updateCustomerType(newValue!),
+                          items: viewModel.customerTypes
+                              .map((type) => DropdownMenuItem<String>(
+                                    value: type.name,
+                                    child: Text(type.name),
+                                  ))
+                              .toList(),
+                        ),
+                        Spacer(),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -143,7 +151,12 @@ class SellToCustomerPage extends StatelessWidget {
                     child: TextFormField(
                       onChanged: (newValue) =>
                           viewModel.updateCustomerMobileNumber(newValue),
-                      decoration: InputDecoration(labelText: 'Mobile Number'),
+                      decoration: InputDecoration(
+                          labelText: 'Mobile Number',
+                          hintText: 'Enter Mobile Number',
+                          labelStyle: TextStyle(color: Colors.black)),
+                      keyboardType: TextInputType.phone,
+                      maxLength: 10,
                     ),
                   ),
                   SizedBox(
@@ -154,7 +167,7 @@ class SellToCustomerPage extends StatelessWidget {
                       viewModel.sell();
                       // Navigate or perform other actions here
                     },
-                    child: Text('Sell TO Controller'),
+                    child: Text('Sell To Controller'),
                   ),
                   SizedBox(
                     height: 20,

@@ -23,13 +23,8 @@ final ThemeData myTheme = ThemeData(
 
   //App bar theme
   appBarTheme: AppBarTheme(
-    iconTheme: IconThemeData(
-      color: Colors.white
-    ),
-    titleTextStyle: TextStyle(
-      color: Colors.white,
-      fontSize: 23
-    ),
+    iconTheme: IconThemeData(color: Colors.white),
+    titleTextStyle: TextStyle(color: Colors.white, fontSize: 23),
     elevation: 3,
     shadowColor: Colors.white,
     color: Color(0xFF0D5D9A),
@@ -38,21 +33,18 @@ final ThemeData myTheme = ThemeData(
 
   //button theme
   buttonTheme: const ButtonThemeData(
-    textTheme: ButtonTextTheme.normal,
-    buttonColor: Colors.white
-  ),
+      textTheme: ButtonTextTheme.normal, buttonColor: Colors.white),
 
   // Elevated button theme
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      // backgroundColor: const Color(0xFF0D5D9A),
-      textStyle: const TextStyle(color: Colors.white),
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25),
-      ),
-      animationDuration: const Duration(seconds: 2)
-    ),
+        // backgroundColor: const Color(0xFF0D5D9A),
+        textStyle: const TextStyle(color: Colors.white),
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
+        ),
+        animationDuration: const Duration(seconds: 2)),
   ),
 
   secondaryHeaderColor: Colors.white,
@@ -62,9 +54,7 @@ final ThemeData myTheme = ThemeData(
 
   //Text theme
   textTheme: const TextTheme(
-    displayLarge: TextStyle(
-      color: Colors.black
-    ),
+    displayLarge: TextStyle(color: Colors.black),
     displayMedium: TextStyle(
       color: Colors.black,
     ),
@@ -92,14 +82,8 @@ final ThemeData myTheme = ThemeData(
     titleSmall: TextStyle(
       color: Colors.black,
     ),
-    bodyLarge: TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.bold
-    ),
-    bodyMedium: TextStyle(
-      color: Colors.black,
-      fontSize: 16
-    ),
+    bodyLarge: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+    bodyMedium: TextStyle(color: Colors.black, fontSize: 16),
     bodySmall: TextStyle(
       color: Colors.black,
     ),
@@ -117,34 +101,53 @@ final ThemeData myTheme = ThemeData(
   bottomAppBarTheme: const BottomAppBarTheme(color: Colors.white),
 
   checkboxTheme: CheckboxThemeData(
-    fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-     if (states.contains(MaterialState.disabled)) { return null; }
-     if (states.contains(MaterialState.selected)) { return const Color(0xFF0D5D9A); }
-     return null;
- }),
+    fillColor:
+        MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) {
+        return null;
+      }
+      if (states.contains(MaterialState.selected)) {
+        return const Color(0xFF0D5D9A);
+      }
+      return null;
+    }),
   ),
 
   radioTheme: RadioThemeData(
-   fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-   if (states.contains(MaterialState.disabled)) { return null; }
-   if (states.contains(MaterialState.selected)) { return const Color(0xFF0D5D9A); }
-   return null;
- }),
- ),
+    fillColor:
+        MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) {
+        return null;
+      }
+      if (states.contains(MaterialState.selected)) {
+        return const Color(0xFF0D5D9A);
+      }
+      return null;
+    }),
+  ),
 
   switchTheme: SwitchThemeData(
-   thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-   if (states.contains(MaterialState.disabled)) { return null; }
-   if (states.contains(MaterialState.selected)) { return const Color(0xFF0D5D9A); }
-   return null;
- }),
-
- trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-   if (states.contains(MaterialState.disabled)) { return null; }
-   if (states.contains(MaterialState.selected)) { return const Color(0xFF0D5D9A); }
-   return null;
- }),
- ),
+    thumbColor:
+        MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) {
+        return null;
+      }
+      if (states.contains(MaterialState.selected)) {
+        return const Color(0xFF0D5D9A);
+      }
+      return null;
+    }),
+    trackColor:
+        MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) {
+        return null;
+      }
+      if (states.contains(MaterialState.selected)) {
+        return const Color(0xFF0D5D9A);
+      }
+      return null;
+    }),
+  ),
 
   iconTheme: const IconThemeData(color: Color(0xFF0D5D9A)),
   primaryIconTheme: const IconThemeData(color: Color(0xFF0D5D9A)),
@@ -189,24 +192,20 @@ final ThemeData myTheme = ThemeData(
   ),
 
   inputDecorationTheme: InputDecorationTheme(
-    labelStyle: TextStyle(color: Colors.black45),
-    filled: true,
-    fillColor: const Color(0xFF0D5D9A).withOpacity(0.1),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide.none
-    ),
-    activeIndicatorBorder: const BorderSide(
-      color: Color(0xFF0D5D9A)
-    ),
-    contentPadding: const EdgeInsets.all(15)
-  ),
+      labelStyle: TextStyle(color: Colors.black45),
+      filled: true,
+      fillColor: const Color(0xFF0D5D9A).withOpacity(0.1),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
+      activeIndicatorBorder: const BorderSide(color: Color(0xFF0D5D9A)),
+      contentPadding: const EdgeInsets.all(15)),
 
   platform: TargetPlatform.android,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   applyElevationOverlayColor: true,
   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: const MaterialColor(0xFF0D5D9A, {
+  colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: const MaterialColor(0xFF0D5D9A, {
     50: Color(0xFF0D5D9A),
     100: Color(0xFF0D5D9A),
     200: Color(0xFF0D5D9A),
@@ -217,13 +216,17 @@ final ThemeData myTheme = ThemeData(
     700: Color(0xFF0D5D9A),
     800: Color(0xFF0D5D9A),
     900: Color(0xFF0D5D9A),
-  })).copyWith(
-    background: const Color(0xFF0D5D9A),
-    secondary: const Color(0xFFFFCB3A),
-  ).copyWith(secondary: const Color(0xFFFFCB3A)).copyWith(background: Colors.white).copyWith(error: Colors.red),
+  }))
+      .copyWith(
+        background: const Color(0xFF0D5D9A),
+        secondary: const Color(0xFFFFCB3A),
+      )
+      .copyWith(secondary: const Color(0xFFFFCB3A))
+      .copyWith(background: Colors.white)
+      .copyWith(error: Colors.red),
   textSelectionTheme: const TextSelectionThemeData(
     cursorColor: Colors.blue,
     selectionColor: Colors.blue,
-    selectionHandleColor: Colors.blue,),
+    selectionHandleColor: Colors.blue,
+  ),
 );
-

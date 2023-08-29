@@ -29,6 +29,7 @@ class ServiceRequestlistView extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(5),
             width: double.infinity,
+            color: Theme.of(context).primaryColor,
             child: MultipleChoice(name: const [
               'Total \n 42',
               'open \n 22',
@@ -208,6 +209,56 @@ class ServiceRequest {
       this.name, this.number, this.message, this.imeinum, this.requetstatus);
 }
 
+// class MultipleChoice extends StatefulWidget {
+//   List<String> name;
+//   MultipleChoice({Key? key, required this.name});
+
+//   @override
+//   State<MultipleChoice> createState() => _MultipleChoiceState();
+// }
+
+// class _MultipleChoiceState extends State<MultipleChoice> {
+//   Set<String> selection = {'Total \n 42'};
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         border: Border.all(
+//             color: Colors.black, width: 0), // No border for unselected segments
+//         borderRadius: BorderRadius.circular(5),
+//       ),
+//       child: SegmentedButton<String>(
+//         style: ButtonStyle(
+//           shape: MaterialStateProperty.all<OutlinedBorder>(
+//             const RoundedRectangleBorder(
+//               borderRadius: BorderRadius.all(Radius.circular(2)),
+//               side: BorderSide(
+//                   color: Colors.black, width: 1), // Set borderRadius to zero
+//             ),
+//           ),
+//           alignment: Alignment.center,
+//           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+//             EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+//           ),
+//         ),
+//         showSelectedIcon: false,
+//         segments: <ButtonSegment<String>>[
+//           for (var i in widget.name)
+//             ButtonSegment<String>(value: '$i', label: Text(i)),
+//         ],
+//         selected: selection,
+//         onSelectionChanged: (Set<String> newSelection) {
+//           setState(() {
+//             selection = newSelection;
+//           });
+//         },
+//         multiSelectionEnabled: false,
+//       ),
+//     );
+//   }
+// }
+
 class MultipleChoice extends StatefulWidget {
   List<String> name;
   MultipleChoice({Key? key, required this.name});
@@ -217,43 +268,29 @@ class MultipleChoice extends StatefulWidget {
 }
 
 class _MultipleChoiceState extends State<MultipleChoice> {
-  Set<String> selection = {'Total \n 42'};
+  Set<String> selection = {'0'};
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-            color: Colors.black, width: 0), // No border for unselected segments
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: SegmentedButton<String>(
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all<OutlinedBorder>(
-            const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(2)),
-              side: BorderSide(
-                  color: Colors.black, width: 1), // Set borderRadius to zero
-            ),
-          ),
-          alignment: Alignment.center,
-          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-            EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-          ),
-        ),
-        showSelectedIcon: false,
-        segments: <ButtonSegment<String>>[
-          for (var i in widget.name)
-            ButtonSegment<String>(value: '$i', label: Text(i)),
-        ],
-        selected: selection,
-        onSelectionChanged: (Set<String> newSelection) {
-          setState(() {
-            selection = newSelection;
-          });
-        },
-        multiSelectionEnabled: false,
-      ),
+    final border = Border.all(
+      color: Colors.black,
+      width: 2,
+    );
+    return SegmentedButton<String>(
+      // style: ButtonStyle(
+      //     backgroundColor: Colors.red, foregroundColor: Colors.amber),
+      showSelectedIcon: false,
+      segments: <ButtonSegment<String>>[
+        for (var i in widget.name)
+          ButtonSegment<String>(value: '$i', label: Text(i)),
+      ],
+      selected: selection,
+      onSelectionChanged: (Set<String> newSelection) {
+        setState(() {
+          selection = newSelection;
+        });
+      },
+      multiSelectionEnabled: false,
     );
   }
 }
