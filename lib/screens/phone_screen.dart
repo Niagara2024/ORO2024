@@ -16,7 +16,7 @@ class PhoneNumberScreen extends StatefulWidget {
 }
 
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTickerProviderStateMixin {
-
+  TextEditingController numberTextController = TextEditingController();
   late AnimationController _animationController;
   late Animation<double> _circleAnimation1;
   late Animation<double> _circleAnimation2;
@@ -243,7 +243,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                               onChanged: (PhoneNumber value) {
                                 _phoneNumber = value.completeNumber;
                                 print(_phoneNumber);
-                              }, needTofocus: null, SuffixIcon: null, myController: null,
+                              }, needTofocus: null, SuffixIcon: null, myController: numberTextController,
                             ),
                           const SizedBox(height: 50,),
                           ElevatedButton(

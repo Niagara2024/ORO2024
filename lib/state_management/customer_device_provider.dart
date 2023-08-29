@@ -139,13 +139,15 @@ class CustomerDevicePvd extends ChangeNotifier{
     },
   ];
 
-  void selecteDevice(int index){
+  void selectedDevice(int index){
     if(selected != 'no'){
       customerDeviceList[int.parse(selected)]['selected'] = 'no';
+      notifyListeners();
     }
     customerDeviceList[index]['selected'] = 'yes';
     selected = '${index}';
     notifyListeners();
+    print(selected);
   }
 
   void removeSelected(){

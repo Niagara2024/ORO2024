@@ -8,7 +8,8 @@ import '../utils/my_theme.dart';
 import '../utils/widgets/text_form_field.dart';
 
 class BottomSheetForDevices extends StatefulWidget {
-  const BottomSheetForDevices({super.key});
+  final int selectedCustomer;
+  const BottomSheetForDevices({super.key, required this.selectedCustomer});
 
   @override
   State<BottomSheetForDevices> createState() => _BottomSheetForDevicesState();
@@ -29,7 +30,7 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
             padding: const EdgeInsets.all(20.0),
             child: Row(
               children: [
-                Text('Sivaprakash Devices'),
+                Text('${CustmDevicePvd.listOfCustomer[widget.selectedCustomer]['name']} Devices'),
                 Icon(Icons.cancel_outlined),
               ],
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +44,7 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
                   itemBuilder: (BuildContext context, int index){
                     return GestureDetector(
                       onLongPress: (){
-                        CustmDevicePvd.selecteDevice(index);
+                        CustmDevicePvd.selectedDevice(index);
                         print('clicked ${index}');
                       },
                       onTap: (){
@@ -62,7 +63,7 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
                                   backgroundColor: MaterialStateProperty.all<Color>(liteYellow)),
                               onPressed: (){
                                 Navigator.push(context, MaterialPageRoute(builder: (context){
-                                  return ReplaceDevice();
+                                  return ReplaceDevice(selectedCusomer: widget.selectedCustomer, SelectedDevice: index,);
                                 }));
                               },
                               child: Text('Replace', style: TextStyle(color: Colors.black),),
@@ -105,11 +106,11 @@ class CustomerDevice extends StatefulWidget {
 }
 
 class _CustomerDeviceState extends State<CustomerDevice> {
-  Future<void> callBottonSheet(CustomerDevicePvd thisPvd)async{
+  Future<void> callBottonSheet(int selectedCustomer)async{
     return showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context, builder: (BuildContext context){
-          return BottomSheetForDevices();
+          return BottomSheetForDevices(selectedCustomer: selectedCustomer,);
     });
   }
 
@@ -167,7 +168,7 @@ class _CustomerDeviceState extends State<CustomerDevice> {
                                 child: Icon(Icons.list),
                             ),
                             onTap: (){
-                              callBottonSheet(CustmDevicePvd);
+                              callBottonSheet(index);
                             },
                           ),
                           CustmDevicePvd.listOfCustomer[index]['rating'] == 'yes' ? GestureDetector(
@@ -225,7 +226,7 @@ class _CustomerDeviceState extends State<CustomerDevice> {
                                   child: Icon(Icons.list),
                                 ),
                                 onTap: (){
-                                  callBottonSheet(CustmDevicePvd);
+                                  callBottonSheet(index);
                                 },
                               ),
                             ],

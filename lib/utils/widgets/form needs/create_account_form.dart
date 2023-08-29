@@ -100,7 +100,7 @@ class _CreateAccountState extends State<CreateAccount> {
             SizedBox(height: 20,),
             Center(child: Text('Fill customer details',style: TextStyle(
                 color: Colors.black,
-              fontSize: 16, fontWeight: FontWeight.bold
+                fontSize: 16, fontWeight: FontWeight.bold
             ),
             )
             ),
@@ -120,7 +120,8 @@ class _CreateAccountState extends State<CreateAccount> {
                     focusNode: _firstFocusNode,
                     initialCountryCode: _initialCountryCode,
                     decoration: inputDecoration(Icon(Icons.phone), null),
-                    SuffixIcon: null, myController: numberTextController,
+                    SuffixIcon: null,
+                    myController: numberTextController,
                   )
                 else
                   IntlPhoneField(
