@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'ORO DRIP IRRIGATION',
           theme: myTheme,
-          home: DeviceListView(),
+          home: SplashScreen(),
         ));
   }
 }

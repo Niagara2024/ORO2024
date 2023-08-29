@@ -2,24 +2,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class DeviceListApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Device List App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ChangeNotifierProvider(
-        create: (context) => DeviceListViewModel(),
-        child: DeviceListView(),
-      ),
-    );
-  }
-}
-
 class DeviceListViewModel extends ChangeNotifier {
-  List<Device> _devices = [];
+  List<Device> _devices = [
+    Device(
+        areaName: 'chennai',
+        name: 'venkatesan',
+        imeiNumber: '124356987654321',
+        profileImage: 's',
+        deviceName: 'pump'),
+    Device(
+        areaName: 'covai',
+        name: 'tamil',
+        imeiNumber: '124356987654321',
+        profileImage: 'T',
+        deviceName: 'pump'),
+    Device(
+        areaName: 'Erode',
+        name: 'Arun',
+        imeiNumber: '124356987654321',
+        profileImage: 'v',
+        deviceName: 'Smart'),
+  ];
   List<Device> _filteredDevices = [];
 
   List<Device> get devices =>
@@ -98,7 +101,7 @@ class DeviceList extends StatelessWidget {
         final device = viewModel.devices[index];
         return ListTile(
           leading: CircleAvatar(
-            backgroundImage: NetworkImage(device.profileImage),
+            child: Text('${device.name[0]}'),
           ),
           title: Text(device.name),
           subtitle: Text('IMEI: ${device.imeiNumber}'),
