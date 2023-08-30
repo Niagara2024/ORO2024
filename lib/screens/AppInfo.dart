@@ -21,7 +21,7 @@ class _AppInfoState extends State<AppInfo> {
           SizedBox(height: 20),
           Center(
             child: CircleAvatar(
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.amber,
               radius: 50,
               child: ClipOval(
                 //child: Image.asset('assets/images/defalt_user.jpeg'),
@@ -90,7 +90,7 @@ class _AppInfoState extends State<AppInfo> {
             ),
           ),
           ListTile(
-            title: Text('Features :'),
+            title: Text('Features :', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
           ),
           Padding(
             padding: EdgeInsets.only(left: 20,right: 20),

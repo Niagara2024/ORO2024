@@ -12,7 +12,7 @@ final ThemeData myTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   // cardColor: Colors.purple[100],
   dividerColor: Colors.grey,
-  focusColor: Colors.blue,
+  focusColor: Colors.amber,
   hoverColor: Colors.grey[300],
   highlightColor: Colors.transparent,
   splashColor: Colors.transparent,
@@ -22,7 +22,8 @@ final ThemeData myTheme = ThemeData(
   fontFamily: GoogleFonts.poppins().fontFamily,
 
   popupMenuTheme: const PopupMenuThemeData(
-    color: Colors.white
+    surfaceTintColor: Colors.white
+
   ),
 
   //App bar theme
@@ -62,7 +63,7 @@ final ThemeData myTheme = ThemeData(
 
   secondaryHeaderColor: Colors.white,
   dialogBackgroundColor: Colors.white,
-  indicatorColor: Colors.blue,
+  indicatorColor: Colors.amber,
   hintColor: Colors.grey,
 
   //Text theme
@@ -77,7 +78,7 @@ final ThemeData myTheme = ThemeData(
       color: Colors.black,
     ),
     headlineLarge: TextStyle(
-      color: Colors.blue,
+      color: Colors.amber,
     ),
     headlineMedium: TextStyle(
       color: Colors.black,
@@ -180,6 +181,7 @@ final ThemeData myTheme = ThemeData(
   cardTheme: CardTheme(
     color: Colors.white,
     elevation: 4,
+    surfaceTintColor: Colors.white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8),
     ),
@@ -238,8 +240,8 @@ final ThemeData myTheme = ThemeData(
     secondary: const Color(0xFFFFCB3A),
   ).copyWith(secondary: const Color(0xFFFFCB3A)).copyWith(background: Colors.white).copyWith(error: Colors.red),
   textSelectionTheme: const TextSelectionThemeData(
-    cursorColor: Colors.blue,
-    selectionColor: Colors.blue,
-    selectionHandleColor: Colors.blue,),
+    cursorColor: Colors.amber,
+    selectionColor: Colors.amber,
+    selectionHandleColor: Colors.amber,),
 );
 

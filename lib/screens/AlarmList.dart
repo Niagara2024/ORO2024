@@ -63,7 +63,7 @@ class _AlarmListState extends State<AlarmList> {
             trailing: Text('12 Aug 2023 \n 10:30 AM'),
           ),
           ListTile(
-            leading: const Icon(Icons.water_drop_outlined, color: Colors.blue,),
+            leading: const Icon(Icons.water_drop_outlined, color: Colors.amber,),
             title: const Text('Water leakage'),
             subtitle: Text('Line 10 Water meter'),
             trailing: Text('12 Aug 2023 \n 10:35 AM'),
@@ -81,7 +81,7 @@ class _AlarmListState extends State<AlarmList> {
             trailing: Text('12 Aug 2023 \n 10:30 AM'),
           ),
           ListTile(
-            leading: const Icon(Icons.water_drop_outlined, color: Colors.blue,),
+            leading: const Icon(Icons.water_drop_outlined, color: Colors.amber,),
             title: const Text('Water leakage'),
             subtitle: Text('Line 10 Water meter'),
             trailing: Text('12 Aug 2023 \n 10:35 AM'),
@@ -99,7 +99,7 @@ class _AlarmListState extends State<AlarmList> {
             trailing: Text('12 Aug 2023 \n 10:30 AM'),
           ),
           ListTile(
-            leading: const Icon(Icons.water_drop_outlined, color: Colors.blue,),
+            leading: const Icon(Icons.water_drop_outlined, color: Colors.amber,),
             title: const Text('Water leakage'),
             subtitle: Text('Line 10 Water meter'),
             trailing: Text('12 Aug 2023 \n 10:35 AM'),
@@ -117,7 +117,7 @@ class _AlarmListState extends State<AlarmList> {
             trailing: Text('12 Aug 2023 \n 10:30 AM'),
           ),
           ListTile(
-            leading: const Icon(Icons.water_drop_outlined, color: Colors.blue,),
+            leading: const Icon(Icons.water_drop_outlined, color: Colors.amber,),
             title: const Text('Water leakage'),
             subtitle: Text('Line 10 Water meter'),
             trailing: Text('12 Aug 2023 \n 10:35 AM'),
