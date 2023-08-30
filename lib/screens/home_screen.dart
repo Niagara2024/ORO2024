@@ -4,6 +4,7 @@ import 'package:oro_2024/screens/AppInfo.dart';
 import 'package:oro_2024/screens/SharedDevice.dart';
 import 'package:oro_2024/screens/sellTo.dart';
 import 'package:oro_2024/screens/servicerequstlist_view.dart';
+import 'package:oro_2024/utils/constants/QrcodeScaner.dart';
 
 import 'MyPrefrence.dart';
 
@@ -246,7 +247,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             onTap: () {
                               //Navigator.of(context).pop();
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const MyPreference()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const QRCodescaner()));
                             },
                           ),
                         );
