@@ -7,21 +7,57 @@ class DeviceListViewModel extends ChangeNotifier {
     Device(
         areaName: 'chennai',
         name: 'venkatesan',
-        imeiNumber: '124356987654321',
+        imeiNumber: '98767654432',
         profileImage: 's',
         deviceName: 'pump'),
     Device(
         areaName: 'covai',
         name: 'tamil',
-        imeiNumber: '124356987654321',
+        imeiNumber: '6987654321',
         profileImage: 'T',
         deviceName: 'pump'),
     Device(
         areaName: 'Erode',
         name: 'Arun',
-        imeiNumber: '124356987654321',
+        imeiNumber: '8767646545',
         profileImage: 'v',
         deviceName: 'Smart'),
+    Device(
+        areaName: 'chennai',
+        name: 'venugopal',
+        imeiNumber: '1214324324',
+        profileImage: 's',
+        deviceName: 'pump'),
+    Device(
+        areaName: 'covai',
+        name: 'tamil selvan',
+        imeiNumber: '994477623',
+        profileImage: 'T',
+        deviceName: 'pump'),
+    Device(
+        areaName: 'Erode',
+        name: 'AKIL',
+        imeiNumber: '987664545215',
+        profileImage: 'v',
+        deviceName: 'Smart'),
+    Device(
+        areaName: 'covai',
+        name: 'Siva prakash',
+        imeiNumber: '994477623',
+        profileImage: 'T',
+        deviceName: 'pump'),
+    Device(
+        areaName: 'ooty',
+        name: 'Siva',
+        imeiNumber: '87664545215',
+        profileImage: 'v',
+        deviceName: 'Smart'),
+    Device(
+        areaName: 'covai',
+        name: 'prakash',
+        imeiNumber: '97664545215',
+        profileImage: 'v',
+        deviceName: 'oro'),
   ];
   List<Device> _filteredDevices = [];
 
@@ -34,10 +70,10 @@ class DeviceListViewModel extends ChangeNotifier {
     } else {
       _filteredDevices = _devices.where((device) {
         final lowerQuery = query.toLowerCase();
-        return device.name.toLowerCase().contains(lowerQuery) ||
+        return device.name.toLowerCase().startsWith(lowerQuery) ||
             device.imeiNumber.toLowerCase().contains(lowerQuery) ||
-            device.areaName.toLowerCase().contains(lowerQuery) ||
-            device.deviceName.toLowerCase().contains(lowerQuery);
+            device.areaName.toLowerCase().startsWith(lowerQuery) ||
+            device.deviceName.toLowerCase().startsWith(lowerQuery);
       }).toList();
     }
     notifyListeners();
@@ -51,7 +87,7 @@ class DeviceListView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Device List'),
+        title: Text('Shared Device List'),
       ),
       body: Column(
         children: [
@@ -99,13 +135,15 @@ class DeviceList extends StatelessWidget {
       itemCount: viewModel.devices.length,
       itemBuilder: (context, index) {
         final device = viewModel.devices[index];
-        return ListTile(
-          leading: CircleAvatar(
-            child: Text('${device.name[0]}'),
+        return Card(
+          child: ListTile(
+            leading: CircleAvatar(
+              child: Text('${device.name[0]}'),
+            ),
+            title: Text(device.name),
+            subtitle: Text('IMEI: ${device.imeiNumber}'),
+            trailing: Text('Area: ${device.areaName}'),
           ),
-          title: Text(device.name),
-          subtitle: Text('IMEI: ${device.imeiNumber}'),
-          trailing: Text('Area: ${device.areaName}'),
         );
       },
     );
