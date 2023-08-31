@@ -86,6 +86,7 @@ class DeviceListView extends StatelessWidget {
     final viewModel = Provider.of<DeviceListViewModel>(context);
 
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 228, 240, 249),
       appBar: AppBar(
         title: Text('Shared Device List'),
       ),
@@ -112,13 +113,17 @@ class SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        onChanged: onSearch,
-        decoration: InputDecoration(
-          hintText: 'Search devices...',
-          prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
+      child: Container(
+        color: Colors.white,
+        child: TextField(
+          keyboardType: TextInputType.emailAddress,
+          onChanged: onSearch,
+          decoration: InputDecoration(
+            hintText: 'Search devices...',
+            prefixIcon: Icon(Icons.search),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
           ),
         ),
       ),
@@ -130,13 +135,14 @@ class DeviceList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<DeviceListViewModel>(context);
-
     return ListView.builder(
       itemCount: viewModel.devices.length,
       itemBuilder: (context, index) {
         final device = viewModel.devices[index];
         return Card(
+          color: Colors.transparent,
           child: ListTile(
+            tileColor: Colors.white,
             leading: CircleAvatar(
               child: Text('${device.name[0]}'),
             ),

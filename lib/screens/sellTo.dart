@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -76,6 +78,7 @@ class SellToCustomerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 176, 210, 237),
       appBar: AppBar(
         title: Text('Sell to Customer'),
       ),
@@ -128,16 +131,23 @@ class SellToCustomerPage extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Spacer(),
-                        DropdownButton<String>(
-                          value: viewModel.selectedCustomerType,
-                          onChanged: (newValue) =>
-                              viewModel.updateCustomerType(newValue!),
-                          items: viewModel.customerTypes
-                              .map((type) => DropdownMenuItem<String>(
-                                    value: type.name,
-                                    child: Text(type.name),
-                                  ))
-                              .toList(),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: DropdownButton<String>(
+                            underline: Container(),
+                            borderRadius: BorderRadius.circular(10),
+                            value: viewModel.selectedCustomerType,
+                            onChanged: (newValue) =>
+                                viewModel.updateCustomerType(newValue!),
+                            items: viewModel.customerTypes
+                                .map((type) => DropdownMenuItem<String>(
+                                      value: type.name,
+                                      child: Text(type.name),
+                                    ))
+                                .toList(),
+                          ),
                         ),
                         Spacer(),
                       ],
@@ -147,16 +157,40 @@ class SellToCustomerPage extends StatelessWidget {
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.all(20),
-                    child: TextFormField(
-                      onChanged: (newValue) =>
-                          viewModel.updateCustomerMobileNumber(newValue),
-                      decoration: InputDecoration(
-                          labelText: 'Mobile Number',
-                          hintText: 'Enter Mobile Number',
-                          labelStyle: TextStyle(color: Colors.black)),
-                      keyboardType: TextInputType.phone,
-                      maxLength: 10,
+                    //  color: Colors.white,
+                    padding: EdgeInsets.all(8),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Mobile Number: ',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Container(
+                          width: 250,
+                          child: TextFormField(
+                            onChanged: (newValue) =>
+                                viewModel.updateCustomerMobileNumber(newValue),
+                            decoration: InputDecoration(
+                              fillColor: Colors.white,
+                              labelText: 'Mobile Number',
+                              hintText: 'Enter Mobile Number',
+                              labelStyle: TextStyle(color: Colors.black),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(
+                                    10.0), // Set your desired corner radius here
+                              ),
+                            ),
+                            keyboardType: TextInputType.phone,
+                            // maxLength: 10,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            _showAlert(context);
+                          },
+                          icon: Icon(Icons.check),
+                        )
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -178,6 +212,39 @@ class SellToCustomerPage extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+
+  void _showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          titlePadding: EdgeInsets.fromLTRB(16, 16, 16, 0), // Adjust padding
+          title: Container(
+            color: Colors.blue,
+            child: Text(
+              'Mobile number check',
+            ),
+          ),
+          content:
+              Text('There are no account this number, Also Create new Account'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the alert
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the alert
+              },
+              child: Text('Create'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

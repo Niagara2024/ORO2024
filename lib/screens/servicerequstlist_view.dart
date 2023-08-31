@@ -8,6 +8,7 @@ class ServiceRequestlistView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 176, 210, 237),
       appBar: AppBar(
         title: Text('Service Request List'),
         actions: [
@@ -29,7 +30,7 @@ class ServiceRequestlistView extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(5),
             width: double.infinity,
-            color: Color.fromARGB(255, 176, 210, 237),
+            // color: Color.fromARGB(255, 176, 210, 237),
             child: MultipleChoice(name: const [
               'Total \n 42',
               'open \n 22',
@@ -90,8 +91,10 @@ class _ServiceRequestCardState extends State<ServiceRequestCard> {
     String msg =
         "${widget.serviceRequestlist.number}\n${widget.serviceRequestlist.imeinum}\n${widget.serviceRequestlist.message}";
     return Card(
+      color: Colors.transparent,
       elevation: 2,
       child: ListTile(
+        tileColor: Colors.white,
         leading: CircleAvatar(
           child: Text(widget.serviceRequestlist.name[0]),
         ),

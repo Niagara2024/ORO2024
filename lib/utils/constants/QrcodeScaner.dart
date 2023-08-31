@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oro_2024/utils/constants/Permission.dart';
-import 'package:oro_2024/utils/constants/QRcodeScannerAction.dart';
+import 'package:oro_2024/utils/constants/qrcode_scan.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class QRCodescaner extends StatefulWidget {
@@ -26,7 +26,7 @@ class _QRCodescanerState extends State<QRCodescaner> {
             PermissionClass permission = PermissionClass();
             permission.checkPermission(context, Permission.camera);
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => QRcodeScannerAction()));
+                MaterialPageRoute(builder: (context) => const QRcodeScanner()));
           },
         ),
       )),

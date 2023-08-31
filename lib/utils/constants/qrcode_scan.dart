@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:image_picker/image_picker.dart';
 
-class QRcodeScannerAction extends StatefulWidget {
-  const QRcodeScannerAction({Key? key}) : super(key: key);
+class QRcodeScanner extends StatefulWidget {
+  const QRcodeScanner({Key? key}) : super(key: key);
 
   @override
-  _QRcodeScannerActionState createState() => _QRcodeScannerActionState();
+  _QRcodeScannerState createState() => _QRcodeScannerState();
 }
 
-class _QRcodeScannerActionState extends State<QRcodeScannerAction>
+class _QRcodeScannerState extends State<QRcodeScanner>
     with SingleTickerProviderStateMixin {
   BarcodeCapture? barcode;
 
