@@ -95,8 +95,11 @@ class _ServiceRequestCardState extends State<ServiceRequestCard> {
       elevation: 2,
       child: ListTile(
         tileColor: Colors.white,
-        leading: CircleAvatar(
-          child: Text(widget.serviceRequestlist.name[0]),
+        leading: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10), color: Colors.black12),
         ),
         title: Text(widget.serviceRequestlist.name),
         subtitle: Text(msg),
@@ -185,15 +188,15 @@ class _ServiceRequestCardState extends State<ServiceRequestCard> {
 class ServiceRequestViewModel extends ChangeNotifier {
   List<ServiceRequest> serviceRequest = [
     ServiceRequest(
-        'John Doe', '+1234567890', 'Hello there!', '8976543223456', 2),
+        'John Doe', '+1234567890', "Motor can't start!", '8976543223456', 2),
     ServiceRequest(
-        'Jane roe', '+9876543210', 'Hi! How are you?', '8976543223453', 2),
+        'Jane roe', '+9876543210', "Motor can't start!", '8976543223453', 2),
     ServiceRequest(
-        'Jane Smith', '+9876543210', 'Hi! How are you?', '89765432234567', 2),
+        'Jane Smith', '+9876543210', "Motor can't start!", '89765432234567', 2),
     ServiceRequest(
-        'Jane ', '+9876543210', 'Hi! How are you?', '89765432234531', 2),
+        'Jane ', '+9876543210', "Motor can't start!", '89765432234531', 2),
     ServiceRequest(
-        'Smith', '+9876543210', 'Hi! How are you?', '8976543223459', 2),
+        'Smith', '+9876543210', "Motor can't start!", '8976543223459', 2),
   ];
 
   void refreshContacts() {
@@ -211,56 +214,6 @@ class ServiceRequest {
   ServiceRequest(
       this.name, this.number, this.message, this.imeinum, this.requetstatus);
 }
-
-// class MultipleChoice extends StatefulWidget {
-//   List<String> name;
-//   MultipleChoice({Key? key, required this.name});
-
-//   @override
-//   State<MultipleChoice> createState() => _MultipleChoiceState();
-// }
-
-// class _MultipleChoiceState extends State<MultipleChoice> {
-//   Set<String> selection = {'Total \n 42'};
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       decoration: BoxDecoration(
-//         border: Border.all(
-//             color: Colors.black, width: 0), // No border for unselected segments
-//         borderRadius: BorderRadius.circular(5),
-//       ),
-//       child: SegmentedButton<String>(
-//         style: ButtonStyle(
-//           shape: MaterialStateProperty.all<OutlinedBorder>(
-//             const RoundedRectangleBorder(
-//               borderRadius: BorderRadius.all(Radius.circular(2)),
-//               side: BorderSide(
-//                   color: Colors.black, width: 1), // Set borderRadius to zero
-//             ),
-//           ),
-//           alignment: Alignment.center,
-//           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-//             EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-//           ),
-//         ),
-//         showSelectedIcon: false,
-//         segments: <ButtonSegment<String>>[
-//           for (var i in widget.name)
-//             ButtonSegment<String>(value: '$i', label: Text(i)),
-//         ],
-//         selected: selection,
-//         onSelectionChanged: (Set<String> newSelection) {
-//           setState(() {
-//             selection = newSelection;
-//           });
-//         },
-//         multiSelectionEnabled: false,
-//       ),
-//     );
-//   }
-// }
 
 class MultipleChoice extends StatefulWidget {
   List<String> name;

@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+final PrimaryColor = const Color(0xFF0D5D9A);
+final liteBlue = const Color(0xFFEEF3F7);
+final grey = const Color(0xFF9EBED7);
+final liteYellow = const Color(0xFFFFD44C);
+final thickYellow = const Color(0xFFFFB402);
+
 final ThemeData myTheme = ThemeData(
   useMaterial3: true,
   brightness: Brightness.light,

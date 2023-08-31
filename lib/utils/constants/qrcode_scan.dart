@@ -1,223 +1,106 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:image_picker/image_picker.dart';
+import 'dart:developer';
+import 'dart:io';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qr_scanner_with_effect/qr_scanner_with_effect.dart';
 
 class QRcodeScanner extends StatefulWidget {
-  const QRcodeScanner({Key? key}) : super(key: key);
+  const QRcodeScanner({super.key});
 
   @override
-  _QRcodeScannerState createState() => _QRcodeScannerState();
+  State<QRcodeScanner> createState() => _QRcodeScannerState();
 }
 
-class _QRcodeScannerState extends State<QRcodeScanner>
-    with SingleTickerProviderStateMixin {
-  BarcodeCapture? barcode;
+class _QRcodeScannerState extends State<QRcodeScanner> {
+  Barcode? result;
+  QRViewController? controller;
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
-  MobileScannerController controller = MobileScannerController(
-    torchEnabled: false,
-  );
+  bool isComplete = false;
 
-  bool isStarted = true;
-  double _zoomFactor = 0.0;
+  void onQrScannerViewCreated(QRViewController controller) {
+    this.controller = controller;
+    controller.scannedDataStream.listen((scanData) async {
+      result = scanData;
+      controller.pauseCamera();
+
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+
+      String? myQrCode =
+          result?.code != null && result!.code.toString().isNotEmpty
+              ? result?.code.toString()
+              : '';
+      if (myQrCode != null && myQrCode.isNotEmpty) {
+        manageQRData(myQrCode);
+      }
+    });
+  }
+
+  void manageQRData(String myQrCode) async {
+    controller?.stopCamera();
+    setState(() {
+      isComplete = true;
+    });
+  }
+
+  @override
+  void reassemble() {
+    if (Platform.isAndroid) {
+      controller!.pauseCamera();
+    } else if (Platform.isIOS) {
+      controller!.resumeCamera();
+    }
+    super.reassemble();
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    controller?.stopCamera();
+    super.dispose();
+  }
+
+  void onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
+    log('${DateTime.now().toIso8601String()}_onPermissionSet $p');
+    if (!p) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('no Permission')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final scanWindow = Rect.fromCenter(
-      center: MediaQuery.of(context).size.center(Offset.zero),
-      width: 200,
-      height: 200,
-    );
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Builder(
-        builder: (context) {
-          return Stack(
-            children: [
-              MobileScanner(
-                controller: controller,
-                fit: BoxFit.contain,
-                //  scanWindow: scanWindow,
-                onDetect: (barcode) {
-                  setState(() {
-                    this.barcode = barcode;
-                    if (barcode != null) {
-                      showAlertDialog(barcode.barcodes.first.rawValue ?? '');
-                    }
-                  });
-                },
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  alignment: Alignment.bottomCenter,
-                  height: 100,
-                  color: Colors.black.withOpacity(0.4),
-                  child: Column(
-                    children: [
-                      Slider(
-                        value: _zoomFactor,
-                        onChanged: (value) {
-                          setState(() {
-                            _zoomFactor = value;
-                            controller.setZoomScale(value);
-                          });
-                        },
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          IconButton(
-                            color: Colors.white,
-                            icon: ValueListenableBuilder(
-                              valueListenable: controller.torchState,
-                              builder: (context, state, child) {
-                                if (state == null) {
-                                  return const Icon(
-                                    Icons.flash_off,
-                                    color: Colors.grey,
-                                  );
-                                }
-                                switch (state as TorchState) {
-                                  case TorchState.off:
-                                    return const Icon(
-                                      Icons.flash_off,
-                                      color: Colors.grey,
-                                    );
-                                  case TorchState.on:
-                                    return const Icon(
-                                      Icons.flash_on,
-                                      color: Colors.yellow,
-                                    );
-                                }
-                              },
-                            ),
-                            iconSize: 32.0,
-                            onPressed: () => controller.toggleTorch(),
-                          ),
-                          IconButton(
-                            color: Colors.white,
-                            icon: isStarted
-                                ? const Icon(Icons.stop)
-                                : const Icon(Icons.play_arrow),
-                            iconSize: 32.0,
-                            onPressed: () => setState(() {
-                              isStarted
-                                  ? controller.stop()
-                                  : controller.start();
-                              isStarted = !isStarted;
-                            }),
-                          ),
-                          Center(
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width - 200,
-                              height: 50,
-                              child: FittedBox(
-                                child: Text(
-                                  barcode?.barcodes.first.rawValue ??
-                                      'Scan something!',
-                                  overflow: TextOverflow.fade,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineMedium!
-                                      .copyWith(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            color: Colors.white,
-                            icon: ValueListenableBuilder(
-                              valueListenable: controller.cameraFacingState,
-                              builder: (context, state, child) {
-                                if (state == null) {
-                                  return const Icon(Icons.camera_front);
-                                }
-                                switch (state as CameraFacing) {
-                                  case CameraFacing.front:
-                                    return const Icon(Icons.camera_front);
-                                  case CameraFacing.back:
-                                    return const Icon(Icons.camera_rear);
-                                }
-                              },
-                            ),
-                            iconSize: 32.0,
-                            onPressed: () {
-                              print(barcode?.barcodes.first);
-                            },
-                            // onPressed: () => controller.switchCamera(),
-                          ),
-                          IconButton(
-                            color: Colors.white,
-                            icon: const Icon(Icons.image),
-                            iconSize: 32.0,
-                            onPressed: () async {
-                              final ImagePicker picker = ImagePicker();
-                              // Pick an image
-                              final XFile? image = await picker.pickImage(
-                                source: ImageSource.gallery,
-                              );
-                              if (image != null) {
-                                if (await controller.analyzeImage(image.path)) {
-                                  if (!mounted) return;
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Barcode found!'),
-                                      backgroundColor: Colors.green,
-                                    ),
-                                  );
-                                } else {
-                                  if (!mounted) return;
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('No barcode found!'),
-                                      backgroundColor: Colors.red,
-                                    ),
-                                  );
-                                }
-                              }
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+    return SafeArea(
+      top: false,
+      bottom: false,
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        backgroundColor: Colors.transparent,
+        body: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+          return QrScannerWithEffect(
+            isScanComplete: isComplete,
+            qrKey: qrKey,
+            onQrScannerViewCreated: onQrScannerViewCreated,
+            qrOverlayBorderColor: Colors.redAccent,
+            cutOutSize: (MediaQuery.of(context).size.width < 300 ||
+                    MediaQuery.of(context).size.height < 400)
+                ? 250.0
+                : 300.0,
+            onPermissionSet: (ctrl, p) => onPermissionSet(context, ctrl, p),
+            effectGradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [0.0, 1],
+              colors: [
+                Colors.redAccent,
+                Colors.redAccent,
+              ],
+            ),
           );
-        },
+        }),
       ),
     );
-  }
-
-  void showAlertDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('QR Code Detected'),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              controller.start();
-            },
-            child: Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop();
-              controller.stop();
-            },
-            child: Text('OK'),
-          ),
-        ],
-      ),
-    );
-    setState(() {
-      isStarted = false;
-      controller.stop();
-    });
   }
 }

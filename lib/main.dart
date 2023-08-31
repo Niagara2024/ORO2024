@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:oro_2024/StateManagement_provider/MyDevice_Provider.dart';
+import 'package:oro_2024/StateManagement_provider/Service_Request_Provider.dart';
 import 'package:oro_2024/screens/SharedDevice.dart';
 import 'package:oro_2024/screens/servicerequstlist_view.dart';
 import 'package:oro_2024/screens/splash_screen.dart';
@@ -14,6 +16,8 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => ServiceRequestViewModel(),
         ),
+        ChangeNotifierProvider(create: (context) => CustomerDevicePvd()),
+        ChangeNotifierProvider(create: (context) => MyDeviceProvider()),
       ],
       child: const MyApp(),
     ),

@@ -77,7 +77,6 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen>
       setState(() {
         _initialCountryCode = countryCode!;
         print(countryCode);
-        print(placemarks);
       });
     } catch (e) {
       print('Error getting location: $e');

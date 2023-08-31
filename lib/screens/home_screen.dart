@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:oro_2024/model/TimetoWish.dart';
 import 'package:oro_2024/screens/AlarmList.dart';
 import 'package:oro_2024/screens/AppInfo.dart';
 import 'package:oro_2024/screens/SharedDevice.dart';
 import 'package:oro_2024/screens/sellTo.dart';
+import 'package:oro_2024/screens/service_request.dart';
 import 'package:oro_2024/screens/servicerequstlist_view.dart';
 import 'package:oro_2024/utils/constants/QrcodeScaner.dart';
 
@@ -17,6 +19,8 @@ class HomeScreen extends StatefulWidget {
 
 //this is state widget
 class _HomeScreenState extends State<HomeScreen> {
+  String greeting = GreetingHelper.getGreeting();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,17 +65,22 @@ class _HomeScreenState extends State<HomeScreen> {
                           ), //CircleAvatar
                         ),
                         Center(
-                          child: ListTile(
-                            title: Center(
-                                child: Text(
-                              "Customer Name",
-                              style: Theme.of(context).textTheme.headlineSmall,
-                            )),
-                            subtitle: Center(
-                                child: Text(
-                              "+91 9698852733 \n naiagara@gmail.com",
-                              style: Theme.of(context).textTheme.bodyLarge,
-                            )),
+                          child: Flexible(
+                            flex: 30,
+                            child: ListTile(
+                              title: Center(
+                                  child: Text(
+                                "Customer Name",
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall,
+                              )),
+                              subtitle: Center(
+                                  child: Text(
+                                "+91 9698852733 \n naiagara@gmail.com",
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              )),
+                              dense: true,
+                            ),
                           ), //CircleAvatar
                         ),
                       ],
@@ -246,10 +255,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: Theme.of(context).textTheme.bodySmall,
                             ),
                             onTap: () {
-                              //Navigator.of(context).pop();
+                              //Navigator.of(context).pop(); QRCodescaner
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      const QRCodescaner()));
+                                      QRCodescaner()));
                             },
                           ),
                         );
@@ -274,7 +283,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               //Navigator.of(context).pop();
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      DeviceListView()));
+                                      CustomerDevice123(
+                                        purpose: '',
+                                      )));
                             },
                           ),
                         );
