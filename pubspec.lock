@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  bouncing_button:
+    dependency: "direct main"
+    description:
+      name: bouncing_button
+      sha256: e281c0af5e71ec53ffb1656060221930b121388ea21e3cb095b0bede8b596635
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1+2"
   characters:
     dependency: transitive
     description:
@@ -693,6 +701,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  smooth_page_indicator:
+    dependency: "direct main"
+    description:
+      name: smooth_page_indicator
+      sha256: "725bc638d5e79df0c84658e1291449996943f93bacbc2cec49963dbbab48d8ae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   source_span:
     dependency: transitive
     description:

@@ -140,22 +140,13 @@ class CustomerDevicePvd extends ChangeNotifier{
   ];
 
   void selectedDevice(int index){
-    if(selected != 'no'){
-      customerDeviceList[int.parse(selected)]['selected'] = 'no';
-      notifyListeners();
-    }
-    customerDeviceList[index]['selected'] = 'yes';
     selected = '${index}';
     notifyListeners();
-    print(selected);
   }
 
   void removeSelected(){
-    if(selected != 'no'){
-      customerDeviceList[int.parse(selected)]['selected'] = 'no';
-      selected = 'no';
-      notifyListeners();
-    }
+    selected = 'no';
+    notifyListeners();
   }
 
   List<Map<String, String>> onlyRated(){

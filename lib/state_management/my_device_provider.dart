@@ -2,6 +2,36 @@ import 'package:flutter/cupertino.dart';
 
 class MyDeviceProvider extends ChangeNotifier{
   String selectedDevice = 'no';
+  List<int> selectedList = [];
+  String sellTO = '';
+  bool longpress = false;
+
+  void editLongPress(bool valve){
+    longpress = valve;
+    notifyListeners();
+  }
+
+  void addFunction(int index){
+    selectedList.add(index);
+    notifyListeners();
+  }
+
+  void removeFunction(int index){
+    selectedList.remove(index);
+    notifyListeners();
+  }
+
+  void clearFunction(){
+    selectedList = [];
+    notifyListeners();
+  }
+
+  void editSellTo(String value){
+    sellTO = value;
+    notifyListeners();
+  }
+
+  List<int> get getList => selectedList;
 
   List<Map<String, String>> Mydevices = [
     {
@@ -29,7 +59,37 @@ class MyDeviceProvider extends ChangeNotifier{
       'IMEI' : '845643665656354'
     },
     {
-      'name' : 'Valve 1',
+      'name' : 'Valve 2',
+      'buyDate' : '22/06/2021',
+      'selected' : 'no',
+      'IMEI' : '845643665656354'
+    },
+    {
+      'name' : 'Valve 3',
+      'buyDate' : '22/06/2021',
+      'selected' : 'no',
+      'IMEI' : '845643665656354'
+    },
+    {
+      'name' : 'Valve 4',
+      'buyDate' : '22/06/2021',
+      'selected' : 'no',
+      'IMEI' : '845643665656354'
+    },
+    {
+      'name' : 'Valve 5',
+      'buyDate' : '22/06/2021',
+      'selected' : 'no',
+      'IMEI' : '845643665656354'
+    },
+    {
+      'name' : 'Valve 6',
+      'buyDate' : '22/06/2021',
+      'selected' : 'no',
+      'IMEI' : '845643665656354'
+    },
+    {
+      'name' : 'Valve 7',
       'buyDate' : '22/06/2021',
       'selected' : 'no',
       'IMEI' : '845643665656354'

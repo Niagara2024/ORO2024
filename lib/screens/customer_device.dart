@@ -4,6 +4,7 @@ import 'package:oro_2024/state_management/customer_device_provider.dart';
 import 'package:oro_2024/utils/theme.dart';
 import 'package:provider/provider.dart';
 
+import '../state_management/my_device_provider.dart';
 import '../utils/my_theme.dart';
 import '../utils/widgets/text_form_field.dart';
 
@@ -31,7 +32,11 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
             child: Row(
               children: [
                 Text('${CustmDevicePvd.listOfCustomer[widget.selectedCustomer]['name']} Devices'),
-                Icon(Icons.cancel_outlined),
+                IconButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                    icon: Icon(Icons.cancel_outlined)),
               ],
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
             ),
@@ -52,16 +57,17 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: CustmDevicePvd.customerDeviceList[index]['selected'] == 'yes' ? liteBlue : null,
+                            color: (CustmDevicePvd.selected != 'no' && index == int.parse(CustmDevicePvd.selected)) ? liteBlue : null,
                             borderRadius: BorderRadius.circular(10.0)
                         ),
                         child: ListTile(
                           trailing: Visibility(
-                            visible: CustmDevicePvd.customerDeviceList[index]['selected'] == 'yes' ? true : false,
+                            visible: (CustmDevicePvd.selected != 'no' && index == int.parse(CustmDevicePvd.selected)) ? true : false,
                             child: ElevatedButton(
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(liteYellow)),
                               onPressed: (){
+                                Navigator.pop(context);
                                 Navigator.push(context, MaterialPageRoute(builder: (context){
                                   return ReplaceDevice(selectedCusomer: widget.selectedCustomer, SelectedDevice: index,);
                                 }));
@@ -99,7 +105,8 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
 
 
 class CustomerDevice extends StatefulWidget {
-  const CustomerDevice({super.key});
+  final String purpose;
+  const CustomerDevice({super.key, required this.purpose});
 
   @override
   State<CustomerDevice> createState() => _CustomerDeviceState();
@@ -116,17 +123,18 @@ class _CustomerDeviceState extends State<CustomerDevice> {
 
   @override
   Widget build(BuildContext context) {
+    var MyDevicePvd = Provider.of<MyDeviceProvider>(context, listen : true);
     var CustmDevicePvd = Provider.of<CustomerDevicePvd>(context, listen : true);
     return Scaffold(
       appBar: AppBar(
         actions: [
           Padding(
             padding: const EdgeInsets.only(right:20.0) ,
-            child: GestureDetector(
-              onTap: (){
+            child: IconButton(
+              onPressed: (){
                 CustmDevicePvd.changeFilterRating();
               },
-                child: CustmDevicePvd.filterRating == 'no' ? Icon(Icons.star_border) : Icon(Icons.star)
+                icon: CustmDevicePvd.filterRating == 'no' ? Icon(Icons.star_border) : Icon(Icons.star)
             ),
           ),
         ],
@@ -158,29 +166,32 @@ class _CustomerDeviceState extends State<CustomerDevice> {
                     title: Container(
                         child: Text('${CustmDevicePvd.listOfCustomer[index]['name']}')
                     ),
-                    trailing: Container(
+                    trailing: widget.purpose == 'sell' ? ElevatedButton(
+                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(liteYellow)),
+                        onPressed: (){
+                          MyDevicePvd.editSellTo('${index}');
+                      Navigator.pop(context);
+                    }, child: Text('Sell', style: TextStyle(color: Colors.black),)) : Container(
                       width: 80,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          GestureDetector(
-                            child: InkWell(
-                                child: Icon(Icons.list),
-                            ),
-                            onTap: (){
+                          IconButton(
+                              icon: Icon(Icons.list),
+                            onPressed: (){
                               callBottonSheet(index);
                             },
                           ),
-                          CustmDevicePvd.listOfCustomer[index]['rating'] == 'yes' ? GestureDetector(
-                            onTap: (){
+                          CustmDevicePvd.listOfCustomer[index]['rating'] == 'yes' ? IconButton(
+                            onPressed: (){
                               CustmDevicePvd.changeRating(index);
                             },
-                              child: Icon(Icons.star, color: liteYellow,)
-                          ) : GestureDetector(
-                            onTap: (){
+                              icon: Icon(Icons.star, color: liteYellow,)
+                          ) : IconButton(
+                            onPressed: (){
                               CustmDevicePvd.changeRating(index);
                             },
-                              child: Icon(Icons.star_border, color: liteYellow,)
+                              icon: Icon(Icons.star_border, color: liteYellow,)
                           )
                         ],
                       ),

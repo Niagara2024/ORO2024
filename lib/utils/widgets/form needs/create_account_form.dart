@@ -240,7 +240,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     const SnackBar(content: Text('Processing Data')),
                   );
                 }
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CustomerDevice()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CustomerDevice(purpose: '',)));
               },
             ),
             SizedBox(height: 35,),

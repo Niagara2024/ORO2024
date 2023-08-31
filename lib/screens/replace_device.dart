@@ -1,3 +1,4 @@
+import 'package:bouncing_button/bouncing_button.dart';
 import 'package:flutter/material.dart';
 import 'package:oro_2024/screens/my_device.dart';
 import 'package:oro_2024/utils/my_theme.dart';
@@ -18,6 +19,7 @@ class ReplaceDevice extends StatefulWidget {
 class _ReplaceDeviceState extends State<ReplaceDevice> {
   bool replaceCustomerDeviceCancel = false;
   bool replaceMyDeviceCancel = false;
+  bool canGo = false;
   @override
   Widget build(BuildContext context) {
     var MyDevicePvd = Provider.of<MyDeviceProvider>(context, listen : true);
@@ -30,137 +32,277 @@ class _ReplaceDeviceState extends State<ReplaceDevice> {
     print(MyDevicePvd.selectedDevice);
     print('replaceMyDeviceCancel ${replaceMyDeviceCancel}');
     print('replaceCustomerDeviceCancel ${replaceCustomerDeviceCancel}');
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Replace'),
-      ),
-      body: Column(
-        children: [
-          SizedBox(height: 20.0,),
-          Center(
-            child: Text('Replace', style: TextStyle(fontSize: 20, color: PrimaryColor, fontWeight: FontWeight.bold),),
-          ),
-          if(replaceCustomerDeviceCancel == false)
-            Container(
-              margin: EdgeInsets.all(20.0),
-              padding: EdgeInsets.only(left: 20.0,right: 20.0,bottom: 20.0,top: 5.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: liteBlue
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Align(
-                    child: IconButton(
-                        onPressed: (){
-                          CustmDevicePvd.removeSelected();
-                          setState(() {
-                            replaceCustomerDeviceCancel = true;
-                          });
-                        },
-                        icon: Icon(Icons.clear_rounded)),
-                    alignment: Alignment.topRight,
-                  ),
-                  Text('Customer name : ${customer['name']}'),
-                  Text('Customer mobile number : ${customer['number']}'),
-                  Text('Device name : ${device['name']}'),
-                  Text('Device IMEI no : ${device['IMEI']}'),
-                ],
-              ),
-            )
-          else
-            Column(
-              children: [
-                SizedBox(height: 20.0,),
+
+    return PopScope(
+      canPop: canGo,
+      onPopInvoked: (bool goBack){
+        print(goBack);
+        if(!goBack){
+          showDialog(context: context, builder: (context){
+            return AlertDialog(
+              title: Text('Confirmation', style: TextStyle(color: Colors.black87),),
+              content: Text('Do you want to exit?'),
+              actions: [
                 ElevatedButton(
                     onPressed: (){
-                      Navigator.pop(context);
-
-                },
-                child: Text('Browse to select customer product', style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black
-                ),),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(liteYellow)
-                  ),
-                )
-              ],
-            ),
-          SizedBox(height: 50,),
-          Text('To', style: TextStyle(fontSize: 20, color: PrimaryColor, fontWeight: FontWeight.bold),),
-          if(MyDevicePvd.selectedDevice != 'no')
-            Container(
-              margin: EdgeInsets.all(20.0),
-              padding: EdgeInsets.only(left: 20.0,right: 20.0,bottom: 20.0,top: 5.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.0),
-                  color: liteBlue
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Align(
-                    child: IconButton(
-                        onPressed: (){
-                          MyDevicePvd.removeSelected();
-                          setState(() {
-                            replaceMyDeviceCancel = true;
-                          });
-                        },
-                        icon: Icon(Icons.clear_rounded)),
-                    alignment: Alignment.topRight,
-                  ),
-
-                  Text('Customer name : Uthamaraj'),
-                  Text('Customer mobile number : 9578425478'),
-                  Text('Device name : ${MyDevicePvd.Mydevices[int.parse(MyDevicePvd.selectedDevice)]['name']}'),
-                  Text('Device IMEI no : ${MyDevicePvd.Mydevices[int.parse(MyDevicePvd.selectedDevice)]['IMEI']}'),
-                ],
-              ),
-            )
-          else
-            Column(
-              children: [
-                SizedBox(height: 20.0,),
+                      Navigator.of(context).pop(false);
+                    },
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+                    child: Text('cancel',style: TextStyle(color: Colors.white),)),
                 ElevatedButton(
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                      return MyDevice();
-                    }));
-
-                  },
-                  child: Text('Browse to select your product', style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black
-                  ),),
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(liteYellow)
-                  ),
-                )
+                    onPressed: (){
+                      setState(() {
+                        canGo = true;
+                      });
+                      MyDevicePvd.removeSelected();
+                      CustmDevicePvd.removeSelected();
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    },
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+                    child: Text('ok',style: TextStyle(color: Colors.white))),
 
               ],
-            ),
-          SizedBox(
-            height: 40,
-          ),
-          if(replaceCustomerDeviceCancel == false && replaceMyDeviceCancel == false)
-            ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(liteYellow)
+            );
+          });
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Replace'),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 20.0,),
+              Container(
+                margin: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                  color: Color(0XFFF3F3F3),
+                  borderRadius: BorderRadius.circular(20.0)
+                ),
+
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Image.asset(
+                              'assets/images/select.png'),
+                          width: 80,
+                          height: 80,
+                          padding: EdgeInsets.only(left: 20.0),
+                        ),
+                        SizedBox(width: 20.0,),
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                              child: Text('Select customer product to replace', style: TextStyle(fontSize: 18),)),
+                        )
+                      ],
+                    ),
+                    if(replaceCustomerDeviceCancel == false)
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.all(20.0),
+                        padding: EdgeInsets.only(left: 20.0,bottom: 20.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.white
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(top: 10.0),
+                                width: double.infinity,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Customer name : ${customer['name']}'),
+                                    Text('Customer mobile number : ${customer['number']}'),
+                                    Text('Device name : ${device['name']}'),
+                                    Text('Device IMEI no : ${device['IMEI']}'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 40,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(5)
+                              ),
+                              child: IconButton(
+                                color: Colors.white,
+                                onPressed: (){
+                                  CustmDevicePvd.removeSelected();
+                                  setState(() {
+                                    replaceCustomerDeviceCancel = true;
+                                  });
+                                },
+                                icon: Icon(Icons.clear_rounded),),
+                            ),
+                          ],
+                        ),
+                      )
+                    else
+                      Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: (){
+                              Navigator.pop(context);
+
+                            },
+                            child: Text('Browse', style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white
+                            ),),
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(Colors.blueGrey)
+                            ),
+                          ),
+                          SizedBox(height: 20.0,),
+                        ],
+                      ),
+                  ],
+                ),
               ),
-              onPressed: (){
-            },
-              child: Text('Replace', style: TextStyle(
-                fontSize: 20,
-                color: Colors.black
-            ),
-            ),
+              Container(
+                width: 100,
+                height: 100,
+                child: Image.asset('assets/images/replace.png'),
+              ),
+              Container(
+                margin: EdgeInsets.all(10.0),
+                decoration: BoxDecoration(
+                    color: Color(0XFFF3F3F3),
+                    borderRadius: BorderRadius.circular(20.0)
+                ),
 
-            )
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Image.asset(
+                              'assets/images/select.png'),
+                          width: 80,
+                          height: 80,
+                          padding: EdgeInsets.only(left: 20.0),
+                        ),
+                        SizedBox(width: 20.0,),
+                        Expanded(
+                          child: Container(
+                              width: double.infinity,
+                              child: Text('Select your product to replace', style: TextStyle(fontSize: 18),)),
+                        )
+                      ],
+                    ),
+                    if(MyDevicePvd.selectedDevice != 'no')
+                      Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.all(20.0),
+                        padding: EdgeInsets.only(left: 20.0,bottom: 20.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.0),
+                            color: Colors.white
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(top: 10.0),
+                                width: double.infinity,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Customer name : Uthamaraj'),
+                                    Text('Customer mobile number : 9578425478'),
+                                    Text('Device name : ${MyDevicePvd.Mydevices[int.parse(MyDevicePvd.selectedDevice)]['name']}'),
+                                    Text('Device IMEI no : ${MyDevicePvd.Mydevices[int.parse(MyDevicePvd.selectedDevice)]['IMEI']}'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 40,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(5)
+                              ),
+                              child: IconButton(
+                                color: Colors.white,
+                                onPressed: (){
+                                  MyDevicePvd.removeSelected();
+                                  setState(() {
+                                    replaceMyDeviceCancel = true;
+                                  });
+                                },
+                                icon: Icon(Icons.clear_rounded),),
+                            ),
+                          ],
+                        ),
+                      )
+                    else
+                      Column(
+                        children: [
+                          ElevatedButton(
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return MyDevice(purpose: 'browse', title: 'Select product to replace',);
+                              }));
 
-        ],
+                            },
+                            child: Text('Browse to select your product', style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white
+                            ),),
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(Colors.blueGrey)
+                            ),
+                          ),
+                          SizedBox(height: 20.0,)
+                        ],
+                      )
+                  ],
+                ),
+              ),
+              if(replaceCustomerDeviceCancel == false && replaceMyDeviceCancel == false)
+                BouncingButton(
+                  child: Container(
+                    margin: EdgeInsets.all(20.0),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              liteYellow,
+                              Color(0XFFFFB506)
+                            ]
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                        color: liteYellow
+                    ),
+                    padding: EdgeInsets.only(top: 15,bottom: 15),
+                    child: Center(child: Text('Click to replace', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+                  ),
+                  onPressed: () {
+                  },
+                ),
+
+            ],
+          ),
+        ),
       ),
     );
   }
