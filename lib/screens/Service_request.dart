@@ -1,152 +1,122 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:oro_2024/state_management/customer_device_provider.dart';
+import 'package:oro_2024/state_management/sell_device_provider.dart';
+import 'package:oro_2024/utils/theme.dart';
 import 'package:provider/provider.dart';
 
-class Service_request extends StatelessWidget {
+
+class ServiceRequest extends StatefulWidget {
+  const ServiceRequest({super.key});
+
+  @override
+  State<ServiceRequest> createState() => _ServiceRequestState();
+}
+
+class _ServiceRequestState extends State<ServiceRequest> {
+  Image trailingIcon = Image.asset('assets/images/closed.png'); // Default icon
+  String serviceStatus = '';
+  Future<void> callBottonSheet(int selectedCustomer) async {
+    return showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        builder: (BuildContext context) {
+          return BottomSheetForDevices(
+            selectedCustomer: selectedCustomer,
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    var MyDevicePvd = Provider.of<SellDeviceProvider>(context, listen: true);
+    var CustmDevicePvd = Provider.of<CustomerDevicePvd>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Service Request List'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.refresh),
-            onPressed: () {
-              final contactViewModel =
-              Provider.of<ServiceRequestViewModel>(context, listen: false);
-              contactViewModel.refreshContacts();
-            },
-          ),
-        ],
+        title: Text('Service Request '),
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  // Handle the action of the first button
-                },
-                child: Text(
-                  'Total\n64',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ), // Add some spacing between the buttons
-              ElevatedButton(
-                onPressed: () {
-                  // Handle the action of the second button
-                },
-                child: Text(
-                  'open\n22',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle the action of the first button
-                },
-                child: Text(
-                  'closed\n11',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ), // Add some spacing between the buttons
-              ElevatedButton(
-                onPressed: () {
-                  // Handle the action of the second button
-                },
-                child: Text(
-                  'In-progres\n34',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            //  child: CustomeTextField(myFocus: null, needTofocus: null, listeningHeading: null, errorMessage: null, Type: null, hintText: 'Search Customer', icon: Icon(Icons.search, color: Colors.black54,)),
           ),
           Expanded(
-            child: Consumer<ServiceRequestViewModel>(
-              builder: (context, model, child) {
-                return ListView.builder(
-                  itemCount: model.serviceRequest.length,
-                  itemBuilder: (context, index) {
-                    return ServiceRequestCard(
-                        serviceRequestlist: model.serviceRequest[index]);
-                  },
-                );
-              },
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              child: ListView.builder(
+                  itemCount: CustmDevicePvd.listOfCustomer.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      leading: Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Colors.black12),
+                      ),
+                      title: Container(
+                          child: Text(
+                              '${CustmDevicePvd.listOfCustomer[index]['name']}')),
+                      trailing: Container(
+                        width: 120,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                              icon: Icon(
+                                Icons.info,
+                                color: liteYellow,
+                              ),
+                              onPressed: () {
+                                callBottonSheet(index);
+                              },
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.edit,
+                                color: PrimaryColor,
+                              ),
+                              onPressed: () {
+                                _showBottomSheetRemarks();
+                              },
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                _showOptionsDialog(context);
+                              },
+                              child: Container(
+                                  height: 40, width: 40, child: trailingIcon),
+                            ),
+                          ],
+                        ),
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${CustmDevicePvd.listOfCustomer[index]['number']}',
+                            style:
+                            TextStyle(fontSize: 12, color: Colors.black87),
+                          ),
+                          Text(
+                              '${CustmDevicePvd.listOfCustomer[index]['city']}',
+                              style: TextStyle(
+                                  fontSize: 12, color: Colors.black87)),
+                          Text("Motor Can't Start",
+                              style: TextStyle(
+                                  fontSize: 12, color: Colors.black87))
+                        ],
+                      ),
+                    );
+                  }),
             ),
-          ),
+          )
         ],
       ),
     );
-  }
-}
-
-class ServiceRequestCard extends StatefulWidget {
-  final ServiceRequest serviceRequestlist;
-
-  const ServiceRequestCard({Key? key, required this.serviceRequestlist})
-      : super(key: key);
-
-  @override
-  _ServiceRequestCardState createState() => _ServiceRequestCardState();
-}
-
-class _ServiceRequestCardState extends State<ServiceRequestCard> {
-  Image trailingIcon = Image.asset('assets/images/closed.png'); // Default icon
-  String serviceStatus = ''; // Value fetched from API
-
-  @override
-  void initState() {
-    super.initState();
-    // Simulate fetching value from API
-    _fetchApiValue();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    String msg =
-        "${widget.serviceRequestlist.number}\n${widget.serviceRequestlist.imeinum}\n${widget.serviceRequestlist.message}";
-    return Card(
-      elevation: 2,
-      child: ListTile(
-        leading: CircleAvatar(
-          child: Text(widget.serviceRequestlist.name[0]),
-        ),
-        title: Text(widget.serviceRequestlist.name),
-        subtitle: Text(msg),
-        trailing: GestureDetector(
-          onLongPress: () {
-            _showOptionsDialog(context);
-          },
-          child: trailingIcon,
-        ),
-      ),
-    );
-  }
-
-  void _fetchApiValue() {
-    // Simulate fetching the value from API
-    serviceStatus =
-    'serviceRequestlist.requetstatus'; // For example, 'email' fetched from API
-    _updateIcon();
   }
 
   void _updateIcon() {
@@ -166,42 +136,102 @@ class _ServiceRequestCardState extends State<ServiceRequestCard> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        // bool remarks = false;
+        bool closed = false;
+        TextEditingController _textController = TextEditingController();
+
         return AlertDialog(
-          title: Text('Select an option'),
-          content: Column(
+          // backgroundColor: Theme.of(context).primaryColor,
+          title: const Text(
+            'Select an option',
+            style: TextStyle(color: Colors.black),
+          ),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  leading: Image.asset('assets/images/open-sign.png'),
+                  title: Text('open'),
+                  onTap: () {
+                    // Update the API value here
+                    setState(() {
+                      serviceStatus = 'open';
+                      _updateIcon();
+                      Navigator.pop(context);
+                    });
+                  },
+                ),
+
+                ListTile(
+                  leading: Image.asset('assets/images/work-in-progress.png'),
+                  title: Text('inprogress'),
+                  onTap: () {
+                    // Update the API value here
+                    setState(() {
+                      serviceStatus = 'inprogress';
+                      _updateIcon();
+                      Navigator.pop(context);
+                    });
+                  },
+                ),
+                ListTile(
+                  leading: Image.asset('assets/images/closed.png'),
+                  title: Text('close'),
+                  onTap: () {
+                    // Update the API value here
+                    setState(() {
+                      serviceStatus = 'close';
+                      _updateIcon();
+                      Navigator.pop(context);
+                    });
+
+                  },
+                ),
+                // remarks == true
+                //
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  final TextEditingController _textEditingController = TextEditingController();
+  String _enteredText = '';
+
+  void _showBottomSheetRemarks() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ListTile(
-                leading: Image.asset('assets/images/open-sign.png'),
-                title: Text('open'),
-                onTap: () {
-                  // Update the API value here
-                  serviceStatus = 'open';
-                  _updateIcon();
+              Text("Remarks:"),
+              TextField(
+                controller: _textEditingController,
+                maxLines: null,
+                maxLength: 50, // Allow multiple lines
+                decoration: InputDecoration(
+                  labelText: 'Enter Text',
+                  border: UnderlineInputBorder(),
+                  // Use underline border
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _enteredText = _textEditingController.text;
+                  });
                   Navigator.pop(context);
                 },
+                child: Text('Save'),
               ),
-              ListTile(
-                leading: Image.asset('assets/images/closed.png'),
-                title: Text('close'),
-                onTap: () {
-                  // Update the API value here
-                  serviceStatus = 'close';
-                  _updateIcon();
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: Image.asset('assets/images/work-in-progress.png'),
-                title: Text('inprogress'),
-                onTap: () {
-                  // Update the API value here
-                  serviceStatus = 'inprogress';
-                  _updateIcon();
-                  Navigator.pop(context);
-                },
-              ),
-              // Add more options as needed
+              SizedBox(height: MediaQuery.of(context).viewInsets.bottom+20,)
             ],
           ),
         );
@@ -209,33 +239,107 @@ class _ServiceRequestCardState extends State<ServiceRequestCard> {
     );
   }
 }
+// }
 
-class ServiceRequestViewModel extends ChangeNotifier {
-  List<ServiceRequest> serviceRequest = [
-    ServiceRequest(
-        'John Doe', '+1234567890', 'Hello there!', '8976543223456', 2),
-    ServiceRequest(
-        'Jane roe', '+9876543210', 'Hi! How are you?', '8976543223453', 2),
-    ServiceRequest(
-        'Jane Smith', '+9876543210', 'Hi! How are you?', '89765432234567', 2),
-    ServiceRequest(
-        'Jane ', '+9876543210', 'Hi! How are you?', '89765432234531', 2),
-    ServiceRequest(
-        'Smith', '+9876543210', 'Hi! How are you?', '8976543223459', 2),
-  ];
+class BottomSheetForDevices extends StatefulWidget {
+  final int selectedCustomer;
+  const BottomSheetForDevices({super.key, required this.selectedCustomer});
 
-  void refreshContacts() {
-    notifyListeners();
-  }
+  @override
+  State<BottomSheetForDevices> createState() => _BottomSheetForDevicesState();
 }
 
-class ServiceRequest {
-  final String name;
-  final String number;
-  final String message;
-  final String imeinum;
-  final int requetstatus;
-
-  ServiceRequest(
-      this.name, this.number, this.message, this.imeinum, this.requetstatus);
+class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
+  @override
+  Widget build(BuildContext context) {
+    var CustmDevicePvd = Provider.of<CustomerDevicePvd>(context, listen: true);
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0))),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              children: [
+                Text(
+                    '${CustmDevicePvd.listOfCustomer[widget.selectedCustomer]['name']} Service Request History'),
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.cancel_outlined)),
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
+          ),
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              child: ListView.builder(
+                  itemCount: CustmDevicePvd.customerDeviceList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onLongPress: () {
+                        CustmDevicePvd.selectedDevice(index);
+                        print('clicked ${index}');
+                      },
+                      onTap: () {
+                        CustmDevicePvd.removeSelected();
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: (CustmDevicePvd.selected != 'no' &&
+                                index == int.parse(CustmDevicePvd.selected))
+                                ? liteBlue
+                                : null,
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: ListTile(
+                          trailing: Text(
+                              '${CustmDevicePvd.customerDeviceList[index]['saledDate']}',
+                              style: TextStyle(
+                                  fontSize: 12, color: Colors.black87)),
+                          leading: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                color: Colors.black12,
+                                borderRadius: BorderRadius.circular(10.0)),
+                          ),
+                          title: Text(
+                              '${CustmDevicePvd.customerDeviceList[index]['name']}'),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  '${CustmDevicePvd.customerDeviceList[index]['IMEI']}',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.black87)),
+                              Text(
+                                  'Open Date: ' +
+                                      '${CustmDevicePvd.customerDeviceList[index]['saledDate']}',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.black87)),
+                              Text(
+                                  'Close Date: ' +
+                                      '${CustmDevicePvd.customerDeviceList[index]['saledDate']}',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.black87)),
+                              Text('Remarks ' + 'IC Change',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.black87)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }

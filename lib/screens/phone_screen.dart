@@ -7,6 +7,9 @@ import 'package:intl_phone_field/phone_number.dart';
 import 'package:oro_2024/screens/otp_screen.dart';
 import 'package:oro_2024/screens/splash_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
+
+import '../state_management/sell_device_provider.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
@@ -16,7 +19,7 @@ class PhoneNumberScreen extends StatefulWidget {
 }
 
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTickerProviderStateMixin {
-
+  TextEditingController numberTextController = TextEditingController();
   late AnimationController _animationController;
   late Animation<double> _circleAnimation1;
   late Animation<double> _circleAnimation2;
@@ -132,6 +135,8 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
+    var SellDevicePvd = Provider.of<SellDeviceProvider>(context, listen : true);
+
     phoneController.selection = TextSelection.fromPosition(
         TextPosition(
             offset: phoneController.text.length
@@ -243,7 +248,8 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
                               onChanged: (PhoneNumber value) {
                                 _phoneNumber = value.completeNumber;
                                 print(_phoneNumber);
-                              },
+                              }, needTofocus: null, SuffixIcon: null, controller: numberTextController,
+
                             ),
                           const SizedBox(height: 50,),
                           ElevatedButton(

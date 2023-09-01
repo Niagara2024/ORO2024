@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:oro_2024/screens/AlarmList.dart';
 import 'package:oro_2024/screens/AppInfo.dart';
+import 'package:oro_2024/screens/ControllerLive.dart';
+import 'package:oro_2024/screens/HelpAndSupport.dart';
 import 'package:oro_2024/screens/ManageUser.dart';
 import 'package:oro_2024/screens/Service_request.dart';
+import 'package:oro_2024/screens/customer_device.dart';
+import 'package:oro_2024/screens/sell_device.dart';
+import 'package:oro_2024/utils/theme.dart';
 
 import 'Dashboard.dart';
 import 'MyPrefrence.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 //this is state widget
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
+
+  late TabController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TabController(length: 3, vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,10 +115,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: ListTile(
                             leading: CircleAvatar(child: Icon(Icons.help_outline, color: Colors.white,)),
                             title: Text('Help & Support', style: Theme.of(context).textTheme.bodyLarge,),
-                            subtitle: Text('Clear instructions, Tutorial, Live chat, Email support...', style: Theme.of(context).textTheme.bodySmall,),
+                            subtitle: Text('Clear instructions, Tutorial, Privacy Policy, Terms of Service', style: Theme.of(context).textTheme.bodySmall,),
                             onTap: () {
-                              //Navigator.of(context).pop();
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const MyPreference()));
+                              Navigator.of(context).pop();
+                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const HelpAndSupport()));
                             },
                           ),
                         );
@@ -131,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             subtitle: Text('App version, Privacy Policy, Terms of Service...', style: Theme.of(context).textTheme.bodySmall,),
                             onTap: () {
                               Navigator.of(context).pop();
-                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Service_request()));
+                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => ServiceRequest()));
                             },
                           ),
                         );
@@ -141,11 +156,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: const EdgeInsets.only(bottom: 5),
                           child: ListTile(
                             leading: CircleAvatar(child: Icon(Icons.info_outline, color: Colors.white,)),
-                            title: Text('Sell To Controller', style: Theme.of(context).textTheme.bodyLarge,),
+                            title: Text('My Assets', style: Theme.of(context).textTheme.bodyLarge,),
                             subtitle: Text('App version, Privacy Policy, Terms of Service...', style: Theme.of(context).textTheme.bodySmall,),
                             onTap: () {
-                              //Navigator.of(context).pop();
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const MyPreference()));
+                              Navigator.of(context).pop();
+                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) =>  SellDeviceScreen(purpose: '', title: '')));
                             },
                           ),
                         );
@@ -158,8 +173,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: Text('Customer Device', style: Theme.of(context).textTheme.bodyLarge,),
                             subtitle: Text('App version, Privacy Policy, Terms of Service...', style: Theme.of(context).textTheme.bodySmall,),
                             onTap: () {
-                              //Navigator.of(context).pop();
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const MyPreference()));
+                              Navigator.of(context).pop();
+                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const CustomerDevice(purpose: '')));
                             },
                           ),
                         );
@@ -216,25 +231,265 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
 
       ),
-      body: Card(
-        margin: const EdgeInsets.all(20),
-        child: InkWell(
-          onTap: () {
-            print("tapped");
-            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Dashboard()));
-          },
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('ORO GEM',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black87,
-                fontWeight: FontWeight.bold,
+      body: Scaffold(
+        backgroundColor: myTheme.primaryColor.withOpacity(0.12),
+          body: Padding(
+            padding: EdgeInsets.all(5.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const ControllerDashboardScreen3()));
+              },
+              child: Container(
+                height: 550,
+                child: Card(
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: const CircleAvatar(child: Icon(Icons.desktop_mac, color: Colors.white,),),
+                        title: Text('Name : ORO GEM', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
+                        subtitle: Text("IMEI No : 1234568754213"),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const ControllerLive()));
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5, right: 5),
+                        child: Container(
+                          color: Colors.green.shade50,
+                          height: 85,
+                          child: ListTile(
+                            title: Text("Version   :   EC25Fc2.0\nM-Date   :   11-08-23\nSim No    :   +91 737895468"),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              new Text("Irrigation", style: TextStyle(fontWeight: FontWeight.bold),),
+                              new Text("Running/idle/error")
+                            ]
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              new Text("Fertilization", style: TextStyle(fontWeight: FontWeight.bold),),
+                              new Text("Running/idle/error")
+                            ]
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15, right: 15, top: 5),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              new Text("Backwash", style: TextStyle(fontWeight: FontWeight.bold),),
+                              new Text("Running/idle/error")
+                            ]
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
+                        child: Container(
+                          color: myTheme.primaryColor.withOpacity(0.22),
+                          height: 118,
+                          child: SafeArea(
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: 70,
+                              child: GridView(
+                                scrollDirection: Axis.horizontal,
+                                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                                    maxCrossAxisExtent: 118,
+                                    crossAxisSpacing: 0,
+                                    mainAxisSpacing: 0),
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Container(
+                                      color: Colors.white,
+                                      alignment: Alignment.center,
+                                      child: ListView(
+                                        children: [
+                                          SizedBox(height: 5,),
+                                          Center(
+                                            child: CircleAvatar(
+                                              backgroundColor: myTheme.primaryColor.withOpacity(0.42),
+                                              radius: 30,
+                                              child: ClipOval(
+                                                child: Image.asset('assets/images/report.png',width: 50, height: 50,),
+                                              ),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: Text("Report"),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Container(
+                                      color: Colors.white,
+                                      alignment: Alignment.center,
+                                      child: ListView(
+                                        children: [
+                                          SizedBox(height: 5,),
+                                          Center(
+                                            child: CircleAvatar(
+                                              backgroundColor: myTheme.primaryColor.withOpacity(0.42),
+                                              radius: 30,
+                                              child: ClipOval(
+                                                child: Image.asset('assets/images/usage.png',width: 50, height: 50,),
+                                              ),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: Text(" Power Graph ", textAlign: TextAlign.center,),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Container(
+                                      color: Colors.white,
+                                      alignment: Alignment.center,
+                                      child: ListView(
+                                        children: [
+                                          SizedBox(height: 5,),
+                                          Center(
+                                            child: CircleAvatar(
+                                              backgroundColor: myTheme.primaryColor.withOpacity(0.42),
+                                              radius: 30,
+                                              child: ClipOval(
+                                                child: Image.asset('assets/images/checklist.png',width: 50, height: 50,),
+                                              ),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: Text("Motor cyclic", textAlign: TextAlign.center,),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Container(
+                                      color: Colors.white,
+                                      alignment: Alignment.center,
+                                      child: ListView(
+                                        children: [
+                                          SizedBox(height: 5,),
+                                          Center(
+                                            child: CircleAvatar(
+                                              backgroundColor: myTheme.primaryColor.withOpacity(0.42),
+                                              radius: 30,
+                                              child: ClipOval(
+                                                child: Image.asset('assets/images/report.png',width: 50, height: 50,),
+                                              ),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: Text("Zone duration", textAlign: TextAlign.center,),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5, right: 5, top: 5),
+                        child: Container(
+                          color: myTheme.primaryColor.withOpacity(0.12),
+                          height: 150,
+                          child: SafeArea(
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: 150,
+                              child: ListView(
+                                children: <Widget>[
+                                  new Container(
+                                    decoration: new BoxDecoration(color: Theme.of(context).primaryColor),
+                                    child: new TabBar(
+                                      controller: _controller,
+                                      tabs: [
+                                        new Tab(
+                                          text: 'Temperature',
+                                        ),
+                                        new Tab(
+                                          text: 'Humidity',
+                                        ),
+                                        new Tab(
+                                          text: 'Moisture',
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  new Container(
+                                    height: 100.0,
+                                    child: new TabBarView(
+                                      controller: _controller,
+                                      children: <Widget>[
+                                        new Card(
+                                          elevation: 0,
+                                          child: new ListTile(
+                                            leading: const Icon(Icons.location_on),
+                                            title: new Text('Latitude: 48.09342\nLongitude: 11.23403'),
+                                            trailing: new IconButton(icon: const Icon(Icons.my_location), onPressed: () {}),
+                                          ),
+                                        ),
+                                        new Card(
+                                          elevation: 0,
+                                          child: new ListTile(
+                                            leading: const Icon(Icons.location_on),
+                                            title: new Text('Latitude: 48.09342\nLongitude: 11.23403'),
+                                            trailing: new IconButton(icon: const Icon(Icons.my_location), onPressed: () {}),
+                                          ),
+                                        ),
+                                        new Card(
+                                          elevation: 0,
+                                          child: new ListTile(
+                                            leading: const Icon(Icons.location_on),
+                                            title: new Text('Latitude: 48.09342\nLongitude: 11.23403'),
+                                            trailing: new IconButton(icon: const Icon(Icons.my_location), onPressed: () {}),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 5,
+                  margin: EdgeInsets.all(10),
+                ),
               ),
             ),
           ),
         ),
-      ),
     );
   }
 }
