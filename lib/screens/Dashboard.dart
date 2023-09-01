@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:oro_2024/screens/ControllerLive.dart';
 import 'package:oro_2024/screens/Settings.dart';
 import 'package:oro_2024/utils/theme.dart';
 
@@ -226,21 +227,26 @@ class _ControllerDashboardScreen3State extends State<ControllerDashboardScreen3>
                     ),
                   ),
                 ),
-                Card(
-                  surfaceTintColor: Colors.white,
-                  child: SizedBox(
-                    height: 40,
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: Row(
-                        children: [
-                          Icon(Icons.lightbulb_rounded, color: Theme.of(context).colorScheme.secondary,),
-                          Icon(Icons.lightbulb_rounded, color: Theme.of(context).colorScheme.secondary,),
-                          const Icon(Icons.lightbulb_outline)
-                        ],
+                InkWell(
+                  child: Card(
+                    surfaceTintColor: Colors.white,
+                    child: SizedBox(
+                      height: 40,
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Row(
+                          children: [
+                            Icon(Icons.lightbulb_rounded, color: Theme.of(context).colorScheme.secondary,),
+                            Icon(Icons.lightbulb_rounded, color: Theme.of(context).colorScheme.secondary,),
+                            const Icon(Icons.lightbulb_outline)
+                          ],
+                        ),
                       ),
                     ),
                   ),
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const ControllerLive()));
+                  },
                 )
               ],
             ),
@@ -392,7 +398,7 @@ class _ControllerDashboardScreen3State extends State<ControllerDashboardScreen3>
             if(selectedValue == 2 || selectedValue == 3)
               const SizedBox(height: 10,),
             Container(
-              height: 425,
+              height: (selectedValue == 2 || selectedValue == 3) ? 320 : 360,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -1145,9 +1151,7 @@ class _ControllerDashboardScreen3State extends State<ControllerDashboardScreen3>
           Center(
             child: Text(
               '$value',
-              style: const TextStyle(
-                color: Colors.black,
-              ),
+              style: TextStyle(fontSize: 12),
             ),
           ),
         ],

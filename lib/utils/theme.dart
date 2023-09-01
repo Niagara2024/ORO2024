@@ -144,19 +144,20 @@ final ThemeData myTheme = ThemeData(
  }),
  ),
 
-  switchTheme: SwitchThemeData(
-   thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-   if (states.contains(MaterialState.disabled)) { return null; }
-   if (states.contains(MaterialState.selected)) { return const Color(0xFF0D5D9A); }
-   return null;
- }),
+    switchTheme: SwitchThemeData(
+      thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) { return null; }
+        if (states.contains(MaterialState.selected)) { return const Color(0xFFFFCB3A); }
+        return const Color(0xFF0D5D9A);
+      }),
+      trackOutlineColor: MaterialStateProperty.all(const Color(0xFF0D5D9A)),
 
- trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-   if (states.contains(MaterialState.disabled)) { return null; }
-   if (states.contains(MaterialState.selected)) { return const Color(0xFF0D5D9A); }
-   return null;
- }),
- ),
+      trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) { return null; }
+        if (states.contains(MaterialState.selected)) { return const Color(0xFF0D5D9A); }
+        return null;
+      }),
+    ),
 
   iconTheme: const IconThemeData(color: Color(0xFF0D5D9A)),
   primaryIconTheme: const IconThemeData(color: Color(0xFF0D5D9A)),
@@ -280,4 +281,6 @@ InputDecoration inputDecoration(Icon icon){
     contentPadding: EdgeInsets.all(10),
   );
 }
+
+
 
