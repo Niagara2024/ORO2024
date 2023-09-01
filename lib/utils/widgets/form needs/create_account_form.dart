@@ -8,6 +8,7 @@ import 'package:oro_2024/screens/customer_device.dart';
 import 'package:oro_2024/utils/widgets/form%20needs/text_input_with_heading.dart';
 import 'package:provider/provider.dart';
 import '../../../state_management/create_account_provide.dart';
+import '../../../state_management/sell_device_provider.dart';
 import '../../my_theme.dart';
 import 'drop_down_button.dart';
 import 'inputHeading.dart';
@@ -81,6 +82,8 @@ class _CreateAccountState extends State<CreateAccount> {
 
   @override
   Widget build(BuildContext context) {
+    var SellDevicePvd = Provider.of<SellDeviceProvider>(context, listen : true);
+
     var createAccPvd = Provider.of<CreateActProvider>(context,listen : true);
     print('fdvdfv${_initialCountryCode}');
     return SingleChildScrollView(
@@ -121,18 +124,19 @@ class _CreateAccountState extends State<CreateAccount> {
                     initialCountryCode: _initialCountryCode,
                     decoration: inputDecoration(Icon(Icons.phone), null),
                     SuffixIcon: null,
-                    myController: numberTextController,
+                    controller: numberTextController,
                   )
                 else
                   IntlPhoneField(
-                    onChanged: (value){
-                      print(value);
-                    },
+                    // onChanged: (value){
+                    //   print(value);
+                    // },
                     needTofocus: _secondFocusNode,
                     focusNode: _firstFocusNode,
                     initialCountryCode: 'IN',
                     decoration: inputDecoration(Icon(Icons.phone), null),
-                    SuffixIcon: null, myController: numberTextController,
+                    SuffixIcon: null,
+                    controller: numberTextController,
                   )
               ],
             ),

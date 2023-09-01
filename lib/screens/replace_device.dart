@@ -1,11 +1,11 @@
 import 'package:bouncing_button/bouncing_button.dart';
 import 'package:flutter/material.dart';
-import 'package:oro_2024/screens/my_device.dart';
+import 'package:oro_2024/screens/sell_device.dart';
 import 'package:oro_2024/utils/my_theme.dart';
 import 'package:provider/provider.dart';
 
 import '../state_management/customer_device_provider.dart';
-import '../state_management/my_device_provider.dart';
+import '../state_management/sell_device_provider.dart';
 
 class ReplaceDevice extends StatefulWidget {
   final int selectedCusomer;
@@ -18,19 +18,19 @@ class ReplaceDevice extends StatefulWidget {
 
 class _ReplaceDeviceState extends State<ReplaceDevice> {
   bool replaceCustomerDeviceCancel = false;
-  bool replaceMyDeviceCancel = false;
+  bool replaceSellDeviceCancel = false;
   bool canGo = false;
   @override
   Widget build(BuildContext context) {
-    var MyDevicePvd = Provider.of<MyDeviceProvider>(context, listen : true);
+    var SellDevicePvd = Provider.of<SellDeviceProvider>(context, listen : true);
     var CustmDevicePvd = Provider.of<CustomerDevicePvd>(context, listen : true);
     var customer = CustmDevicePvd.listOfCustomer[widget.selectedCusomer];
     var device = CustmDevicePvd.customerDeviceList[widget.SelectedDevice];
     setState(() {
-      replaceMyDeviceCancel = MyDevicePvd.selectedDevice == 'no' ? true : false;
+      replaceSellDeviceCancel = SellDevicePvd.selectedDevice == 'no' ? true : false;
     });
-    print(MyDevicePvd.selectedDevice);
-    print('replaceMyDeviceCancel ${replaceMyDeviceCancel}');
+    print(SellDevicePvd.selectedDevice);
+    print('replaceSellDeviceCancel ${replaceSellDeviceCancel}');
     print('replaceCustomerDeviceCancel ${replaceCustomerDeviceCancel}');
 
     return PopScope(
@@ -54,7 +54,7 @@ class _ReplaceDeviceState extends State<ReplaceDevice> {
                       setState(() {
                         canGo = true;
                       });
-                      MyDevicePvd.removeSelected();
+                      SellDevicePvd.removeSelected();
                       CustmDevicePvd.removeSelected();
                       Navigator.pop(context);
                       Navigator.pop(context);
@@ -205,7 +205,7 @@ class _ReplaceDeviceState extends State<ReplaceDevice> {
                         )
                       ],
                     ),
-                    if(MyDevicePvd.selectedDevice != 'no')
+                    if(SellDevicePvd.selectedDevice != 'no')
                       Container(
                         width: double.infinity,
                         margin: EdgeInsets.all(20.0),
@@ -226,8 +226,8 @@ class _ReplaceDeviceState extends State<ReplaceDevice> {
                                   children: [
                                     Text('Customer name : Uthamaraj'),
                                     Text('Customer mobile number : 9578425478'),
-                                    Text('Device name : ${MyDevicePvd.Mydevices[int.parse(MyDevicePvd.selectedDevice)]['name']}'),
-                                    Text('Device IMEI no : ${MyDevicePvd.Mydevices[int.parse(MyDevicePvd.selectedDevice)]['IMEI']}'),
+                                    Text('Device name : ${SellDevicePvd.SellDevices[int.parse(SellDevicePvd.selectedDevice)]['name']}'),
+                                    Text('Device IMEI no : ${SellDevicePvd.SellDevices[int.parse(SellDevicePvd.selectedDevice)]['IMEI']}'),
                                   ],
                                 ),
                               ),
@@ -242,9 +242,9 @@ class _ReplaceDeviceState extends State<ReplaceDevice> {
                               child: IconButton(
                                 color: Colors.white,
                                 onPressed: (){
-                                  MyDevicePvd.removeSelected();
+                                  SellDevicePvd.removeSelected();
                                   setState(() {
-                                    replaceMyDeviceCancel = true;
+                                    replaceSellDeviceCancel = true;
                                   });
                                 },
                                 icon: Icon(Icons.clear_rounded),),
@@ -258,7 +258,7 @@ class _ReplaceDeviceState extends State<ReplaceDevice> {
                           ElevatedButton(
                             onPressed: (){
                               Navigator.push(context, MaterialPageRoute(builder: (context){
-                                return MyDevice(purpose: 'browse', title: 'Select product to replace',);
+                                return SellDeviceScreen(purpose: 'browse', title: 'Select product to replace',);
                               }));
 
                             },
@@ -276,7 +276,7 @@ class _ReplaceDeviceState extends State<ReplaceDevice> {
                   ],
                 ),
               ),
-              if(replaceCustomerDeviceCancel == false && replaceMyDeviceCancel == false)
+              if(replaceCustomerDeviceCancel == false && replaceSellDeviceCancel == false)
                 BouncingButton(
                   child: Container(
                     margin: EdgeInsets.all(20.0),

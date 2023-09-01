@@ -4,7 +4,7 @@ import 'package:oro_2024/state_management/customer_device_provider.dart';
 import 'package:oro_2024/utils/theme.dart';
 import 'package:provider/provider.dart';
 
-import '../state_management/my_device_provider.dart';
+import '../state_management/sell_device_provider.dart';
 import '../utils/my_theme.dart';
 import '../utils/widgets/text_form_field.dart';
 
@@ -123,7 +123,7 @@ class _CustomerDeviceState extends State<CustomerDevice> {
 
   @override
   Widget build(BuildContext context) {
-    var MyDevicePvd = Provider.of<MyDeviceProvider>(context, listen : true);
+    var SellDevicePvd = Provider.of<SellDeviceProvider>(context, listen : true);
     var CustmDevicePvd = Provider.of<CustomerDevicePvd>(context, listen : true);
     return Scaffold(
       appBar: AppBar(
@@ -169,8 +169,8 @@ class _CustomerDeviceState extends State<CustomerDevice> {
                     trailing: widget.purpose == 'sell' ? ElevatedButton(
                         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(liteYellow)),
                         onPressed: (){
-                          MyDevicePvd.editSellTo('${index}');
-                      Navigator.pop(context);
+                          SellDevicePvd.editSellTo('${index}');
+                          Navigator.pop(context);
                     }, child: Text('Sell', style: TextStyle(color: Colors.black),)) : Container(
                       width: 80,
                       child: Row(
