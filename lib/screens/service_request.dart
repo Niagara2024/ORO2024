@@ -51,8 +51,8 @@ class _CustomerDevice123State extends State<CustomerDevice123> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       leading: Container(
-                        width: 60,
-                        height: 60,
+                        width: 40,
+                        height: 40,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10.0),
                             color: Colors.black12),
@@ -61,7 +61,7 @@ class _CustomerDevice123State extends State<CustomerDevice123> {
                           child: Text(
                               '${CustmDevicePvd.listOfCustomer[index]['name']}')),
                       trailing: Container(
-                        width: 80,
+                        width: 120,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -74,8 +74,17 @@ class _CustomerDevice123State extends State<CustomerDevice123> {
                                 callBottonSheet(index);
                               },
                             ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.edit,
+                                color: Colors.black12,
+                              ),
+                              onPressed: () {
+                                _showBottomSheetRemarks();
+                              },
+                            ),
                             GestureDetector(
-                              onLongPress: () {
+                              onTap: () {
                                 _showOptionsDialog(context);
                               },
                               child: Container(
@@ -127,59 +136,135 @@ class _CustomerDevice123State extends State<CustomerDevice123> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        bool remarks = false;
+        // bool remarks = false;
+        bool closed = false;
+        TextEditingController _textController = TextEditingController();
+
         return AlertDialog(
           // backgroundColor: Theme.of(context).primaryColor,
           title: const Text(
             'Select an option',
             style: TextStyle(color: Colors.black),
           ),
-          content: Column(
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  leading: Image.asset('assets/images/open-sign.png'),
+                  title: Text('open'),
+                  onTap: () {
+                    // Update the API value here
+                    setState(() {
+                      serviceStatus = 'open';
+                      _updateIcon();
+                      Navigator.pop(context);
+                    });
+                  },
+                ),
+
+                ListTile(
+                  leading: Image.asset('assets/images/work-in-progress.png'),
+                  title: Text('inprogress'),
+                  onTap: () {
+                    // Update the API value here
+                    setState(() {
+                      serviceStatus = 'inprogress';
+                      _updateIcon();
+                      Navigator.pop(context);
+                    });
+                  },
+                ),
+                ListTile(
+                  leading: Image.asset('assets/images/closed.png'),
+                  title: Text('close'),
+                  onTap: () {
+                    // Update the API value here
+                    setState(() {
+                      closed = true;
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Remarks'),
+                            content: TextField(
+                              controller: _textController,
+                              decoration:
+                                  InputDecoration(hintText: 'Enter your text'),
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      print('in $closed');
+                      if (_textController.value != null) {
+                        Navigator.pop(context);
+                      }
+                    });
+                    print('out $closed');
+                  },
+                ),
+                // remarks == true
+                Visibility(
+                  visible: true,
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    child: TextField(
+                      controller: _textController,
+                      decoration:
+                          InputDecoration(hintText: 'Enter your Remarks'),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  final TextEditingController _textEditingController = TextEditingController();
+  String _enteredText = '';
+
+  void _showBottomSheetRemarks() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ListTile(
-                leading: Image.asset('assets/images/open-sign.png'),
-                title: Text('open'),
-                onTap: () {
-                  // Update the API value here
-                  remarks = false;
-                  serviceStatus = 'open';
-                  _updateIcon();
+              Text("Remarks:"),
+              TextField(
+                controller: _textEditingController,
+                maxLines: null,
+                maxLength: 50, // Allow multiple lines
+                decoration: InputDecoration(
+                  labelText: 'Enter Text',
+                  border: UnderlineInputBorder(),
+                  // Use underline border
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _enteredText = _textEditingController.text;
+                  });
                   Navigator.pop(context);
                 },
+                child: Text('Save'),
               ),
-              ListTile(
-                leading: Image.asset('assets/images/closed.png'),
-                title: Text('close'),
-                onTap: () {
-                  // Update the API value here
-
-                  remarks = true;
-                  serviceStatus = 'close';
-                  _updateIcon();
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: Image.asset('assets/images/work-in-progress.png'),
-                title: Text('inprogress'),
-                onTap: () {
-                  // Update the API value here
-                  remarks = false;
-                  serviceStatus = 'inprogress';
-                  _updateIcon();
-                  Navigator.pop(context);
-                },
-              ),
-              remarks == true
-                  ? Container(
-                      width: double.infinity,
-                      height: 50,
-                      child: TextField(),
-                    )
-                  : Container()
-
-              // Add more options as needed
             ],
           ),
         );
@@ -213,7 +298,7 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
             child: Row(
               children: [
                 Text(
-                    '${CustmDevicePvd.listOfCustomer[widget.selectedCustomer]['name']} Devices'),
+                    '${CustmDevicePvd.listOfCustomer[widget.selectedCustomer]['name']} Service Request History'),
                 IconButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -245,28 +330,10 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
                                 : null,
                             borderRadius: BorderRadius.circular(10.0)),
                         child: ListTile(
-                          trailing: Visibility(
-                            visible: (CustmDevicePvd.selected != 'no' &&
-                                    index == int.parse(CustmDevicePvd.selected))
-                                ? true
-                                : false,
-                            child: ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          liteYellow)),
-                              onPressed: () {
-                                Navigator.pop(context);
-                                // Navigator.push(context, MaterialPageRoute(builder: (context){
-                                //   return ReplaceDevice(selectedCusomer: widget.selectedCustomer, SelectedDevice: index,);
-                                // }));
-                              },
-                              child: Text(
-                                'Replace',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                            ),
-                          ),
+                          trailing: Text(
+                              '${CustmDevicePvd.customerDeviceList[index]['saledDate']}',
+                              style: TextStyle(
+                                  fontSize: 12, color: Colors.black87)),
                           leading: Container(
                             width: 50,
                             height: 50,
@@ -284,7 +351,16 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
                                   style: TextStyle(
                                       fontSize: 12, color: Colors.black87)),
                               Text(
-                                  '${CustmDevicePvd.customerDeviceList[index]['saledDate']}',
+                                  'Open Date: ' +
+                                      '${CustmDevicePvd.customerDeviceList[index]['saledDate']}',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.black87)),
+                              Text(
+                                  'Close Date: ' +
+                                      '${CustmDevicePvd.customerDeviceList[index]['saledDate']}',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.black87)),
+                              Text('Remarks ' + 'IC Change',
                                   style: TextStyle(
                                       fontSize: 12, color: Colors.black87)),
                             ],

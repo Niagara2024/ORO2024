@@ -166,7 +166,7 @@ class SellToCustomerPage extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Container(
-                          width: 250,
+                          width: 180,
                           child: TextFormField(
                             onChanged: (newValue) =>
                                 viewModel.updateCustomerMobileNumber(newValue),
