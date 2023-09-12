@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:5:5-35:19
+INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:7:5-37:19
 MERGED from [:firebase_auth] C:\Users\sivap\OneDrive\Desktop\ORO2024\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
 MERGED from [:firebase_auth] C:\Users\sivap\OneDrive\Desktop\ORO2024\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
 MERGED from [:firebase_core] C:\Users\sivap\OneDrive\Desktop\ORO2024\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
@@ -46,11 +46,11 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\si
 	android:name
 		INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-36:12
-INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-36:12
-INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-36:12
-INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-36:12
-MERGED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-36:12
+ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-38:12
+INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-38:12
+INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-38:12
+INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-38:12
+MERGED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-38:12
 MERGED from [:firebase_auth] C:\Users\sivap\OneDrive\Desktop\ORO2024\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:firebase_core] C:\Users\sivap\OneDrive\Desktop\ORO2024\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:geolocator_android] C:\Users\sivap\OneDrive\Desktop\ORO2024\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
@@ -115,22 +115,40 @@ INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\debug\Andr
 		INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\debug\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-36:12
+		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-38:12
 		INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-36:12
+		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:1-38:12
 		INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:3:5-67
+MERGED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:3:5-67
+MERGED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:3:5-67
+MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\sivap\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:25:5-67
+MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\sivap\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:25:5-67
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\sivap\.gradle\caches\transforms-3\da55378eaf462880ab5d8b274da370a8\transformed\jetified-recaptcha-18.1.2\AndroidManifest.xml:7:5-67
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\sivap\.gradle\caches\transforms-3\da55378eaf462880ab5d8b274da370a8\transformed\jetified-recaptcha-18.1.2\AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:3:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:4:5-79
+MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\sivap\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:26:5-79
+MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\sivap\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:26:5-79
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\sivap\.gradle\caches\transforms-3\da55378eaf462880ab5d8b274da370a8\transformed\jetified-recaptcha-18.1.2\AndroidManifest.xml:8:5-79
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\sivap\.gradle\caches\transforms-3\da55378eaf462880ab5d8b274da370a8\transformed\jetified-recaptcha-18.1.2\AndroidManifest.xml:8:5-79
+	android:name
+		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:4:22-76
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:3:5-79
+ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:5:5-79
 	android:name
-		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:3:22-76
+		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:5:22-76
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:4:5-81
+ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:6:5-81
 	android:name
-		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:4:22-78
+		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml:6:22-78
 uses-sdk
 INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml
@@ -255,14 +273,6 @@ INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\debug\Andr
 	android:minSdkVersion
 		INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\debug\AndroidManifest.xml
-uses-permission#android.permission.INTERNET
-ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\debug\AndroidManifest.xml:7:5-66
-MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\sivap\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:25:5-67
-MERGED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\sivap\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:25:5-67
-MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\sivap\.gradle\caches\transforms-3\da55378eaf462880ab5d8b274da370a8\transformed\jetified-recaptcha-18.1.2\AndroidManifest.xml:7:5-67
-MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\sivap\.gradle\caches\transforms-3\da55378eaf462880ab5d8b274da370a8\transformed\jetified-recaptcha-18.1.2\AndroidManifest.xml:7:5-67
-	android:name
-		ADDED from C:\Users\sivap\OneDrive\Desktop\ORO2024\android\app\src\debug\AndroidManifest.xml:7:22-64
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [:firebase_auth] C:\Users\sivap\OneDrive\Desktop\ORO2024\build\firebase_auth\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
 MERGED from [:firebase_core] C:\Users\sivap\OneDrive\Desktop\ORO2024\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:19
@@ -353,12 +363,6 @@ ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\sivap\.gr
 		ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\sivap\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:36:13-107
 	android:name
 		ADDED from [com.google.android.gms:play-services-auth:20.4.0] C:\Users\sivap\.gradle\caches\transforms-3\fd63fa755a0c7f97a7fa210b01829849\transformed\jetified-play-services-auth-20.4.0\AndroidManifest.xml:34:13-89
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\sivap\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:26:5-79
-MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\sivap\.gradle\caches\transforms-3\da55378eaf462880ab5d8b274da370a8\transformed\jetified-recaptcha-18.1.2\AndroidManifest.xml:8:5-79
-MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\sivap\.gradle\caches\transforms-3\da55378eaf462880ab5d8b274da370a8\transformed\jetified-recaptcha-18.1.2\AndroidManifest.xml:8:5-79
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\sivap\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:26:22-76
 activity#com.google.firebase.auth.internal.GenericIdpActivity
 ADDED from [com.google.firebase:firebase-auth:22.1.0] C:\Users\sivap\.gradle\caches\transforms-3\d5463918c4c557a89b664ac5eff70011\transformed\jetified-firebase-auth-22.1.0\AndroidManifest.xml:29:9-46:20
 	android:excludeFromRecents

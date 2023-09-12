@@ -92,15 +92,15 @@ class _CreateAccountState extends State<CreateAccount> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20,),
-            Row(
-              children: [
-                Icon(Icons.arrow_back, size: 25,),
-                SizedBox(width: 10,),
-                Text('Create Account', style: Text20,),
-              ],
-            ),
-            SizedBox(height: 20,),
+            // SizedBox(height: 20,),
+            // Row(
+            //   children: [
+            //     Icon(Icons.arrow_back, size: 25,),
+            //     SizedBox(width: 10,),
+            //     Text('Create Account', style: Text20,),
+            //   ],
+            // ),
+            // SizedBox(height: 20,),
             Center(child: Text('Fill customer details',style: TextStyle(
                 color: Colors.black,
                 fontSize: 16, fontWeight: FontWeight.bold
@@ -158,7 +158,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       Container(
                         color: Colors.white,
                         width: double.infinity,
-                        child: MyDropDown(initialValue: '-', itemList: widget.list,),
+                        child: MyDropDown(initialValue: '-', itemList: widget.list, pvdName: '', index: -1,),
                       )
                     ],
                   ),
@@ -172,7 +172,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       Container(
                         color: Colors.white,
                         width: double.infinity,
-                        child: MyDropDown(initialValue: '-', itemList:  widget.list,),
+                        child: MyDropDown(initialValue: '-', itemList:  widget.list, pvdName: '', index: -1,),
                       )
                     ],
                   ),
@@ -192,7 +192,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       Container(
                         color: Colors.white,
                         width: double.infinity,
-                        child: MyDropDown(initialValue: '-', itemList:  widget.list,),
+                        child: MyDropDown(initialValue: '-', itemList:  widget.list, pvdName: '', index: -1,),
                       )
                     ],
                   ),
@@ -236,7 +236,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     color: liteYellow
                 ),
                 padding: EdgeInsets.only(top: 15,bottom: 15),
-                child: Center(child: Text('Create & Sell', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+                child: Center(child: Text('Create', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
               ),
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
@@ -244,7 +244,7 @@ class _CreateAccountState extends State<CreateAccount> {
                     const SnackBar(content: Text('Processing Data')),
                   );
                 }
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CustomerDevice(purpose: '',)));
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => CustomerDevice(purpose: '',)));
               },
             ),
             SizedBox(height: 35,),

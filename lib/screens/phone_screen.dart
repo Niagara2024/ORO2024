@@ -68,7 +68,6 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> with SingleTicker
           desiredAccuracy: LocationAccuracy.low,
         );
 
-        // Determine the country based on the user's position
         List<Placemark> placemarks = await placemarkFromCoordinates(
           position.latitude,
           position.longitude,

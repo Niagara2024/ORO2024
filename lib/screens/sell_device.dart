@@ -29,7 +29,6 @@ class _BottomSheetForSellingDeviceState extends State<BottomSheetForSellingDevic
   @override
   void initState() {
     numberTextController.addListener(() {
-      print('Text changed: ${numberTextController.text}');
     });
     _getLocationAndSetCountryCode();
     super.initState();
@@ -268,6 +267,8 @@ class SellDeviceScreen extends StatefulWidget {
 
 class _SellDeviceScreenState extends State<SellDeviceScreen> {
 
+  bool selectProduct = false;
+  String title = 'My Assets';
   Future<void> callBottomSheet()async{
     showModalBottomSheet(
       backgroundColor: Colors.transparent,
@@ -282,7 +283,25 @@ class _SellDeviceScreenState extends State<SellDeviceScreen> {
     var SellDevicePvd = Provider.of<SellDeviceProvider>(context, listen : true);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title == '' ? ' Devices' : widget.title),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(icon: Icon(Icons.verified,color: selectProduct == false ? Colors.white54 : Colors.white,), onPressed: () {
+              if(selectProduct == false){
+                setState(() {
+                  selectProduct = true;
+                  title = 'Select Product to sell';
+                });
+              }else{
+                setState(() {
+                  selectProduct = false;
+                  title = 'My Assets';
+                });
+              }
+            })
+          )
+        ],
+        title: Text(widget.title == '' ? title : widget.title),
       ),
       floatingActionButton: SellDevicePvd.selectedList.length > 0 ? FloatingActionButton(
         onPressed: (){
@@ -307,21 +326,12 @@ class _SellDeviceScreenState extends State<SellDeviceScreen> {
                   ),
                   child: ListTile(
                     onTap: (){
-                    //   if(SellDevicePvd.longpress == true && !SellDevicePvd.getList.contains(i)){
-                    //     SellDevicePvd.addFunction(i);
-                    //   }
-                    //   else if(SellDevicePvd.longpress == true && SellDevicePvd.getList.contains(i)){
-                    //     SellDevicePvd.removeFunction(i);
-                    //   }
-                    //   if(SellDevicePvd.getList.length == 0){
-                    //     SellDevicePvd.editLongPress(false);
-                    //   }
-                    // },
-                    // onLongPress: (){
-                    //   SellDevicePvd.editLongPress(true);
-                    //   if(SellDevicePvd.longpress = true){
-                    //     SellDevicePvd.addFunction(i);
-                    //   }
+                      if(selectProduct == true && !SellDevicePvd.getList.contains(i)){
+                        SellDevicePvd.addFunction(i);
+                      }
+                      else if(selectProduct == true && SellDevicePvd.getList.contains(i)){
+                        SellDevicePvd.removeFunction(i);
+                      }
                     },
                     trailing: widget.purpose == 'browse' ? ElevatedButton(
                       style: ButtonStyle(
@@ -331,16 +341,9 @@ class _SellDeviceScreenState extends State<SellDeviceScreen> {
                         Navigator.pop(context);
                       },
                       child: Text('Replace', style: TextStyle(color: Colors.black),),
-                    ) : Checkbox(
-                        value: SellDevicePvd.SellDevices[i]['sell'],
-                        onChanged: (value){
-                          SellDevicePvd.editSellDevices(value!,i);
-                          if(value == true){
-                            SellDevicePvd.addFunction(i);
-                          }else{
-                            SellDevicePvd.removeFunction(i);
-                          }
-                        }),
+                    ) : Visibility(
+                      visible: SellDevicePvd.getList.contains(i) ? true : false,
+                        child: Icon(Icons.verified,color: PrimaryColor, size: 30,)),
                     leading: Container(
                       width: 50,
                       height: 50,
@@ -360,7 +363,8 @@ class _SellDeviceScreenState extends State<SellDeviceScreen> {
                   ),
                 ),
               ),
-            SizedBox(height: 100.0,)          ],
+            SizedBox(height: 100.0,)
+          ],
         ),
       ),
     );

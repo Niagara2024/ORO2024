@@ -56,6 +56,11 @@ dependencies:
   circular_countdown_timer: ^0.2.3
   bouncing_button: ^0.0.1+2
   smooth_page_indicator: ^1.1.0
+  fl_chart: ^0.63.0
+  syncfusion_flutter_gauges: ^22.2.11
+  linked_scroll_controller: ^0.2.0
+  mqtt_client: ^10.0.0
+  font_awesome_flutter: ^10.5.0
 
 dev_dependencies:
   flutter_test:
@@ -89,8 +94,23 @@ flutter:
     - assets/images/replace.png
     - assets\images\closed.png
     - assets\images\open-sign.png
-    - assets\images\work-in-progress.png
-
+    - assets\images\Butterfly-Valve-1.jpg
+    - assets\images\controller.png
+    - assets\images\float-switch-1.jpg
+    - assets\images\pipelinealarm-1.jpg
+    - assets\images\solenoid-valve-2.jpg
+    - assets\images\start.png
+    - assets\images\source_pump.png
+    - assets\images\irrigation_pump.png
+    - assets\images\central_fertilization.png
+    - assets\images\central_filtration.png
+    - assets\images\irrigation_lines.png
+    - assets\images\local_fertilization.png
+    - assets\images\local_filtration.png
+    - assets\images\weather_station.png
+    - assets\images\mapping_of_output.png
+    - assets\images\mapping_of_input.png
+    - assets\images\finish.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

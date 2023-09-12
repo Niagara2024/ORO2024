@@ -121,6 +121,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.0"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
+  event_bus:
+    dependency: transitive
+    description:
+      name: event_bus
+      sha256: "44baa799834f4c803921873e7446a2add0f3efa45e101a054b1f0ab9b95f8edc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -233,6 +249,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.7.0"
+  fl_chart:
+    dependency: "direct main"
+    description:
+      name: fl_chart
+      sha256: c1e26c7e48496be85104c16c040950b0436674cdf0737f3f6e95511b2529b592
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.63.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -264,6 +288,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  font_awesome_flutter:
+    dependency: "direct main"
+    description:
+      name: font_awesome_flutter
+      sha256: "5fb789145cae1f4c3245c58b3f8fb287d055c26323879eab57a7bf0cfd1e45f3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.5.0"
   geocoding:
     dependency: "direct main"
     description:
@@ -456,6 +488,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
+  linked_scroll_controller:
+    dependency: "direct main"
+    description:
+      name: linked_scroll_controller
+      sha256: e6020062bcf4ffc907ee7fd090fa971e65d8dfaac3c62baf601a3ced0b37986a
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   lints:
     dependency: transitive
     description:
@@ -496,6 +536,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  mqtt_client:
+    dependency: "direct main"
+    description:
+      name: mqtt_client
+      sha256: "873c124f6485c17b5ca085047880068f3c5acc9db54317995d752a3253f95a72"
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.0.0"
   nested:
     dependency: transitive
     description:
@@ -741,6 +789,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: "2baf60cd245a21a7069f036bbca1ca222633d38f57748e133da97a305712627c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "22.2.11"
+  syncfusion_flutter_gauges:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_gauges
+      sha256: c086f17e84452e809b12f9832763ec4cea347b9f6e1e662a0e8addabca6cc2e5
+      url: "https://pub.dev"
+    source: hosted
+    version: "22.2.11"
   term_glyph:
     dependency: transitive
     description:

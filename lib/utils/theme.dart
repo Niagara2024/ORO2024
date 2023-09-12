@@ -163,10 +163,10 @@ final ThemeData myTheme = ThemeData(
 
   //Tab bar theme
   tabBarTheme: TabBarTheme(
-    labelColor: Colors.white,
-    unselectedLabelColor: Colors.grey,
-    indicatorColor: Colors.amber,
-    labelStyle: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily, fontSize: 16)
+    // labelColor: Colors.white,
+    // unselectedLabelColor: Colors.grey,
+    // indicatorColor: Colors.amber,
+    // labelStyle: TextStyle(fontFamily: GoogleFonts.poppins().fontFamily, fontSize: 16)
   ),
 
   tooltipTheme: TooltipThemeData(
@@ -181,7 +181,7 @@ final ThemeData myTheme = ThemeData(
     color: Colors.white,
     elevation: 4,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(0),
     ),
   ),
 
