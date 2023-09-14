@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../theme.dart';
 
-
 class MyDropDown extends StatefulWidget {
   String initialValue;
   List<String> itemList;
 
-  MyDropDown({super.key,
-    required this.initialValue,
-    required this.itemList
-  });
+  MyDropDown({super.key, required this.initialValue, required this.itemList});
 
   @override
   State<MyDropDown> createState() => _MyDropDownState();
@@ -22,9 +18,7 @@ class _MyDropDownState extends State<MyDropDown> {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-          color: liteBlue,
-          borderRadius: BorderRadius.circular(10)
-      ),
+          color: liteBlue, borderRadius: BorderRadius.circular(10)),
       child: DropdownButton(
         underline: Container(),
         // Initial Value
@@ -40,9 +34,7 @@ class _MyDropDownState extends State<MyDropDown> {
           return DropdownMenuItem(
             value: items,
             child: Container(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(items)
-            ),
+                padding: EdgeInsets.only(left: 10), child: Text(items)),
           );
         }).toList(),
         // After selecting the desired option,it will

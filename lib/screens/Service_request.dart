@@ -6,7 +6,6 @@ import 'package:oro_2024/state_management/sell_device_provider.dart';
 import 'package:oro_2024/utils/theme.dart';
 import 'package:provider/provider.dart';
 
-
 class ServiceRequest extends StatefulWidget {
   const ServiceRequest({super.key});
 
@@ -38,6 +37,11 @@ class _ServiceRequestState extends State<ServiceRequest> {
       ),
       body: Column(
         children: [
+          Container(
+            child: MultipleChoice(
+              name: ['Total ', 'Open', 'In-Progres', 'Closed'],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(10.0),
             //  child: CustomeTextField(myFocus: null, needTofocus: null, listeningHeading: null, errorMessage: null, Type: null, hintText: 'Search Customer', icon: Icon(Icons.search, color: Colors.black54,)),
@@ -99,7 +103,7 @@ class _ServiceRequestState extends State<ServiceRequest> {
                           Text(
                             '${CustmDevicePvd.listOfCustomer[index]['number']}',
                             style:
-                            TextStyle(fontSize: 12, color: Colors.black87),
+                                TextStyle(fontSize: 12, color: Colors.black87),
                           ),
                           Text(
                               '${CustmDevicePvd.listOfCustomer[index]['city']}',
@@ -185,7 +189,6 @@ class _ServiceRequestState extends State<ServiceRequest> {
                       _updateIcon();
                       Navigator.pop(context);
                     });
-
                   },
                 ),
                 // remarks == true
@@ -231,7 +234,9 @@ class _ServiceRequestState extends State<ServiceRequest> {
                 },
                 child: Text('Save'),
               ),
-              SizedBox(height: MediaQuery.of(context).viewInsets.bottom+20,)
+              SizedBox(
+                height: MediaQuery.of(context).viewInsets.bottom + 20,
+              )
             ],
           ),
         );
@@ -292,7 +297,7 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
                       child: Container(
                         decoration: BoxDecoration(
                             color: (CustmDevicePvd.selected != 'no' &&
-                                index == int.parse(CustmDevicePvd.selected))
+                                    index == int.parse(CustmDevicePvd.selected))
                                 ? liteBlue
                                 : null,
                             borderRadius: BorderRadius.circular(10.0)),
@@ -340,6 +345,36 @@ class _BottomSheetForDevicesState extends State<BottomSheetForDevices> {
           )
         ],
       ),
+    );
+  }
+}
+
+class MultipleChoice extends StatefulWidget {
+  List<String> name;
+  MultipleChoice({Key? key, required this.name});
+
+  @override
+  State<MultipleChoice> createState() => _MultipleChoiceState();
+}
+
+class _MultipleChoiceState extends State<MultipleChoice> {
+  Set<String> selection = {'Total'};
+
+  @override
+  Widget build(BuildContext context) {
+    return SegmentedButton<String>(
+      showSelectedIcon: false,
+      segments: <ButtonSegment<String>>[
+        for (var i in widget.name)
+          ButtonSegment<String>(value: '$i', label: Text(i)),
+      ],
+      selected: selection,
+      onSelectionChanged: (Set<String> newSelection) {
+        setState(() {
+          selection = newSelection;
+        });
+      },
+      multiSelectionEnabled: false,
     );
   }
 }

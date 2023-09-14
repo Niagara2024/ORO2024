@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:oro_2024/screens/SharedDevice.dart';
+import 'package:oro_2024/screens/localeString.dart';
 import 'package:oro_2024/screens/splash_screen.dart';
 import 'package:oro_2024/state_management/create_account_provide.dart';
 import 'package:oro_2024/state_management/customer_device_provider.dart';
@@ -16,8 +18,7 @@ void main() {
       ChangeNotifierProvider(create: (context) => DeviceListViewModel()),
     ],
     child: MyApp(),
-  )
-  );
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +26,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      translations: LocaleString(),
+      locale: Locale('en', 'US'),
       debugShowCheckedModeBanner: false,
       title: 'ORO DRIP IRRIGATION',
       theme: myTheme,

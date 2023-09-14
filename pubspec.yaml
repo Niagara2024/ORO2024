@@ -56,6 +56,8 @@ dependencies:
   circular_countdown_timer: ^0.2.3
   bouncing_button: ^0.0.1+2
   smooth_page_indicator: ^1.1.0
+  multi_language_json: ^1.2.0
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
