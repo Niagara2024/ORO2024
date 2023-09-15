@@ -21,37 +21,41 @@ class _SourcePumpTableState extends State<SourcePumpTable> {
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraint){
       var width = constraint.maxWidth;
       return Container(
+        margin: MediaQuery.of(context).orientation == Orientation.portrait ? null : EdgeInsets.only(right: 70),
         width: double.infinity,
         height: double.infinity,
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.only(left: 10,right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: Row(
-                    children: [
-                      Checkbox(
-                          value: selectButton,
-                          onChanged: (value){
-                            setState(() {
-                              selectButton = value!;
-                            });
-                          }
-                      ),
-                      Text('Select')
-                    ],
-                  ),
+                Row(
+                  children: [
+                    Checkbox(
+                        value: configPvd.sourcePumpSelection,
+                        onChanged: (value){
+                          setState(() {
+                            configPvd.sourcePumpFunctionality(['editsourcePumpSelection',value]);
+                          });
+                        }
+                    ),
+                    Text('Select')
+                  ],
                 ),
-                Container(
-                  child: Row(
-                    children: [
-                      Text('Total Source Pump : '),
-                      Text('${configPvd.totalSourcePump}')
-                    ],
-                  ),
+                Row(
+                  children: [
+                    Checkbox(
+                        value: configPvd.sourcePumpSelectAll,
+                        onChanged: (value){
+                          setState(() {
+                            configPvd.sourcePumpFunctionality(['editsourcePumpSelectAll',value]);
+                          });
+                        }
+                    ),
+                    Text('Select all')
+                  ],
                 ),
                 SizedBox(width: 10,)
 
@@ -64,12 +68,13 @@ class _SourcePumpTableState extends State<SourcePumpTable> {
                   Expanded(
                     child: Container(
                       width: double.infinity,
-                      height: 60,
+                      height: 80,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Source',style: TextStyle(color: Colors.white),),
                           Text('Pump',style: TextStyle(color: Colors.white)),
+                          Text('${configPvd.totalSourcePump}',style: TextStyle(color: Colors.white)),
                         ],
                       ),
                       decoration: BoxDecoration(
@@ -80,12 +85,13 @@ class _SourcePumpTableState extends State<SourcePumpTable> {
                   Expanded(
                     child: Container(
                       width: double.infinity,
-                      height: 60,
+                      height: 80,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Water',style: TextStyle(color: Colors.white),),
                           Text('Source',style: TextStyle(color: Colors.white)),
+                          Text('6',style: TextStyle(color: Colors.white)),
                         ],
                       ),
                       decoration: BoxDecoration(
@@ -96,12 +102,13 @@ class _SourcePumpTableState extends State<SourcePumpTable> {
                   Expanded(
                     child: Container(
                       width: double.infinity,
-                      height: 60,
+                      height: 80,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Water',style: TextStyle(color: Colors.white),),
                           Text('Meter',style: TextStyle(color: Colors.white)),
+                          Text('${configPvd.totalWaterMeter}',style: TextStyle(color: Colors.white)),
                         ],
                       ),
                       decoration: BoxDecoration(
@@ -131,11 +138,11 @@ class _SourcePumpTableState extends State<SourcePumpTable> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    if(selectButton == true)
+                                    if(configPvd.sourcePumpSelection == true || configPvd.sourcePumpSelectAll == true)
                                       Checkbox(
                                           value: configPvd.sourcePump[index][2] == 'select' ? true : false,
                                           onChanged: (value){
-                                            configPvd.selectSourcePump(index);
+                                            configPvd.sourcePumpFunctionality(['selectSourcePump',index,value]);
                                           }),
                                     Text('${index + 1}'),
                                   ],
@@ -154,14 +161,13 @@ class _SourcePumpTableState extends State<SourcePumpTable> {
                             child: Container(
                               width: double.infinity,
                               height: 60,
-                              child: Center(
-                                child:  Checkbox(
-                                    value: configPvd.sourcePump[index][1],
-                                    onChanged: (value){
-                                      configPvd.editWaterMeter(value!, index);
-                                    }
-                                ),
-                              ),
+                              child: (configPvd.totalWaterMeter == 0 && configPvd.sourcePump[index][1] == false) ?
+                              Center(child: Text('N/A',style: TextStyle(fontSize: 12),)) :
+                              Checkbox(
+                                  value: configPvd.sourcePump[index][1],
+                                  onChanged: (value){
+                                    configPvd.sourcePumpFunctionality(['editWaterMeter',index,value]);
+                                  }),
                             ),
                           ),
 

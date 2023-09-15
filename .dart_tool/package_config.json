@@ -51,7 +51,7 @@
     },
     {
       "name": "collection",
-      "rootUri": "file:///C:/Users/sivap/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.18.0",
+      "rootUri": "file:///C:/Users/sivap/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.17.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -585,15 +585,15 @@
     },
     {
       "name": "stack_trace",
-      "rootUri": "file:///C:/Users/sivap/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.11.1",
+      "rootUri": "file:///C:/Users/sivap/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.11.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "stream_channel",
-      "rootUri": "file:///C:/Users/sivap/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.2",
+      "rootUri": "file:///C:/Users/sivap/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.1",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "2.14"
     },
     {
       "name": "string_scanner",
@@ -621,9 +621,9 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///C:/Users/sivap/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.6.1",
+      "rootUri": "file:///C:/Users/sivap/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.6.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.18"
     },
     {
       "name": "typed_data",
@@ -698,7 +698,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-09-12T09:02:25.044324Z",
+  "generated": "2023-09-14T10:13:46.639919Z",
   "generator": "pub",
-  "generatorVersion": "3.2.0-87.0.dev"
+  "generatorVersion": "3.1.2"
 }

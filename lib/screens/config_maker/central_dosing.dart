@@ -20,6 +20,7 @@ class _CentralDosingTableState extends State<CentralDosingTable> {
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraint){
       var width = constraint.maxWidth;
       return Container(
+        margin: MediaQuery.of(context).orientation == Orientation.portrait ? null : EdgeInsets.only(right: 70),
         width: double.infinity,
         height: double.infinity,
         padding: EdgeInsets.all(10.0),

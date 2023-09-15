@@ -58,7 +58,13 @@ class _MyDropDownState extends State<MyDropDown> {
             else if(widget.pvdName == 'selectedInterval'){
               deviceListPvd.editInterval(widget.index, newValue!);
             }else if(widget.pvdName == 'editWaterSource_sp'){
-              configPvd.editWaterSource_sp(newValue!, widget.index);
+              configPvd.sourcePumpFunctionality(['editWaterSource_sp',widget.index,newValue!]);
+            }else if(widget.pvdName == 'editCentralDosing'){
+              configPvd.irrigationLinesFunctionality(['editCentralDosing',widget.index,newValue!]);
+            }else if(widget.pvdName == 'editCentralFiltration'){
+              configPvd.irrigationLinesFunctionality(['editCentralFiltration',widget.index,newValue!]);
+            }else if(widget.pvdName == 'editWaterSource'){
+              configPvd.irrigationLinesFunctionality(['editWaterSource',widget.index,newValue!]);
             }
 
           },

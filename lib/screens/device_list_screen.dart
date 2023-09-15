@@ -157,6 +157,7 @@ class _DeviceListScreenState extends State<DeviceListScreen> {
                                         itemCount: deviceListPvd.myAssets.length,
                                         itemBuilder: (BuildContext context, int index){
                                           return Container(
+                                            margin: index == deviceListPvd.myAssets.length - 1 ? EdgeInsets.only(bottom: 60) : null,
                                             color: index % 2 != 0 ? Colors.blue.shade100 : null,
                                             child: Row(
                                               children: [
@@ -282,6 +283,7 @@ class _DeviceListScreenState extends State<DeviceListScreen> {
                                           children: [
                                             for(var i = 0;i < deviceListPvd.myAssets.length; i++)
                                               Container(
+                                                margin: i == deviceListPvd.myAssets.length - 1 ? EdgeInsets.only(bottom: 60) : null,
                                                 color: PrimaryColor,
                                                 child: Row(
                                                   children: [
@@ -393,6 +395,7 @@ class _DeviceListScreenState extends State<DeviceListScreen> {
                                               children: [
                                                 for(var i = 0;i < deviceListPvd.myAssets.length; i++)
                                                   Container(
+                                                    margin: i == deviceListPvd.myAssets.length - 1 ? EdgeInsets.only(bottom: 60) : null,
                                                     color: i % 2 != 0 ? Colors.blue.shade100 : null,
                                                     child: Row(
                                                       children: [

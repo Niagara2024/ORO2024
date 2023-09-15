@@ -183,43 +183,40 @@ class _ProductLimitScreenState extends State<ProductLimitScreen> {
     }).toList();
 
     return Padding(
-      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+      padding: const EdgeInsets.only( left: 10, right: 10),
       child: ListView.builder(
         itemCount: filteredTitleAndIcon.length,
         itemBuilder: (context, index) {
           final config = filteredTitleAndIcon[index];
           final configIndex = titleAndIcon.indexOf(config);
-
-          return Column(
-            children: [
-              ListTile(
-                tileColor: Color(0XFFF3F3F3),
-                leading: CircleAvatar(
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
-                  child: Icon(config.icon, color: Theme.of(context).primaryColor),
-                ),
-                title: Text(config.title),
-                trailing: DropdownButton<String>(
-                  value: selectedValues[configIndex],
-                  onChanged: (newValue) {
-                    setState(() {
-                      selectedValues[configIndex] = newValue!;
-                    });
-                  },
-                  items: valueCounts[configIndex].map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  menuMaxHeight: 210,
-                ),
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Color(0XFFF3F3F3),
+            ),
+            margin: index == filteredTitleAndIcon.length -1 ? EdgeInsets.only(bottom: 80) : EdgeInsets.only(bottom: 10),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Theme.of(context).colorScheme.secondary,
+                child: Icon(config.icon, color: Theme.of(context).primaryColor),
               ),
-              if(index == filteredTitleAndIcon.length - 1)
-                const SizedBox(height: 80,)
-              else
-                const SizedBox(height: 10,),
-            ],
+              title: Text(config.title),
+              trailing: DropdownButton<String>(
+                value: selectedValues[configIndex],
+                onChanged: (newValue) {
+                  setState(() {
+                    selectedValues[configIndex] = newValue!;
+                  });
+                },
+                items: valueCounts[configIndex].map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                menuMaxHeight: 210,
+              ),
+            ),
           );
         },
       ),

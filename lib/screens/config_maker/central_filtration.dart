@@ -20,6 +20,7 @@ class _CentralFiltrationTableState extends State<CentralFiltrationTable> {
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraint){
       var width = constraint.maxWidth;
       return Container(
+        margin: MediaQuery.of(context).orientation == Orientation.portrait ? null : EdgeInsets.only(right: 70),
         width: double.infinity,
         height: double.infinity,
         padding: EdgeInsets.all(10.0),
@@ -145,7 +146,7 @@ class _CentralFiltrationTableState extends State<CentralFiltrationTable> {
                                     Checkbox(
                                         value: configPvd.centralFiltration[index][3] == 'select' ? true : false,
                                         onChanged: (value){
-                                          configPvd.selectSourcePump(index);
+                                          configPvd.centralFiltrationFunctionality(['selectCentralFiltration',index,value]);
                                         }),
                                   Text('${index + 1}'),
                                 ],
@@ -156,12 +157,21 @@ class _CentralFiltrationTableState extends State<CentralFiltrationTable> {
                             child: Container(
                                 width: double.infinity,
                                 height: 60,
-                                child: TextFormField(
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide.none
-                                    )
+                                child: Center(
+                                  child: TextFormField(
+                                    initialValue: configPvd.centralFiltration[index][0],
+                                    maxLength: 1,
+                                    onChanged: (value){
+                                      configPvd.centralFiltrationFunctionality(['editFilters',index,value]);
+                                    },
+                                    textAlign: TextAlign.center,
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      counterText: '',
+                                      border: OutlineInputBorder(
+                                        borderSide: BorderSide.none
+                                      )
+                                    ),
                                   ),
                                 )
                             ),
@@ -172,9 +182,23 @@ class _CentralFiltrationTableState extends State<CentralFiltrationTable> {
                               height: 60,
                               child: Center(
                                 child:  Checkbox(
-                                    value: configPvd.sourcePump[index][1],
+                                    value: configPvd.centralFiltration[index][1],
                                     onChanged: (value){
-                                      configPvd.editWaterMeter(value!, index);
+                                      configPvd.centralFiltrationFunctionality(['editDownStreamValve',index,value]);
+                                    }
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              width: double.infinity,
+                              height: 60,
+                              child: Center(
+                                child:  Checkbox(
+                                    value: configPvd.centralFiltration[index][2],
+                                    onChanged: (value){
+                                      configPvd.centralFiltrationFunctionality(['editPressureSensor',index,value]);
                                     }
                                 ),
                               ),

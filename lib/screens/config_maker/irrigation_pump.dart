@@ -21,6 +21,7 @@ class _IrrigationPumpTableState extends State<IrrigationPumpTable> {
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraint){
       var width = constraint.maxWidth;
       return Container(
+        margin: MediaQuery.of(context).orientation == Orientation.portrait ? null : EdgeInsets.only(right: 70),
         width: double.infinity,
         height: double.infinity,
         padding: EdgeInsets.all(10.0),
@@ -30,28 +31,27 @@ class _IrrigationPumpTableState extends State<IrrigationPumpTable> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  child: Row(
-                    children: [
-                      Checkbox(
-                          value: selectButton,
-                          onChanged: (value){
-                            setState(() {
-                              selectButton = value!;
-                            });
-                          }
-                      ),
-                      Text('Select')
-                    ],
-                  ),
+                Row(
+                  children: [
+                    Checkbox(
+                        value: configPvd.irrigationPumpSelection,
+                        onChanged: (value){
+                          configPvd.irrigationPumpFunctionality(['editIrrigationPumpSelection',value]);
+                        }
+                    ),
+                    Text('Select')
+                  ],
                 ),
-                Container(
-                  child: Row(
-                    children: [
-                      Text('Total Irrigation Pump : '),
-                      Text('${configPvd.totalSourcePump}')
-                    ],
-                  ),
+                Row(
+                  children: [
+                    Checkbox(
+                        value: configPvd.irrigationPumpSelectAll,
+                        onChanged: (value){
+                          configPvd.irrigationPumpFunctionality(['editIrrigationPumpSelectAll',value]);
+                        }
+                    ),
+                    Text('Select all')
+                  ],
                 ),
                 SizedBox(width: 10,)
 
@@ -69,7 +69,7 @@ class _IrrigationPumpTableState extends State<IrrigationPumpTable> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Irrigation',style: TextStyle(color: Colors.white),),
-                          Text('Pump',style: TextStyle(color: Colors.white)),
+                          Text('Pump (${configPvd.totalIrrigationPump})',style: TextStyle(color: Colors.white)),
                         ],
                       ),
                       decoration: BoxDecoration(
@@ -85,7 +85,7 @@ class _IrrigationPumpTableState extends State<IrrigationPumpTable> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Water',style: TextStyle(color: Colors.white),),
-                          Text('Meter',style: TextStyle(color: Colors.white)),
+                          Text('Meter (${configPvd.totalWaterMeter})',style: TextStyle(color: Colors.white)),
                         ],
                       ),
                       decoration: BoxDecoration(
@@ -114,7 +114,7 @@ class _IrrigationPumpTableState extends State<IrrigationPumpTable> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    if(selectButton == true)
+                                    if(configPvd.irrigationPumpSelection == true || configPvd.irrigationPumpSelectAll == true)
                                       Checkbox(
                                           value: configPvd.irrigationPump[index][1] == 'select' ? true : false,
                                           onChanged: (value){
@@ -130,7 +130,9 @@ class _IrrigationPumpTableState extends State<IrrigationPumpTable> {
                             child: Container(
                                 width: double.infinity,
                                 height: 60,
-                                child: Checkbox(
+                                child: (configPvd.totalWaterMeter == 0 && configPvd.irrigationPump[index][0] == false) ?
+                                    Center(child: Text('N/A',style: TextStyle(fontSize: 12),)) :
+                                    Checkbox(
                                     value: configPvd.irrigationPump[index][0],
                                     onChanged: (value){
                                       configPvd.irrigationPumpFunctionality(['editWaterMeter',index,value]);
